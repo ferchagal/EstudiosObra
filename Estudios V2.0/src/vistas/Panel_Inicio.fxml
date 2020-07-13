@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="1615.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="620.0" layoutY="60.0" prefHeight="82.0" prefWidth="936.0" text="Esta es una aplicación pensada para gestionar Industriales en función de sus respectivos oficios, y su zona geográfica de actuación. También está pensada para controlar el estado en el que se encuentra cada una de las  peticiones de oferta de los proveedores asignados a cada estudio de obra." textAlignment="JUSTIFY" wrapText="true">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="1408.0" layoutY="895.0" prefHeight="16.0" prefWidth="93.0" text="Una aplicación de:">
+         <font>
+            <Font name="Verdana" size="10.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="53.0" fitWidth="69.0" layoutX="1515.0" layoutY="903.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/Firma%20Fer%20-%20mclaren.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="267.0" fitWidth="457.0" layoutX="75.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/LogoEO.png" />
+         </image>
+      </ImageView>
+      <Separator layoutX="560.0" orientation="VERTICAL" prefHeight="966.0" />
+      <Separator layoutX="560.0" layoutY="200.0" prefWidth="1055.0" />
+      <Separator layoutY="850.0" prefWidth="560.0" />
+      <Label layoutX="40.0" layoutY="820.0" text="Estado:">
+         <font>
+            <Font name="Verdana Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="etiEstado" layoutX="170.0" layoutY="880.0" text="Usuario NO conectado">
+         <font>
+            <Font name="Verdana Bold" size="18.0" />
+         </font>
+      </Label>
+      <Separator layoutX="560.0" layoutY="880.0" prefWidth="1055.0" />
+      <TableView fx:id="tablaEstudios" layoutX="642.0" layoutY="306.0" prefHeight="446.0" prefWidth="872.0">
+        <columns>
+          <TableColumn prefWidth="140.33331298828125" text="Código" />
+          <TableColumn prefWidth="472.3333740234375" text="Designación" />
+            <TableColumn minWidth="0.0" prefWidth="99.6666259765625" text="Año" />
+            <TableColumn minWidth="0.0" prefWidth="157.0" text="Adjudicada" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

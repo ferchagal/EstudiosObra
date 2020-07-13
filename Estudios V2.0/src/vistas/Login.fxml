@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.Login_Controller">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: #6490F3;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="150.0" text="Bienvenido" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <VBox layoutX="200.0" prefHeight="400.0" prefWidth="400.0">
+         <children>
+            <ImageView fitHeight="102.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/LogoEO.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="25.0" left="110.0" right="110.0" top="25.0" />
+               </VBox.margin>
+            </ImageView>
+            <TextField fx:id="txtUsuario" focusTraversable="false" promptText="Usuario">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="80.0" right="80.0" top="20.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField fx:id="txtContrasena" promptText="Contraseña">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="80.0" right="80.0" top="10.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Button mnemonicParsing="false" onAction="#iniciarAplicacion" prefWidth="240.0" text="Iniciar  sesión">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="80.0" right="80.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="90.0" layoutY="301.0" mnemonicParsing="false" onAction="#salirAplicacion" prefWidth="240.0" text="Cancelar">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="80.0" right="80.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Label text="2020 - Fer">
+               <VBox.margin>
+                  <Insets left="300.0" top="20.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
