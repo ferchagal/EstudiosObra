@@ -41,7 +41,13 @@ public class Zona {
 		
 	}
 	
-	public static void datosTablaZonas (Connection miConexion, ObservableList<Zona>lista) {
+	@Override
+	public String toString() {
+		
+		return zona.get();
+	}
+		
+	public static void datosComboZonas (Connection miConexion, ObservableList<Zona>lista) {
 		try {
 			Statement consulta = miConexion.createStatement();
 			

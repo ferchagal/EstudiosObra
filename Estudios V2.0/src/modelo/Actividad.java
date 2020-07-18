@@ -40,7 +40,14 @@ public class Actividad {
 		
 	}
 	
-	public static void datosTablaActividades (Connection miConexion, ObservableList<Actividad>lista) {
+	@Override
+	public String toString() {
+		
+		return actividad.get();
+		
+	}
+	
+	public static void datosComboActividades (Connection miConexion, ObservableList<Actividad>lista) {
 		try {
 			Statement consulta = miConexion.createStatement();
 			
