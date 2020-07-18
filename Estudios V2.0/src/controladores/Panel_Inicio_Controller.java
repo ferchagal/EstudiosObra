@@ -8,14 +8,71 @@ package controladores;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import modelo.Conexion;
+import modelo.Estudio;
+
 
 public class Panel_Inicio_Controller implements Initializable  {
-
+	
+	@FXML private Label etiEstado;
+	
+	@FXML private TableView <Estudio> tablaEstudios;
+	
+	@FXML private TableColumn<Estudio, Integer> clCodigo_Estudio;
+	@FXML private TableColumn<Estudio, String> clDesignacion;
+	@FXML private TableColumn<Estudio, Integer> clAnyo;
+	@FXML private TableColumn<Estudio, String> clAdjudicada;
+	@FXML private TableColumn<Estudio, Integer> clCodigo_Usuario;
+	@FXML private TableColumn<Estudio, Integer> clCodigo_Zona;
+	
+	/**
+	 * Objeto de tipo Connection. Para configurar la conexión a la BBDD.
+	 */
+	private Conexion miConexion;
+	
+	/**
+	 * Lista de tipo ObservableList para rellenar la tabla de estudios
+	 */
+	private ObservableList<Estudio> estudios;
+	
+	@FXML public void cargarEstudio (ActionEvent Event) {
+		
+		
+		etiEstado.setText("Cargando Estudio seleccionado...");
+		
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Apéndice de método generado automáticamente
+		
+		miConexion = new Conexion();
+		miConexion.conectarBD();
+		
+		//inicializamos  lista de estudios
+		estudios = FXCollections.observableArrayList();
+		
+		//Llenamos lista estudios
+		Estudio.datosTablaEstudios(miConexion.getConnection(), estudios);
+		
+		//Enlazamos con la Tableview
+		tablaEstudios.setItems(estudios);
+		
+		//Enlazar columnas con atributos
+		clCodigo_Estudio.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("codigo_estudio"));
+		clDesignacion.setCellValueFactory(new PropertyValueFactory<Estudio, String>("designacion"));
+		clAnyo.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("anyo"));
+		clAdjudicada.setCellValueFactory(new PropertyValueFactory<Estudio, String>("adjudicada"));
+		clCodigo_Usuario.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("codigo_usuario"));
+		clCodigo_Zona.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("codigo_zona"));
 		
 	}
 

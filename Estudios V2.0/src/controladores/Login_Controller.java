@@ -8,8 +8,6 @@
 package controladores;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
@@ -25,10 +23,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import modelo.Conexion;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
+
 
 
 /**
@@ -48,24 +46,22 @@ public class Login_Controller implements Initializable {
 	/**
 	 * Objeto de tipo Connection. Para configurar la conexión a la BBDD.
 	 */
-	private Connection miConexion;
+	private Conexion miConexion;
 	
 	/**
-	 * Método que lanzamos haciendo click en el botón "Iniciar Sesión", lanza el método conectarBD
-	 * (nos conecta con la BBDD), y compruba que el usuario y contraseña introducios son correctos.
+	 * Método que lanzamos haciendo click en el botón "Iniciar Sesión" compruba que el usuario y 
+	 * contraseña introducios son correctos.
 	 *  
 	 * @param Event evento generado por el usuario
 	 */
 	@FXML public void iniciarAplicacion (ActionEvent Event) {
-		
-		conectarBD();
 		
 		String usuario = txtUsuario.getText();
 		String contrasena = txtContrasena.getText();
 		
 		if(usuario.length()>0 && contrasena.length()>0 ) {
 			try {
-				Statement sql = miConexion.createStatement();
+				Statement sql = miConexion.getConnection().createStatement();
 				String consulta = "SELECT * FROM usuarios WHERE usuario = '" + usuario
 						+ "' AND password = '" + contrasena+"'";
 							
@@ -113,23 +109,12 @@ public class Login_Controller implements Initializable {
 	@FXML public void salirAplicacion (ActionEvent Event){
 		System.exit(0);
 	}
-	
-	private void conectarBD () {
-		miConexion = null;
-		//Cargamos el driver de la BBDD
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/estudiosobra",
-					"Fer","F3rn4nd0Ch@c0n##");
-		} catch (Exception ex) {
-			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
-					+ " Pongase en contacto con su Administrador",ButtonType.CLOSE);
-			alerta.showAndWait();
-		}
-	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		miConexion = new Conexion();
+		miConexion.conectarBD();
 		
 		//Hacemos que el bóton adquiera el foco...
 		txtUsuario.setFocusTraversable(false);

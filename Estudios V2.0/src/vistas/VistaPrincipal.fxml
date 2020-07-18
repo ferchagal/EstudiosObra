@@ -16,53 +16,19 @@
                <children>
                 <AnchorPane layoutY="554.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" styleClass="fondo">
                      <children>
-                        <Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0">
-                          <panes>
-                            <TitledPane animated="false" text="Configuración">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoDesplegable">
-                                       <children>
-                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="300.0">
-                                             <children>
-                                                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cargarPanelConfigIndustriales" prefHeight="40.0" prefWidth="180.0" text="Industriales">
-                                                   <VBox.margin>
-                                                      <Insets left="60.0" right="60.0" top="40.0" />
-                                                   </VBox.margin>
-                                                   <font>
-                                                      <Font name="Verdana" size="12.0" />
-                                                   </font>
-                                                </Button>
-                                                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cargarPanelConfigEstudios" prefHeight="40.0" prefWidth="180.0" text="Estudios">
-                                                   <VBox.margin>
-                                                      <Insets left="60.0" right="60.0" top="20.0" />
-                                                   </VBox.margin>
-                                                   <font>
-                                                      <Font name="Verdana" size="12.0" />
-                                                   </font>
-                                                </Button>
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                                 <font>
-                                    <Font name="Verdana Bold" size="12.0" />
-                                 </font>
-                            </TitledPane>
-                          </panes>
-                        </Accordion>
+                        <Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" />
                      </children>
                   </AnchorPane>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="522.0" minWidth="300.0" prefHeight="522.0" prefWidth="300.0" styleClass="fondo">
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="966.0" minWidth="300.0" prefHeight="966.0" prefWidth="300.0" styleClass="fondo">
                      <children>
-                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="300.0">
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="300.0">
                            <children>
-                              <Label fx:id="etiIdentidad" alignment="CENTER" prefHeight="40.0" prefWidth="200.0" text="Usuario no identificado" textFill="WHITE">
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="200.0" text="Panel de Gestión" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets left="50.0" right="50.0" top="50.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="Verdana Bold" size="14.0" />
+                                    <Font name="Verdana Bold Italic" size="14.0" />
                                  </font>
                               </Label>
                               <Button mnemonicParsing="false" onAction="#cargarPanelInicio" prefHeight="40.0" prefWidth="180.0" text="Inicio">
@@ -73,7 +39,7 @@
                                     <Font name="Verdana" size="12.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#cargarPanelIndustriales" prefHeight="40.0" prefWidth="180.0" text="Industriales">
+                              <Button mnemonicParsing="false" onAction="#cargarPanelEstudios" prefHeight="40.0" prefWidth="180.0" text="Estudios">
                                  <VBox.margin>
                                     <Insets left="60.0" right="60.0" top="20.0" />
                                  </VBox.margin>
@@ -81,7 +47,7 @@
                                     <Font name="Verdana" size="12.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#cargarPanelEstudios" prefHeight="40.0" prefWidth="180.0" text="Estudios">
+                              <Button mnemonicParsing="false" onAction="#cargarPanelIndustriales" prefHeight="40.0" prefWidth="180.0" text="Industriales">
                                  <VBox.margin>
                                     <Insets left="60.0" right="60.0" top="20.0" />
                                  </VBox.margin>
@@ -120,20 +86,20 @@
                         </MenuItem>
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="_Industriales">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#cargarPanelIndustriales" text="Industriales">
-                           <accelerator>
-                              <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                           </accelerator>
-                        </MenuItem>
-                  </items>
-                </Menu>
                 <Menu mnemonicParsing="false" text="_Estudios">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#cargarPanelEstudios" text="Estudios">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="_Industriales">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#cargarPanelIndustriales" text="Industriales">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
                   </items>
