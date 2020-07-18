@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="1615.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.Panel_Industriales_Controller">
+   <children>
+      <AnchorPane id="formularioIndustriales" layoutX="-3.0" prefHeight="966.0" prefWidth="600.0" style="-fx-background-color: #9FB9F6;">
+         <children>
+            <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="220.0" minWidth="220.0" prefWidth="220.0" />
+                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="380.0" minWidth="380.0" prefWidth="380.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="90.0" prefHeight="90.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Código:">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Nombre:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Apellidos:" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Email:" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Teléfono:" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Teléfono 02:" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Actividad:" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Empresa:" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Localidad:" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Zona:" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Comentarios:" GridPane.rowIndex="10">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="txtCodigoIndustrial" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtApellidos" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtTelefono" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtTelefono02" layoutX="230.0" layoutY="313.0" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtEmpresa" layoutX="230.0" layoutY="383.0" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtLocalidad" layoutX="230.0" layoutY="523.0" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtComentarios" layoutX="230.0" layoutY="593.0" prefHeight="50.0" prefWidth="325.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <ComboBox fx:id="cbActividad" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="cbZona" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+               </children>
+            </GridPane>
+            <Label layoutX="189.0" layoutY="36.0" text="Gestión de Industriales:">
+               <font>
+                  <Font name="Verdana Italic" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ScrollPane layoutX="650.0" layoutY="120.0" prefViewportHeight="700.0" prefViewportWidth="915.0">
+         <content>
+            <TableView layoutX="650.0" layoutY="120.0" prefHeight="700.0" prefWidth="915.0">
+              <columns>
+                <TableColumn maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Código" />
+                <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Nombre" />
+                  <TableColumn maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="Apellidos" />
+                  <TableColumn maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Email" />
+                  <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Teléfono" />
+                  <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Teléfono 02" />
+                  <TableColumn maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Actividad" />
+                  <TableColumn maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Empresa" />
+                  <TableColumn maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Localidad" />
+                  <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Zona" />
+                  <TableColumn maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Comentarios" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
