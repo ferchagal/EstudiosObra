@@ -30,6 +30,11 @@ public class Usuario {
 		this.password = new SimpleStringProperty (password);
 	}
 	
+	public Usuario(Integer codigo_usuario, String usuario) {
+		this.codigo_usuario = new SimpleIntegerProperty(codigo_usuario);
+		this.usuario = new SimpleStringProperty (usuario);
+	}
+	
 	public void guardarUsuario() {
 		
 	}
@@ -40,6 +45,12 @@ public class Usuario {
 	
 	public void eliminarUsuario() {
 		
+	}
+	
+	@Override
+	public String toString() {
+		
+		return usuario.get();
 	}
 	
 	public static void datosTablaUsuarios (Connection miConexion, ObservableList<Usuario>lista) {

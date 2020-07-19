@@ -47,8 +47,8 @@
           <TableColumn fx:id="clDesignacion" maxWidth="260.0" minWidth="260.0" prefWidth="260.0" text="Designación" />
            <TableColumn fx:id="clAnyo" maxWidth="80.0" minWidth="80.0" text="Año" />
            <TableColumn fx:id="clAdjudicada" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="Adjudicada" />
-            <TableColumn fx:id="clCodigo_Usuario" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Estudiada por" />
-            <TableColumn fx:id="clCodigo_Zona" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Zona" />
+            <TableColumn fx:id="clUsuario" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Estudiada por" />
+            <TableColumn fx:id="clZona" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Zona" />
         </columns>
       </TableView>
       <Label fx:id="etiEstado" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutY="850.0" prefHeight="116.0" prefWidth="560.0" style="-fx-background-color: #9FB9F6;" text="Esperando..." textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">

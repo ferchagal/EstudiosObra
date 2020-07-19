@@ -24,17 +24,17 @@ public class Estudio {
 	private StringProperty designacion;
 	private IntegerProperty anyo;
 	private StringProperty adjudicada;
-	private IntegerProperty codigo_usuario;
-	private IntegerProperty codigo_zona;
+	private Usuario usuario;
+	private Zona zona;
 	
 	public Estudio (Integer codigo_estudio, String designacion, Integer anyo, String adjudicada,
-			Integer codigo_usuario, Integer codigo_zona) {
+			Usuario usuario, Zona zona) {
 		this.codigo_estudio = new SimpleIntegerProperty(codigo_estudio);
 		this.designacion = new SimpleStringProperty(designacion);
 		this.anyo = new SimpleIntegerProperty(anyo);
 		this.adjudicada = new SimpleStringProperty(adjudicada);
-		this.codigo_usuario = new SimpleIntegerProperty(codigo_usuario);
-		this.codigo_zona = new SimpleIntegerProperty(codigo_zona);
+		this.usuario = usuario;
+		this.zona = zona;
 	}
 	
 	
@@ -60,9 +60,16 @@ public class Estudio {
 					"A.designacion, " +
 					"A.anyo, " +
 					"A.adjudicada, " +
-					"A.codigo_usuario, "+
-					"A.codigo_zona "+
-					"FROM estudios A");
+					"A.codigo_usuario, " +
+					"A.codigo_zona, " +
+					"B.usuario, " +
+					"C.zona " +
+					"FROM estudios A " +
+					"INNER JOIN usuarios B " + 
+					"ON (A.codigo_usuario = B.codigo_usuario) " +
+					"INNER JOIN zonas C " +
+					"ON (A.codigo_zona = C.codigo_zona)"
+					);
 			
 			while (rs.next()){
 				lista.add(
@@ -71,8 +78,8 @@ public class Estudio {
 								rs.getString("designacion"),
 								rs.getInt("anyo"),
 								rs.getString("adjudicada"),
-								rs.getInt("codigo_usuario"),
-								rs.getInt("codigo_zona")
+								new Usuario(rs.getInt("codigo_usuario"), rs.getString("usuario")),
+								new Zona(rs.getInt("codigo_zona"), rs.getString("zona"))
 								)
 						);
 			}
@@ -166,45 +173,27 @@ public class Estudio {
 		this.adjudicadaProperty().set(adjudicada);
 	}
 
-
-
-	public final IntegerProperty codigo_usuarioProperty() {
-		return this.codigo_usuario;
-	}
 	
-
-
-
-	public final int getCodigo_usuario() {
-		return this.codigo_usuarioProperty().get();
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	
 
 
 
-	public final void setCodigo_usuario(final int codigo_usuario) {
-		this.codigo_usuarioProperty().set(codigo_usuario);
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-	
 
 
 
-	public final IntegerProperty codigo_zonaProperty() {
-		return this.codigo_zona;
+	public Zona getZona() {
+		return zona;
 	}
-	
 
 
 
-	public final int getCodigo_zona() {
-		return this.codigo_zonaProperty().get();
-	}
-	
-
-
-
-	public final void setCodigo_zona(final int codigo_zona) {
-		this.codigo_zonaProperty().set(codigo_zona);
+	public void setZona(Zona zona) {
+		this.zona = zona;
 	}
 	
 	

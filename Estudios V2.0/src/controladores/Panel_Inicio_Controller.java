@@ -19,6 +19,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Conexion;
 import modelo.Estudio;
+import modelo.Usuario;
+import modelo.Zona;
 
 
 public class Panel_Inicio_Controller implements Initializable  {
@@ -31,8 +33,8 @@ public class Panel_Inicio_Controller implements Initializable  {
 	@FXML private TableColumn<Estudio, String> clDesignacion;
 	@FXML private TableColumn<Estudio, Integer> clAnyo;
 	@FXML private TableColumn<Estudio, String> clAdjudicada;
-	@FXML private TableColumn<Estudio, Integer> clCodigo_Usuario;
-	@FXML private TableColumn<Estudio, Integer> clCodigo_Zona;
+	@FXML private TableColumn<Estudio, Usuario> clUsuario;
+	@FXML private TableColumn<Estudio, Zona> clZona;
 	
 	/**
 	 * Objeto de tipo Connection. Para configurar la conexión a la BBDD.
@@ -71,8 +73,11 @@ public class Panel_Inicio_Controller implements Initializable  {
 		clDesignacion.setCellValueFactory(new PropertyValueFactory<Estudio, String>("designacion"));
 		clAnyo.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("anyo"));
 		clAdjudicada.setCellValueFactory(new PropertyValueFactory<Estudio, String>("adjudicada"));
-		clCodigo_Usuario.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("codigo_usuario"));
-		clCodigo_Zona.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("codigo_zona"));
+		clUsuario.setCellValueFactory(new PropertyValueFactory<Estudio, Usuario>("usuario"));
+		clZona.setCellValueFactory(new PropertyValueFactory<Estudio, Zona>("zona"));
+		
+		//Cerramos la conexion
+		miConexion.cerrarConexionBD();
 		
 	}
 

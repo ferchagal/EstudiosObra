@@ -25,25 +25,25 @@ public class Industrial {
 	private StringProperty email;
 	private StringProperty telefono;
 	private StringProperty telefono02;
-	private IntegerProperty codigo_actividad;
+	private Actividad actividad;
 	private StringProperty empresa;
 	private StringProperty localidad;
-	private IntegerProperty codigo_zona;
+	private Zona zona;
 	private StringProperty comentarios;
 	
 	public Industrial(Integer codigo_industrial, String nombre, String apellidos,String email,
-			String telefono, String telefono02, Integer codigo_actividad, String empresa, 
-			String localidad, Integer codigo_zona, String comentarios) {
+			String telefono, String telefono02, Actividad actividad, String empresa, 
+			String localidad, Zona zona, String comentarios) {
 		this.codigo_industrial = new SimpleIntegerProperty(codigo_industrial);
 		this.nombre = new SimpleStringProperty(nombre);
 		this.apellidos = new SimpleStringProperty(apellidos);
 		this.email = new SimpleStringProperty(email);
 		this.telefono = new SimpleStringProperty (telefono);
 		this.telefono02 = new SimpleStringProperty(telefono02);
-		this.codigo_actividad = new SimpleIntegerProperty(codigo_actividad);
+		this.actividad = actividad;
 		this.empresa = new SimpleStringProperty (empresa);
 		this.localidad = new SimpleStringProperty(localidad);
-		this.codigo_zona = new SimpleIntegerProperty(codigo_zona);
+		this.zona = zona;
 		this.comentarios = new SimpleStringProperty (comentarios);		
 	}
 	
@@ -58,6 +58,8 @@ public class Industrial {
 	public void eliminarIndustrial () {
 		
 	}
+	
+	
 	
 	public static void datosTablaIndustriales (Connection miConexion, ObservableList<Industrial>lista) {
 		try {
@@ -74,8 +76,16 @@ public class Industrial {
 					"A.empresa, " +
 					"A.localidad, " +
 					"A.codigo_zona, " +
-					"A.comentarios " +
-					"FROM industriales A");
+					"A.comentarios, " +
+					"B.actividad, " +
+					"C.zona " +
+					"FROM industriales A "+ 
+					"INNER JOIN actividades B " +
+					"ON (A.codigo_actividad = B.codigo_actividad) "+
+					"INNER JOIN zonas C " +
+					"ON (A.codigo_zona = C.codigo_zona)"
+					
+					);
 			
 			while(rs.next()) {
 				lista.add(
@@ -86,10 +96,10 @@ public class Industrial {
 								rs.getString("email"),
 								rs.getString("telefono"),
 								rs.getString("telefono02"),
-								rs.getInt("codigo_actividad"),
+								new Actividad(rs.getInt("codigo_actividad"),rs.getString("actividad")),
 								rs.getString("empresa"),
 								rs.getString("localidad"),
-								rs.getInt("codigo_zona"),
+								new Zona(rs.getInt("codigo_zona"),rs.getString("zona")),
 								rs.getString("comentarios")
 								)
 						);
@@ -194,19 +204,10 @@ public class Industrial {
 	}
 	
 
-	public final IntegerProperty codigo_actividadProperty() {
-		return this.codigo_actividad;
-	}
+	
 	
 
-	public final int getCodigo_actividad() {
-		return this.codigo_actividadProperty().get();
-	}
 	
-
-	public final void setCodigo_actividad(final int codigo_actividad) {
-		this.codigo_actividadProperty().set(codigo_actividad);
-	}
 	
 
 	public final StringProperty empresaProperty() {
@@ -239,21 +240,6 @@ public class Industrial {
 	}
 	
 
-	public final IntegerProperty codigo_zonaProperty() {
-		return this.codigo_zona;
-	}
-	
-
-	public final int getCodigo_zona() {
-		return this.codigo_zonaProperty().get();
-	}
-	
-
-	public final void setCodigo_zona(final int codigo_zona) {
-		this.codigo_zonaProperty().set(codigo_zona);
-	}
-	
-
 	public final StringProperty comentariosProperty() {
 		return this.comentarios;
 	}
@@ -266,6 +252,22 @@ public class Industrial {
 
 	public final void setComentarios(final String comentarios) {
 		this.comentariosProperty().set(comentarios);
+	}
+
+	public Actividad getActividad() {
+		return actividad;
+	}
+
+	public void setActividad(Actividad actividad) {
+		this.actividad = actividad;
+	}
+
+	public Zona getZona() {
+		return zona;
+	}
+
+	public void setZona(Zona zona) {
+		this.zona = zona;
 	}
 	
 	

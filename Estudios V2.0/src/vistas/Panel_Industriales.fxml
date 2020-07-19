@@ -233,19 +233,19 @@
       </AnchorPane>
       <ScrollPane layoutX="650.0" layoutY="120.0" prefViewportHeight="700.0" prefViewportWidth="915.0">
          <content>
-            <TableView layoutX="650.0" layoutY="120.0" prefHeight="700.0" prefWidth="915.0">
+            <TableView fx:id="tablaIndustriales" layoutX="650.0" layoutY="120.0" prefHeight="700.0" prefWidth="915.0">
               <columns>
-                <TableColumn maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Código" />
-                <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Nombre" />
-                  <TableColumn maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="Apellidos" />
-                  <TableColumn maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Email" />
-                  <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Teléfono" />
-                  <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Teléfono 02" />
-                  <TableColumn maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Actividad" />
-                  <TableColumn maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Empresa" />
-                  <TableColumn maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Localidad" />
-                  <TableColumn maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Zona" />
-                  <TableColumn maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Comentarios" />
+                <TableColumn fx:id="clCodigo_Industrial" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Código" />
+                <TableColumn fx:id="clNombre" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Nombre" />
+                <TableColumn fx:id="clApellidos" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="Apellidos" />
+                <TableColumn fx:id="clEmail" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Email" />
+                <TableColumn fx:id="clTelefono" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Teléfono" />
+                <TableColumn fx:id="clTelefono02" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Teléfono 02" />
+                <TableColumn fx:id="clActividad" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Actividad" />
+                <TableColumn fx:id="clEmpresa" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Empresa" />
+                <TableColumn fx:id="clLocalidad" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Localidad" />
+                <TableColumn fx:id="clZona" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Zona" />
+                <TableColumn fx:id="clComentarios" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Comentarios" />
               </columns>
             </TableView>
          </content>
