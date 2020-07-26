@@ -31,9 +31,11 @@ public class Conexion {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			miConexion = DriverManager.getConnection(url, usuario, contrasena);
 		}catch(Exception ex) {
-			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
+			/*Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
 					+ " Pongase en contacto con su Administrador ",ButtonType.CLOSE);
-			alerta.showAndWait();
+			alerta.showAndWait();*/
+			
+			ex.printStackTrace();
 			}
 	}
 	

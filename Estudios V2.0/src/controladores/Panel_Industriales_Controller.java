@@ -3,11 +3,14 @@ package controladores;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -23,6 +26,8 @@ public class Panel_Industriales_Controller implements Initializable{
 	
 	@FXML TextField txtCodigoIndustrial, txtNombre, txtApellidos, txtEmail, txtTelefono, txtTelefono02,
 					txtEmpresa,txtLocalidad,txtComentarios;
+	
+	@FXML Button btnGuardar, btnEliminar, btnActualizar;
 	
 	
 	
@@ -70,7 +75,55 @@ public class Panel_Industriales_Controller implements Initializable{
 	}
 	
 	@FXML public void nuevoIndustrial (ActionEvent Event) {
+		txtCodigoIndustrial.setText(null);
+		txtNombre.setText(null);
+		txtApellidos.setText(null);
+		txtEmail.setText(null);
+		txtTelefono.setText(null);
+		txtTelefono02.setText(null);
+		txtEmpresa.setText(null);
+		txtLocalidad.setText(null);
+		txtComentarios.setText(null);
+		cbActividad.setValue(null);
+		cbZona.setValue(null);
 		
+		btnGuardar.setDisable(false);
+		btnActualizar.setDisable(true);
+		btnEliminar.setDisable(true);
+	}
+	
+	/**
+	 * Método para gestionar la selección de un registro en el tableview de Industriales
+	 */
+	public void gestionarEventos () {
+		tablaIndustriales.getSelectionModel().selectedItemProperty().addListener(
+				new ChangeListener<Industrial>() {
+
+					@Override
+					public void changed(ObservableValue<? extends Industrial> arg0, 
+							Industrial industrialAnterior, Industrial industrialSeleccionado) {
+						
+						txtCodigoIndustrial.setText(String.valueOf(industrialSeleccionado.getCodigo_industrial()));
+						txtNombre.setText(industrialSeleccionado.getNombre());
+						txtApellidos.setText(industrialSeleccionado.getApellidos());
+						txtEmail.setText(industrialSeleccionado.getEmail());
+						txtTelefono.setText(industrialSeleccionado.getTelefono());
+						txtTelefono02.setText(industrialSeleccionado.getTelefono02());
+						txtEmpresa.setText(industrialSeleccionado.getEmpresa());
+						txtLocalidad.setText(industrialSeleccionado.getLocalidad());
+						txtComentarios.setText(industrialSeleccionado.getComentarios());
+						cbActividad.setValue(industrialSeleccionado.getActividad());
+						cbZona.setValue(industrialSeleccionado.getZona());
+						
+						//Controlamos los botones
+						btnGuardar.setDisable(true);
+						btnActualizar.setDisable(false);
+						btnEliminar.setDisable(false);
+					}
+					
+				}
+				
+		);	
 	}
 	
 		
@@ -109,7 +162,8 @@ public class Panel_Industriales_Controller implements Initializable{
 		clZona.setCellValueFactory(new PropertyValueFactory<Industrial, Zona>("zona"));
 		clComentarios.setCellValueFactory(new PropertyValueFactory<Industrial, String>("comentarios"));
 		
-		
+		//sleccionamos un industrial de la tabla
+		gestionarEventos();
 		
 		//cerramos la conexion
 		miConexion.cerrarConexionBD();
