@@ -63,7 +63,34 @@ public class Panel_Industriales_Controller implements Initializable{
 	private ObservableList <Industrial> listaIndustriales;
 	
 	@FXML public void guardarIndustrial (ActionEvent Event) {
+		//creamos una nueva instancia de industrial
+		Industrial ind = new Industrial(0,
+				txtNombre.getText(),
+				txtApellidos.getText(),
+				txtEmail.getText(),
+				txtTelefono.getText(),
+				txtTelefono02.getText(),
+				cbActividad.getSelectionModel().getSelectedItem(),
+				txtEmpresa.getText(),
+				txtLocalidad.getText(),
+				cbZona.getSelectionModel().getSelectedItem(),
+				txtComentarios.getText());
 		
+		//abrimos conexion con la BBDD
+		miConexion.conectarBD();
+		//llamamos al metodo guardar de la clase Industrial
+		int resultado = ind.guardarIndustrial(miConexion.getConnection());
+		//Cerramos la conexión con la BBDD
+		miConexion.cerrarConexionBD();
+		
+		if(resultado == 1) {
+			//Añadimos el industrial insertado en la BBDD al Tableview Industriales
+			listaIndustriales.add(ind);
+			
+			etiEstado.setText("Industrial insertado correctamente");
+		}else {
+			etiEstado.setText("Industrial no insertado...");
+		}
 	}
 	
 	@FXML public void actualizarIndustrial (ActionEvent Event) {
