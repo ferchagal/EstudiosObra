@@ -1,3 +1,9 @@
+/**
+ * Módulo: Estudios de Obra. Aplicación de escritorio
+ * Archivo: Panel_Industriales_Controller.java
+ * Objetivo: Archivo Controller del Panel de Industriales.
+ * Equipo/Persona: Fernando Chacón Galea  28.614.518 - B
+ */
 package controladores;
 
 import java.net.URL;
@@ -95,10 +101,56 @@ public class Panel_Industriales_Controller implements Initializable{
 	
 	@FXML public void actualizarIndustrial (ActionEvent Event) {
 		
+		//creamos una nueva instancia de industrial
+		Industrial ind = new Industrial(
+				Integer.valueOf(txtCodigoIndustrial.getText()),
+				txtNombre.getText(),
+				txtApellidos.getText(),
+				txtEmail.getText(),
+				txtTelefono.getText(),
+				txtTelefono02.getText(),
+				cbActividad.getSelectionModel().getSelectedItem(),
+				txtEmpresa.getText(),
+				txtLocalidad.getText(),
+				cbZona.getSelectionModel().getSelectedItem(),
+				txtComentarios.getText());
+		
+		//Abrimos la conexion con la BBDD
+		miConexion.conectarBD();
+		//llamamos al metodo actualizar de la clase Industrial		
+		int resultado = ind.actualizarIndustrial(miConexion.getConnection());
+		//Cerramos la conexion con la BBDD
+		miConexion.cerrarConexionBD();
+		
+		if(resultado == 1) {
+			//Añadimos el industrial actualizado en la BBDD al Tableview Industriales
+			listaIndustriales.add(tablaIndustriales.getSelectionModel().getSelectedIndex(),ind);
+			listaIndustriales.remove(tablaIndustriales.getSelectionModel().getSelectedIndex());
+			
+			etiEstado.setText("Industrial actualizado correctamente");
+		}else {
+			etiEstado.setText("No se ha podido actualizar el industrial...");
+		}
+		
 	}
 	
 	@FXML public void eliminarIndustrial (ActionEvent Event) {
 		
+		//Abrimos la conexion con la BBDD
+		miConexion.conectarBD();
+		//Eliminamos el industrial seleccionado en la tabla
+		int resultado = tablaIndustriales.getSelectionModel().getSelectedItem().eliminarIndustrial(miConexion.getConnection());
+		//Cerramos la conexion con la BBDD
+		miConexion.cerrarConexionBD();
+		
+		if(resultado == 1) {
+			//Añadimos el industrial actualizado en la BBDD al Tableview Industriales
+			listaIndustriales.remove(tablaIndustriales.getSelectionModel().getSelectedIndex());
+			
+			etiEstado.setText("Industrial eliminado correctamente");
+		}else {
+			etiEstado.setText("No se ha podido eliminar el industrial...");
+		}
 	}
 	
 	@FXML public void nuevoIndustrial (ActionEvent Event) {
@@ -129,23 +181,24 @@ public class Panel_Industriales_Controller implements Initializable{
 					@Override
 					public void changed(ObservableValue<? extends Industrial> arg0, 
 							Industrial industrialAnterior, Industrial industrialSeleccionado) {
+						if(industrialSeleccionado!= null) {
+							txtCodigoIndustrial.setText(String.valueOf(industrialSeleccionado.getCodigo_industrial()));
+							txtNombre.setText(industrialSeleccionado.getNombre());
+							txtApellidos.setText(industrialSeleccionado.getApellidos());
+							txtEmail.setText(industrialSeleccionado.getEmail());
+							txtTelefono.setText(industrialSeleccionado.getTelefono());
+							txtTelefono02.setText(industrialSeleccionado.getTelefono02());
+							txtEmpresa.setText(industrialSeleccionado.getEmpresa());
+							txtLocalidad.setText(industrialSeleccionado.getLocalidad());
+							txtComentarios.setText(industrialSeleccionado.getComentarios());
+							cbActividad.setValue(industrialSeleccionado.getActividad());
+							cbZona.setValue(industrialSeleccionado.getZona());
 						
-						txtCodigoIndustrial.setText(String.valueOf(industrialSeleccionado.getCodigo_industrial()));
-						txtNombre.setText(industrialSeleccionado.getNombre());
-						txtApellidos.setText(industrialSeleccionado.getApellidos());
-						txtEmail.setText(industrialSeleccionado.getEmail());
-						txtTelefono.setText(industrialSeleccionado.getTelefono());
-						txtTelefono02.setText(industrialSeleccionado.getTelefono02());
-						txtEmpresa.setText(industrialSeleccionado.getEmpresa());
-						txtLocalidad.setText(industrialSeleccionado.getLocalidad());
-						txtComentarios.setText(industrialSeleccionado.getComentarios());
-						cbActividad.setValue(industrialSeleccionado.getActividad());
-						cbZona.setValue(industrialSeleccionado.getZona());
-						
-						//Controlamos los botones
-						btnGuardar.setDisable(true);
-						btnActualizar.setDisable(false);
-						btnEliminar.setDisable(false);
+							//Controlamos los botones
+							btnGuardar.setDisable(true);
+							btnActualizar.setDisable(false);
+							btnEliminar.setDisable(false);
+						}
 					}
 					
 				}

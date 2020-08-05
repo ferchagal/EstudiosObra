@@ -30,6 +30,7 @@ public class Panel_Inicio_Controller implements Initializable  {
 	@FXML private TableView <Estudio> tablaEstudios;
 	
 	@FXML private TableColumn<Estudio, Integer> clCodigo_Estudio;
+	@FXML private TableColumn<Estudio, String> clReferencia;
 	@FXML private TableColumn<Estudio, String> clDesignacion;
 	@FXML private TableColumn<Estudio, Integer> clAnyo;
 	@FXML private TableColumn<Estudio, String> clAdjudicada;
@@ -70,6 +71,7 @@ public class Panel_Inicio_Controller implements Initializable  {
 		
 		//Enlazar columnas con atributos
 		clCodigo_Estudio.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("codigo_estudio"));
+		clReferencia.setCellValueFactory(new PropertyValueFactory<Estudio, String>("referencia"));
 		clDesignacion.setCellValueFactory(new PropertyValueFactory<Estudio, String>("designacion"));
 		clAnyo.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("anyo"));
 		clAdjudicada.setCellValueFactory(new PropertyValueFactory<Estudio, String>("adjudicada"));

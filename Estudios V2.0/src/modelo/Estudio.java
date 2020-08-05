@@ -7,6 +7,7 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -21,15 +22,17 @@ import javafx.scene.control.ButtonType;
 public class Estudio {
 	
 	private IntegerProperty codigo_estudio;
+	private StringProperty referencia;
 	private StringProperty designacion;
 	private IntegerProperty anyo;
 	private StringProperty adjudicada;
 	private Usuario usuario;
 	private Zona zona;
 	
-	public Estudio (Integer codigo_estudio, String designacion, Integer anyo, String adjudicada,
+	public Estudio (Integer codigo_estudio, String referencia, String designacion, Integer anyo, String adjudicada,
 			Usuario usuario, Zona zona) {
 		this.codigo_estudio = new SimpleIntegerProperty(codigo_estudio);
+		this.referencia = new SimpleStringProperty(referencia);
 		this.designacion = new SimpleStringProperty(designacion);
 		this.anyo = new SimpleIntegerProperty(anyo);
 		this.adjudicada = new SimpleStringProperty(adjudicada);
@@ -39,15 +42,69 @@ public class Estudio {
 	
 	
 	
-	public void guardarEstudio() {
+	public int guardarEstudio(Connection miConexion) {
+		try {
+			PreparedStatement consulta = miConexion.prepareStatement("INSERT INTO " +
+					"(referencia, designacion, anyo, adjudicada, codigo_usuario, codigo_zona) " +
+					"VALUES (?,?,?,?,?,?)");
+			
+			consulta.setString(1, referencia.get());
+			consulta.setString(2, designacion.get());
+			consulta.setInt(3, anyo.get());
+			consulta.setString(4, adjudicada.get());
+			consulta.setInt(5, usuario.getCodigo_usuario());
+			consulta.setInt(6, zona.getCodigo_zona());
+			
+			return consulta.executeUpdate();
+			
+		}catch(Exception ex) {
+			
+			return 0;
+		}
 		
 	}
 	
-	public void actualizarEstudio() {
+	public int actualizarEstudio(Connection miConexion) {
+		try {
+			PreparedStatement consulta = miConexion.prepareStatement("UPDATE estudios SET "
+					+ "referencia = ?, "
+					+ "designacion = ?, "
+					+ "anyo = ?, "
+					+ "adjudicada = ?, "
+					+ "codigo_usuario = ?, "
+					+ "codigo_zona = ? "
+					+ "WHERE codigo_estudio = ?");
+			
+			consulta.setString(1, referencia.get());
+			consulta.setString(2,  designacion.get());
+			consulta.setInt(3, anyo.get());
+			consulta.setString(4, adjudicada.get());
+			consulta.setInt(5, usuario.getCodigo_usuario());
+			consulta.setInt(6, zona.getCodigo_zona());
+			
+			return consulta.executeUpdate();
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return 0;
+		}
 		
 	}
 	
-	public void eliminarEstudio() {
+	public int eliminarEstudio(Connection miConexion) {
+		
+		try {
+			PreparedStatement consulta = miConexion.prepareStatement("DELETE FROM estudios "
+				+ "WHERE codigo_estudio = ?");
+		
+			consulta.setInt(1, codigo_estudio.get());
+		
+			return consulta.executeUpdate();
+		
+		}catch(Exception ex) {
+			
+			return 0;
+		}
 		
 	}
 	
@@ -57,6 +114,7 @@ public class Estudio {
 			
 			ResultSet rs = consulta.executeQuery(
 					"SELECT A.codigo_estudio, " +
+					"A.referencia, " +
 					"A.designacion, " +
 					"A.anyo, " +
 					"A.adjudicada, " +
@@ -75,6 +133,7 @@ public class Estudio {
 				lista.add(
 						new Estudio(
 								rs.getInt("codigo_estudio"),
+								rs.getNString("referencia"),
 								rs.getString("designacion"),
 								rs.getInt("anyo"),
 								rs.getString("adjudicada"),
@@ -108,6 +167,25 @@ public class Estudio {
 
 	public final void setCodigo_estudio(final int codigo_estudio) {
 		this.codigo_estudioProperty().set(codigo_estudio);
+	}
+	
+	
+	public final StringProperty referenciaProperty() {
+		return this.referencia;
+	}
+	
+
+
+
+	public final String getReferencia() {
+		return this.referenciaProperty().get();
+	}
+	
+
+
+
+	public final void setReferencia(final String referencia) {
+		this.referenciaProperty().set(referencia);
 	}
 	
 
@@ -195,6 +273,11 @@ public class Estudio {
 	public void setZona(Zona zona) {
 		this.zona = zona;
 	}
+
+
+
+	
+	
 	
 	
 

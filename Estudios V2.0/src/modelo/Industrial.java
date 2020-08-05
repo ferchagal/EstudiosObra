@@ -9,7 +9,6 @@ package modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -52,8 +51,9 @@ public class Industrial {
 	public int guardarIndustrial(Connection miConexion) {
 		
 		try {
-			PreparedStatement consulta = miConexion.prepareStatement("INSER INTO industriales "
-					+ "(nombre, apellidos, email, telefono, telefono02, codigo_actividad, empresa, localidad, codigo_zona, comentarios)" +
+			PreparedStatement consulta = miConexion.prepareStatement("INSERT INTO industriales "
+					+ "(nombre, apellidos, email, telefono, telefono02, codigo_actividad, empresa,"
+					+ " localidad, codigo_zona, comentarios)" +
 					"VALUES (?,?,?,?,?,?,?,?,?,?)");
 			
 			consulta.setString(1, nombre.get());
@@ -77,12 +77,60 @@ public class Industrial {
 		
 	}
 	
-	public void actualizarIndustrial() {
+	public int actualizarIndustrial(Connection miConexion) {
+		try {
+			PreparedStatement consulta = miConexion.prepareStatement("UPDATE industriales SET "
+					+ "nombre = ?, "
+					+ "apellidos = ?, "
+					+ "email = ?, "
+					+ "telefono = ?, "
+					+ "telefono02 = ?, "
+					+ "codigo_actividad = ?, "
+					+ "empresa = ?, "
+					+ "localidad = ?, "
+					+ "codigo_zona = ?, "
+					+ "comentarios = ? "
+					+ "WHERE codigo_industrial = ?");
+			
+			consulta.setString(1, nombre.get());
+			consulta.setString(2, apellidos.get());
+			consulta.setString(3, email.get());
+			consulta.setString(4, telefono.get());
+			consulta.setString(5,  telefono02.get());
+			consulta.setInt(6, actividad.getCodigo_actividad());
+			consulta.setString(7,  empresa.get());
+			consulta.setString(8, localidad.get());
+			consulta.setInt(9, zona.getCodigo_zona());
+			consulta.setString(10, comentarios.get());
+			consulta.setInt(11,  codigo_industrial.get());
+			
+			return consulta.executeUpdate();
+			
+	
+			
+			
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			return 0;
+			
+		}
 		
 	}
 	
-	public void eliminarIndustrial () {
+	public int eliminarIndustrial (Connection miConexion) {
 		
+		try {
+			PreparedStatement consulta = miConexion.prepareStatement("DELETE FROM industriales "
+				+ "WHERE codigo_industrial = ?");
+		
+			consulta.setInt(1, codigo_industrial.get());
+		
+			return consulta.executeUpdate();
+		
+		}catch(Exception ex) {
+			
+			return 0;
+		}
 	}
 	
 	
@@ -227,13 +275,7 @@ public class Industrial {
 
 	public final void setTelefono02(final String telefono02) {
 		this.telefono02Property().set(telefono02);
-	}
-	
-
-	
-	
-
-	
+	}	
 	
 
 	public final StringProperty empresaProperty() {

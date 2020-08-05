@@ -14,7 +14,7 @@ import javafx.scene.control.ButtonType;
 
 public class Conexion {
 	private Connection miConexion;
-	private String url = "jdbc:mysql://localhost:3306/estudiosobra";
+	private String url = "jdbc:mysql://localhost:3306/estudiosobra?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private String usuario = "Fer";
 	private String contrasena = "F3rn4nd0Ch@c0n##";
 	
