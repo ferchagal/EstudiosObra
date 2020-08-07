@@ -28,46 +28,135 @@ import modelo.Conexion;
 import modelo.Industrial;
 import modelo.Zona;
 
+/**
+ * 
+ * @author Fernando Chacón Galea
+ * @version 2020.06.22 - V2
+ */
 public class Panel_Industriales_Controller implements Initializable{
 	
-	@FXML TextField txtCodigoIndustrial, txtNombre, txtApellidos, txtEmail, txtTelefono, txtTelefono02,
+	/**
+	 * Campos donde recogemos los datos de los industriales
+	 */
+	@FXML private TextField txtCodigoIndustrial, txtNombre, txtApellidos, txtEmail, txtTelefono, txtTelefono02,
 					txtEmpresa,txtLocalidad,txtComentarios;
 	
-	@FXML Button btnGuardar, btnEliminar, btnActualizar;
+	/**
+	 * Botones para gestionar las acciones a realizar con los estudios
+	 */
+	@FXML private Button btnGuardar, btnEliminar, btnActualizar;
 	
-	
-	
-	
+	/**
+	 * Etiqueta donde vamos mostrando las acciones que realizamos
+	 */
 	@FXML private Label etiEstado;
 	
+	/**
+	 * Desplegable donde mostramos las zonas que estan en la tabla zonas de la BD
+	 */
 	@FXML private ComboBox <Zona> cbZona;
 	
+	/**
+	 * Lista de tipo ObservableList para rellenar el combobox Zonas
+	 */
 	private ObservableList <Zona> listaZonas;
 	
+	/**
+	 * Desplegable donde mostramos las Actividades que estan en la tabla actividades de la BD
+	 */
 	@FXML private ComboBox <Actividad> cbActividad;
 	
+	/**
+	 * Lista de tipo ObservableList para rellenar el combobox Actividades
+	 */
 	private ObservableList <Actividad> listaActividades;
 	
+	/**
+	 * Tabla donde mostramos los Industriales contenidos en la tabla industriales de la BD
+	 */
 	@FXML private TableView <Industrial> tablaIndustriales;
 	
-	
-	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clCodigo_Industrial
+	 */	
 	@FXML private TableColumn <Industrial, Integer> clCodigo_Industrial;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clNombre
+	 */
 	@FXML private TableColumn <Industrial, String> clNombre;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clApellidos
+	 */
 	@FXML private TableColumn <Industrial, String> clApellidos;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clEmail
+	 */
 	@FXML private TableColumn <Industrial, String> clEmail;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clTelefono
+	 */
 	@FXML private TableColumn <Industrial, String> clTelefono;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clTelefono02
+	 */
 	@FXML private TableColumn <Industrial, String> clTelefono02;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clActividad
+	 */
 	@FXML private TableColumn <Industrial, Actividad> clActividad;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clEmpresa
+	 */
 	@FXML private TableColumn <Industrial, String> clEmpresa;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clLocalidad
+	 */
 	@FXML private TableColumn <Industrial, String> clLocalidad;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clZona
+	 */
 	@FXML private TableColumn <Industrial, Zona> clZona;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clComentarios
+	 */
 	@FXML private TableColumn <Industrial, String> clComentarios;
 	
+	/**
+	 * Objeto de tipo Connection. Para configurar la conexion a la BBDD
+	 */
 	private Conexion miConexion;
 	
+	/**
+	 * Lista de tipo ObservableList para rellenar la tablaView Industriales
+	 */
 	private ObservableList <Industrial> listaIndustriales;
 	
+	/**
+	 * Método para crear un nuevo Industrial, se agrega a la BD a la tabla industriales
+	 * 
+	 * @param Event evento generado por el usuario
+	 */
 	@FXML public void guardarIndustrial (ActionEvent Event) {
 		//creamos una nueva instancia de industrial
 		Industrial ind = new Industrial(0,
@@ -99,6 +188,12 @@ public class Panel_Industriales_Controller implements Initializable{
 		}
 	}
 	
+	/**
+	 * Método para actualizar un registro de la tabla industriales, se actualiza en la BD y se muestra
+	 * en la tablaView Industriales.
+	 * 
+	 * @param Event, evento generado por el usuario
+	 */
 	@FXML public void actualizarIndustrial (ActionEvent Event) {
 		
 		//creamos una nueva instancia de industrial
@@ -134,6 +229,11 @@ public class Panel_Industriales_Controller implements Initializable{
 		
 	}
 	
+	/**
+	 * Método para eliminar un registro de la tabla industriales de la BD
+	 * 
+	 * @param Event, evento generado por el usuario
+	 */
 	@FXML public void eliminarIndustrial (ActionEvent Event) {
 		
 		//Abrimos la conexion con la BBDD
@@ -144,7 +244,7 @@ public class Panel_Industriales_Controller implements Initializable{
 		miConexion.cerrarConexionBD();
 		
 		if(resultado == 1) {
-			//Añadimos el industrial actualizado en la BBDD al Tableview Industriales
+			//Eliminamos el industrial de la Tableview Industriales
 			listaIndustriales.remove(tablaIndustriales.getSelectionModel().getSelectedIndex());
 			
 			etiEstado.setText("Industrial eliminado correctamente");
@@ -153,6 +253,12 @@ public class Panel_Industriales_Controller implements Initializable{
 		}
 	}
 	
+	/**
+	 * Método que limpia los textfield para poder insertar un nuevo Industrial en la tabla industriales
+	 * de la BD
+	 * 
+	 * @param Event, evento generado por el usuario
+	 */
 	@FXML public void nuevoIndustrial (ActionEvent Event) {
 		txtCodigoIndustrial.setText(null);
 		txtNombre.setText(null);
@@ -206,7 +312,16 @@ public class Panel_Industriales_Controller implements Initializable{
 		);	
 	}
 	
-		
+	/**
+     * Método de inicialización del controlador, iniciamos la conexion con la BD, cargamos los comboBox,
+     * cargamos el tableview de Industriales, lanzamos el metodo que gestiona la seleccion de los diferentes
+     * industriales del tableview, y volvemos a cerrar la conexion con la BD
+     * 
+     * @param url La ubicación utilizada para resolver rutas relativas para el objeto raíz, o nul
+     * si no se conoce la ubicación.
+     * @param rb Los recursos utilizados para localizar el objeto raíz, o null si el objeto raíz
+     * no se localizó
+     */	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

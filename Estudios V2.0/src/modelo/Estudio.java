@@ -22,17 +22,17 @@ import javafx.scene.control.ButtonType;
 public class Estudio {
 	
 	private IntegerProperty codigo_estudio;
-	private StringProperty referencia;
+	private IntegerProperty referencia;
 	private StringProperty designacion;
 	private IntegerProperty anyo;
 	private StringProperty adjudicada;
 	private Usuario usuario;
 	private Zona zona;
 	
-	public Estudio (Integer codigo_estudio, String referencia, String designacion, Integer anyo, String adjudicada,
+	public Estudio (Integer codigo_estudio, Integer referencia, String designacion, Integer anyo, String adjudicada,
 			Usuario usuario, Zona zona) {
 		this.codigo_estudio = new SimpleIntegerProperty(codigo_estudio);
-		this.referencia = new SimpleStringProperty(referencia);
+		this.referencia = new SimpleIntegerProperty(referencia);
 		this.designacion = new SimpleStringProperty(designacion);
 		this.anyo = new SimpleIntegerProperty(anyo);
 		this.adjudicada = new SimpleStringProperty(adjudicada);
@@ -44,11 +44,11 @@ public class Estudio {
 	
 	public int guardarEstudio(Connection miConexion) {
 		try {
-			PreparedStatement consulta = miConexion.prepareStatement("INSERT INTO " +
+			PreparedStatement consulta = miConexion.prepareStatement("INSERT INTO estudios" +
 					"(referencia, designacion, anyo, adjudicada, codigo_usuario, codigo_zona) " +
 					"VALUES (?,?,?,?,?,?)");
 			
-			consulta.setString(1, referencia.get());
+			consulta.setInt(1, referencia.get());
 			consulta.setString(2, designacion.get());
 			consulta.setInt(3, anyo.get());
 			consulta.setString(4, adjudicada.get());
@@ -58,7 +58,7 @@ public class Estudio {
 			return consulta.executeUpdate();
 			
 		}catch(Exception ex) {
-			
+			ex.printStackTrace();
 			return 0;
 		}
 		
@@ -75,12 +75,13 @@ public class Estudio {
 					+ "codigo_zona = ? "
 					+ "WHERE codigo_estudio = ?");
 			
-			consulta.setString(1, referencia.get());
+			consulta.setInt(1, referencia.get());
 			consulta.setString(2,  designacion.get());
 			consulta.setInt(3, anyo.get());
 			consulta.setString(4, adjudicada.get());
 			consulta.setInt(5, usuario.getCodigo_usuario());
 			consulta.setInt(6, zona.getCodigo_zona());
+			consulta.setInt(7, codigo_estudio.get());
 			
 			return consulta.executeUpdate();
 			
@@ -133,7 +134,7 @@ public class Estudio {
 				lista.add(
 						new Estudio(
 								rs.getInt("codigo_estudio"),
-								rs.getNString("referencia"),
+								rs.getInt("referencia"),
 								rs.getString("designacion"),
 								rs.getInt("anyo"),
 								rs.getString("adjudicada"),
@@ -170,21 +171,21 @@ public class Estudio {
 	}
 	
 	
-	public final StringProperty referenciaProperty() {
+	public final IntegerProperty referenciaProperty() {
 		return this.referencia;
 	}
 	
 
 
 
-	public final String getReferencia() {
+	public final int getReferencia() {
 		return this.referenciaProperty().get();
 	}
 	
 
 
 
-	public final void setReferencia(final String referencia) {
+	public final void setReferencia(final int referencia) {
 		this.referenciaProperty().set(referencia);
 	}
 	

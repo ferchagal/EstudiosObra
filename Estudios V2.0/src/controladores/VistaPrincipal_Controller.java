@@ -33,8 +33,6 @@ public class VistaPrincipal_Controller implements Initializable {
      */
 	@FXML private AnchorPane contenido;
 	
-	@FXML protected static Label etiIdentidad;
-	
 	/**
      * Método que se ejecuta cuando seleccionamos en el menú "Archivo", "Salir", se cierra la 
      * aplicación

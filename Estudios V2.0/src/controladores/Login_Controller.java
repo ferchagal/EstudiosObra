@@ -49,7 +49,7 @@ public class Login_Controller implements Initializable {
 	private Conexion miConexion;
 	
 	/**
-	 * Método que lanzamos haciendo click en el botón "Iniciar Sesión" compruba que el usuario y 
+	 * Método que lanzamos haciendo click en el botón "Iniciar Sesión" comprueba que el usuario y 
 	 * contraseña introducios son correctos.
 	 *  
 	 * @param Event evento generado por el usuario
@@ -106,10 +106,23 @@ public class Login_Controller implements Initializable {
 		
 	}
 	
+	/**
+	 * Método para salir de la aplicación
+	 * 
+	 * @param Event, evento generado por el usario
+	 */
 	@FXML public void salirAplicacion (ActionEvent Event){
 		System.exit(0);
 	}
 
+	/**
+     * Método de inicialización del controlador, iniciamos la conexion con la BD
+     * 
+     * @param url La ubicación utilizada para resolver rutas relativas para el objeto raíz, o nul
+     * si no se conoce la ubicación.
+     * @param rb Los recursos utilizados para localizar el objeto raíz, o null si el objeto raíz
+     * no se localizó
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
