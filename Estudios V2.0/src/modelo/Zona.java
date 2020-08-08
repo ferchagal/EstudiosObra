@@ -18,35 +18,74 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+/**
+ * 
+ * @author Fernando Chacón Galea
+ * @version 2020.06.22 - V2
+ */
 public class Zona {
 
+	/**
+	 * Atributo de tipo entero, define un código para cada zona. Es asignado por el 
+	 * administrador de la BD.
+	 */
 	private IntegerProperty codigo_zona;
+	
+	/**
+	 * Atributo de tipo cadena de texto. Es definido por el administrador de la BD.
+	 */
 	private StringProperty zona;
 	
+	/**
+	 * Constructor de la clase.
+	 * 
+	 * @param codigo_zona, tiene que ser un número entero, tiene que ser uno de los asignados
+	 * por el administrador de la BD
+	 * @param zona, tiene que ser una cadena de texto, tiene que ser uno de los asignados por 
+	 * el administrador de la BD.
+	 */
 	public Zona(Integer codigo_zona, String zona) {
 		this.codigo_zona = new SimpleIntegerProperty (codigo_zona);
 		this.zona = new SimpleStringProperty (zona);
 		
 	}
 	
+	/**
+	 * No se implementa, se deja pendiente para versiones futuras.
+	 */
 	public void guardarZona() {
 		
 	}
 	
+	/**
+	 * No se implementa, se deja pendiente para versiones futuras.
+	 */
 	public void actualizarZona() {
 		
 	}
 	
+	/**
+	 * No se implementa, se deja pendiente para versiones futuras.
+	 */
 	public void eliminarZona() {
 		
 	}
 	
+	/**
+	 * Sobrecargamos el método toString() para que nos devuelva la zona cuando la solicitemos.
+	 */
 	@Override
 	public String toString() {
 		
 		return zona.get();
 	}
 		
+	/**
+	 * Método para poder cargar los combobox desde la tabla zonas de la BD
+	 * 
+	 * @param miConexion, objeto de tipo Connection.
+	 * @param lista, lista de tipo Zona, se cargan todas las zonas en ella
+	 */
 	public static void datosComboZonas (Connection miConexion, ObservableList<Zona>lista) {
 		try {
 			Statement consulta = miConexion.createStatement();
@@ -73,31 +112,56 @@ public class Zona {
 		}
 	}
 
+	/**
+	 * Método para obtener el código de la zona
+	 * 
+	 * @return devuelve un número entero
+	 */
 	public final IntegerProperty codigo_zonaProperty() {
 		return this.codigo_zona;
 	}
 	
-
+	/**
+	 * Método para obtener el código de la zona
+	 * 
+	 * @return devuelve un número entero
+	 */
 	public final int getCodigo_zona() {
 		return this.codigo_zonaProperty().get();
 	}
 	
-
+	/**
+	 * Método para establecer un código de zona
+	 * 
+	 * @param codigo_zona, debe ser un número entero
+	 */
 	public final void setCodigo_zona(final int codigo_zona) {
 		this.codigo_zonaProperty().set(codigo_zona);
 	}
 	
-
+	/**
+	 * Método para obtener la zona del estudio
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
 	public final StringProperty zonaProperty() {
 		return this.zona;
 	}
 	
-
+	/**
+	 * Método para obtener la zona del estudio
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
 	public final String getZona() {
 		return this.zonaProperty().get();
 	}
 	
-
+	/**
+	 * Método para establecer una zona
+	 * 
+	 * @param zona, debe ser una cadena de texto
+	 */
 	public final void setZona(final String zona) {
 		this.zonaProperty().set(zona);
 	}

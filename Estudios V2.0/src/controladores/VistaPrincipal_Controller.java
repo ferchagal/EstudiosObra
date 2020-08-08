@@ -31,7 +31,7 @@ public class VistaPrincipal_Controller implements Initializable {
      * Definimos el contenedor de toda la aplicación, de tipo AnchorPane, y refenciado a nuestra
      * interfaz definida en el archivo VistaPrincipal.fxml mediante el atributo @FXML.
      */
-	@FXML private AnchorPane contenido;
+	@FXML protected AnchorPane contenido;
 	
 	/**
      * Método que se ejecuta cuando seleccionamos en el menú "Archivo", "Salir", se cierra la 

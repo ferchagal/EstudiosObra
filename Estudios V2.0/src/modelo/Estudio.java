@@ -19,16 +19,60 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+/**
+ * 
+ * @author fernando Chacón Galea
+ * @version 2020.06.22 - V2
+ */
 public class Estudio {
 	
+	/**
+	 * Atributo de tipo entero, define un codigo para cada estudio. es asignado automaticamente por la BD
+	 */
 	private IntegerProperty codigo_estudio;
+	
+	/**
+	 * Atributo de tipo entero, define una referencia para cada estudio, es asignado por el usuario
+	 */
 	private IntegerProperty referencia;
+	
+	/**
+	 * Atributo de tipo cadena de texto, define la denominación de la obra
+	 */
 	private StringProperty designacion;
+	
+	/**
+	 * Atributo de tipo entero, define el año en el que se realiza el estudio, asignado por el usuario
+	 */
 	private IntegerProperty anyo;
+	
+	/**
+	 * Atributo de tipo cadena de texto, define el estado del estudio.
+	 */
 	private StringProperty adjudicada;
+	
+	/**
+	 * Atributo de tipo Usuario, define el usuario que ha realizado/está realizando el estudio
+	 */
 	private Usuario usuario;
+	
+	/**
+	 * Atributo de tipo zona, define la zona donde está ubicada la obra
+	 */
 	private Zona zona;
 	
+	/**
+	 * Constructor de clase
+	 * 
+	 * @param codigo_estudio, debe ser un numero entero, es asignado automaticamente por la BD, asi que lo
+	 * mejor es que pongamos un cero, y en la inserción la BD le asigna el código automaticamente.
+	 * @param referencia, debe ser un numero entero.
+	 * @param designacion, debe ser una cadena de texto.
+	 * @param anyo, debe ser un número entero, debe ser el año de estudio.
+	 * @param adjudicada,debe ser una cadena de texto.
+	 * @param usuario, debe ser un objeto de tipo Usuario.
+	 * @param zona, debe ser un objeto de tipo Zona.
+	 */
 	public Estudio (Integer codigo_estudio, Integer referencia, String designacion, Integer anyo, String adjudicada,
 			Usuario usuario, Zona zona) {
 		this.codigo_estudio = new SimpleIntegerProperty(codigo_estudio);
@@ -39,9 +83,15 @@ public class Estudio {
 		this.usuario = usuario;
 		this.zona = zona;
 	}
-	
-	
-	
+		
+	/**
+	 * Método para guardar un estudio en la BD, asi evitamos que nada que no sea el Modelo
+	 * interactue con la BD. Será llamado desde el controller pertinente.
+	 * 
+	 * @param miConexion, objeto de tipo Connection
+	 * @return devuelve un numero entero, 1 ó 0, 1 cuando se ha insertado el registro correctamente,
+	 * 0 cuando el registro no se ha podido insertar.
+	 */
 	public int guardarEstudio(Connection miConexion) {
 		try {
 			PreparedStatement consulta = miConexion.prepareStatement("INSERT INTO estudios" +
@@ -64,6 +114,14 @@ public class Estudio {
 		
 	}
 	
+	/**
+	 * Método para actualizar un estudio en la BD, asi evitamos que nada que no sea el Modelo
+	 * interactue con la BD. Será llamado desde el controller pertinente.
+	 * 
+	 * @param miConexion, objeto de tipo Connection
+	 * @return devuelve un numero entero, 1 ó 0, 1 cuando se ha actualizado el registro correctamente,
+	 * 0 cuando el registro no se ha podido actualizar.
+	 */
 	public int actualizarEstudio(Connection miConexion) {
 		try {
 			PreparedStatement consulta = miConexion.prepareStatement("UPDATE estudios SET "
@@ -92,6 +150,14 @@ public class Estudio {
 		
 	}
 	
+	/**
+	 * Método para eliminar un estudio en la BD, asi evitamos que nada que no sea el Modelo
+	 * interactue con la BD. Será llamado desde el controller pertinente.
+	 * 
+	 * @param miConexion, objeto de tipo Connection
+	 * @return devuelve un numero entero, 1 ó 0, 1 cuando se ha eliminado el registro correctamente,
+	 * 0 cuando el registro no se ha podido eliminar.
+	 */
 	public int eliminarEstudio(Connection miConexion) {
 		
 		try {
@@ -109,6 +175,12 @@ public class Estudio {
 		
 	}
 	
+	/**
+	 * Método para poder cargar el tableView desde la tabla estudios de la BD
+	 * 
+	 * @param miConexion, objeto de tipo Connection
+	 * @param lista, lista de tipo Estudio, se cargan todos los estudios en ella
+	 */
 	public static void datosTablaEstudios(Connection miConexion,ObservableList<Estudio>lista) {
 		try {
 			Statement consulta = miConexion.createStatement();
@@ -150,136 +222,174 @@ public class Estudio {
 		}
 	}
 
-
-
+	/**
+	 * Metodo para obtener el codigo del estudio
+	 * 
+	 * @return devuelve el codigo
+	 */
 	public final IntegerProperty codigo_estudioProperty() {
 		return this.codigo_estudio;
 	}
 	
-
-
-
+	/**
+	 * Metodo para obtener el codigo del estudio
+	 * 
+	 * @return devuelve el codigo
+	 */
 	public final int getCodigo_estudio() {
 		return this.codigo_estudioProperty().get();
 	}
 	
-
-
-
+	/**
+	 * Método para establecer el codigo del estudio
+	 * 
+	 * @param codigo_estudio, debe ser un número entero
+	 */
 	public final void setCodigo_estudio(final int codigo_estudio) {
 		this.codigo_estudioProperty().set(codigo_estudio);
 	}
 	
-	
+	/**
+	 * Método para obtener la referencia del estudio.
+	 * 
+	 * @return devuelve un número entero
+	 */
 	public final IntegerProperty referenciaProperty() {
 		return this.referencia;
 	}
 	
-
-
-
+	/**
+	 * Método para obtener la referencia del estudio.
+	 * 
+	 * @return devuelve un número entero
+	 */
 	public final int getReferencia() {
 		return this.referenciaProperty().get();
 	}
 	
-
-
-
+	/**
+	 * Método para establecer la referencia del estudio.
+	 * 
+	 * @param referencia, debe ser un número entero
+	 */
 	public final void setReferencia(final int referencia) {
 		this.referenciaProperty().set(referencia);
 	}
-	
 
-
-
+	/**
+	 * Método para obtener la designación de la obra
+	 * 
+	 * @return, devuelve una cadena de texto
+	 */
 	public final StringProperty designacionProperty() {
 		return this.designacion;
 	}
 	
-
-
-
+	/**
+	 * Método para obtener la designación de la obra
+	 * 
+	 * @return, devuelve una cadena de texto
+	 */
 	public final String getDesignacion() {
 		return this.designacionProperty().get();
 	}
-	
 
-
-
+	/**
+	 * Método para establecer la designación de la obra
+	 * 
+	 * @param designacion, debe ser una cadena de texto
+	 */
 	public final void setDesignacion(final String designacion) {
 		this.designacionProperty().set(designacion);
 	}
 	
-
-
-
+	/**
+	 * Método para obtener el año de realización del estudio
+	 *  
+	 * @return devuelve un número entero (un año)
+	 */
 	public final IntegerProperty anyoProperty() {
 		return this.anyo;
 	}
-	
 
-
-
+	/**
+	 * Método para obtener el año de realización del estudio
+	 *  
+	 * @return devuelve un número entero (un año)
+	 */
 	public final int getAnyo() {
 		return this.anyoProperty().get();
 	}
 	
-
-
-
+	/**
+	 * Método para establecer el año de realización del estudio
+	 *  
+	 * @param anyo, debe ser un número entero(un año)
+	 */
 	public final void setAnyo(final int anyo) {
 		this.anyoProperty().set(anyo);
 	}
 	
-
-
-
+	/**
+	 * Método para obtener el estado de adjudicación de la obra
+	 * 
+	 * @return devuelve una cadena de texto con el estado
+	 */
 	public final StringProperty adjudicadaProperty() {
 		return this.adjudicada;
 	}
 	
-
-
-
+	/**
+	 * Método para obtener el estado de adjudicación de la obra
+	 * 
+	 * @return devuelve una cadena de texto con el estado
+	 */
 	public final String getAdjudicada() {
 		return this.adjudicadaProperty().get();
 	}
 	
-
-
-
+	/**
+	 * Método para establecer el estado de adjudicación del estudio
+	 *  
+	 * @param adjudicada, debe ser una cadena de texto
+	 */
 	public final void setAdjudicada(final String adjudicada) {
 		this.adjudicadaProperty().set(adjudicada);
 	}
 
-	
+	/**
+	 * Método para obtener el usuario que ha realizado/está realizando el estudio
+	 * 
+	 * @return devuelve un usuario
+	 */
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
-
-
+	/**
+	 * Método para establecer un usuario
+	 * 
+	 * @param usuario, debe ser un objeto de tipo usuario
+	 */
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
-
-
+	/**
+	 * Método para obtener la zona donde es la obra
+	 * 
+	 * @return devuelve una zona
+	 */
 	public Zona getZona() {
 		return zona;
 	}
 
-
-
+	/**
+	 * Método para establecer una zona del estudio
+	 * 
+	 * @param zona, debe ser un objeto de tipo zona
+	 */
 	public void setZona(Zona zona) {
 		this.zona = zona;
 	}
-
-
-
-	
-	
-	
-	
-
 }

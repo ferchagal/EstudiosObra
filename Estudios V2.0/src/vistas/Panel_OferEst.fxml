@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="966.0" prefWidth="1615.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controladores.Panel_OferEst_Controller">
+   <children>
+      <Label layoutX="607.0" layoutY="28.0" text="Ofertas del Estudio:">
+         <font>
+            <Font name="Verdana Bold Italic" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

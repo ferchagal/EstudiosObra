@@ -84,12 +84,14 @@ public class Login_Controller implements Initializable {
 						appStage.show();
 											
 					}catch(Exception ex) {
+						ex.printStackTrace();
+						/*
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("INFORMACION RELEVANTE");
 						alert.setHeaderText("NO se ha podido cargar el panel");
 						alert.setContentText("Si no aparece la opción que has elegido, no pierdas la calma."
 							+ " Cierra la aplicación y vuelve a entrar en ella.");
-						alert.showAndWait();
+						alert.showAndWait();*/
 					}
 				}				
 				

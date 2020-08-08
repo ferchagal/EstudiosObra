@@ -12,10 +12,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Conexion;
 import modelo.Estudio;
@@ -95,12 +99,28 @@ public class Panel_Inicio_Controller implements Initializable  {
 	 * botón cargar.
 	 * 
 	 * @param Event, evento generado por el usuario
+	 * @throws InterruptedException 
 	 */
-	@FXML public void cargarEstudio (ActionEvent Event) {
+	@FXML public void cargarEstudio (ActionEvent Event) throws InterruptedException {
 		
 		
 		etiEstado.setText("Cargando Estudio seleccionado...");
+		Thread.sleep(2000);
 		
+		URL url = getClass().getResource("../vistas/Panel_OferEst.fxml");
+		
+		try {
+			Node nodo = FXMLLoader.load(url);
+			
+			
+		}catch(Exception ex) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACION RELEVANTE");
+			alert.setHeaderText("NO se ha podido cargar el panel");
+			alert.setContentText("Si no aparece la opción que has elegido, no pierdas la calma."
+				+ " Cierra la aplicación y vuelve a entrar en ella.");
+			alert.showAndWait();
+		}
 	}
 	
 	/**
