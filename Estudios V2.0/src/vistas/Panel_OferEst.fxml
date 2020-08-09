@@ -1,18 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="966.0" prefWidth="1615.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controladores.Panel_OferEst_Controller">
+<AnchorPane prefHeight="998.0" prefWidth="1900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.Panel_OferEst_Controller">
    <children>
-      <Label layoutX="607.0" layoutY="28.0" text="Ofertas del Estudio:">
-         <font>
-            <Font name="Verdana Bold Italic" size="36.0" />
-         </font>
-      </Label>
+      <AnchorPane prefHeight="32.0" prefWidth="1900.0" style="-fx-background-color: A1A1A1;" />
+      <AnchorPane layoutY="32.0" prefHeight="966.0" prefWidth="300.0" style="-fx-background-color: #6490F3;">
+         <children>
+            <VBox prefHeight="966.0" prefWidth="300.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="200.0" text="Panel de Ofertas" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" top="50.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Verdana Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#cargarPanelInicio" prefHeight="40.0" prefWidth="180.0" text="Inicio">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="60.0" right="60.0" top="50.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#cargarPanelConfigurar" prefHeight="40.0" prefWidth="180.0" text="Configurar Estudio">
+                     <VBox.margin>
+                        <Insets left="80.0" right="40.0" top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#cargarPanelGestion" prefHeight="40.0" prefWidth="180.0" text="Gestionar Ofertas">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="80.0" right="40.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#salirAplicacion" prefHeight="40.0" prefWidth="180.0" text="Salir">
+                     <VBox.margin>
+                        <Insets left="60.0" right="60.0" top="160.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="contenidoOferta" layoutX="300.0" layoutY="32.0" prefHeight="966.0" prefWidth="1600.0">
+         <children>
+            <Label layoutX="600.0" layoutY="35.0" text="Ofertas del Estudio:">
+               <font>
+                  <Font name="Verdana Bold Italic" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

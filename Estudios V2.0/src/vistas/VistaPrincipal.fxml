@@ -14,11 +14,6 @@
          <children>
           <AnchorPane layoutY="32.0" maxHeight="966.0" maxWidth="300.0" minHeight="966.0" minWidth="300.0" prefHeight="966.0" prefWidth="300.0" style="-fx-background-color: #6490F3;">
                <children>
-                <AnchorPane layoutY="554.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" styleClass="fondo">
-                     <children>
-                        <Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" />
-                     </children>
-                  </AnchorPane>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="966.0" minWidth="300.0" prefHeight="966.0" prefWidth="300.0" styleClass="fondo">
                      <children>
                         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="300.0">

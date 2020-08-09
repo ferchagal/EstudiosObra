@@ -18,8 +18,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-//import controladores.Config_IndustrialesController.txtDriverBD;
-
 /**
  * Controlador encargado de la gestión de la ventana principal
  * 
@@ -95,29 +93,7 @@ public class VistaPrincipal_Controller implements Initializable {
 			cargarPanel("Panel_Estudios.fxml");
 		
 	}
-	
-	/**
-	 * Método que se ejecuta cuando pulsamos el botón "Industriales" en la sección de configuración,
-	 * y se muestra la pantalla de configuración de Industriales de la aplicación. Ejecuta el método
-	 * cargarPanel () que apunta al archivo xml que define la interfaz del panel.
-	 * 
-	 * @param event Evento generado por el usuario.
-	 */
-	@FXML private void cargarPanelConfigIndustriales(ActionEvent event) {
-		cargarPanel("Configuracion_Industriales.fxml");
-	}
-	
-	/**
-	 * Método que se ejecuta cuando pulsamos el botón "Estudios" en la sección de configuración,
-	 * y se muestra la pantalla de configuración de Estudios de la aplicación. Ejecuta el método
-	 * cargarPanel () que apunta al archivo xml que define la interfaz del panel.
-	 * 
-	 * @param event Evento generado por el usuario.
-	 */
-	@FXML private void cargarPanelConfigEstudios(ActionEvent event) {
-		cargarPanel("Configuracion_Estudios.fxml");
-	}
-	
+		
 	/**
 	 * Método que se encarga de cargar el panel que se le pasa como parámetro.
 	 * 

@@ -15,12 +15,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import modelo.Conexion;
 import modelo.Estudio;
 import modelo.Usuario;
@@ -110,8 +113,13 @@ public class Panel_Inicio_Controller implements Initializable  {
 		URL url = getClass().getResource("../vistas/Panel_OferEst.fxml");
 		
 		try {
-			Node nodo = FXMLLoader.load(url);
-			
+			Node node = FXMLLoader.load(url);
+			Scene scene = new Scene((Parent) node);
+			Stage appStage = (Stage) ((Node) Event.getSource()).getScene().getWindow();
+			appStage.setScene(scene);
+			appStage.toFront();
+			appStage.centerOnScreen();
+			appStage.show();
 			
 		}catch(Exception ex) {
 			Alert alert = new Alert(AlertType.INFORMATION);
