@@ -13,8 +13,22 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
-
+/**
+ * Clase principal de la aplicación, lanza la aplicación.
+ * @author Fernando Chacón Galea
+ * @version 2020.06.22 - V2
+ */
 public class Main extends Application {
+	
+	/**
+     * Método que inicia la ventana principal de la aplicación
+     * 
+     * @param stage Es la ventana principal (el escenario) creada por la aplicación en si y se
+     * pasa como argumento el método start() de la clase Application.
+     * 
+     * @throws Exception El método start() puede lanzar una excepción de tipo Exception sino se
+     * crea correctamente la ventana. 
+     */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -30,6 +44,11 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+     * Método de entrada a toda la aplicación en Java
+     * 
+     * @param args Argumentos pasados por la linea de comandos
+     */
 	public static void main(String[] args) {
 		launch(args);
 	}

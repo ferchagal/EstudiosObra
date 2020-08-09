@@ -86,7 +86,7 @@ public class Panel_OferEst_Controller implements Initializable {
 	 */
 	@FXML private void cargarPanelConfigurar(ActionEvent event) {
 		
-			cargarPanel("Panel_Configurar.fxml");
+			cargarPanel("OF_Panel_Configurar.fxml");
 		
 	}
 	
@@ -99,7 +99,7 @@ public class Panel_OferEst_Controller implements Initializable {
 	 */
 	@FXML private void cargarPanelGestion(ActionEvent event) {
 		
-			cargarPanel("Panel_Gestion.fxml");
+			cargarPanel("OF_Panel_Ofertas.fxml");
 		
 	}
 	
@@ -146,7 +146,7 @@ public class Panel_OferEst_Controller implements Initializable {
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//cargarPanel("Panel_Gestion.fxml");
+		//cargarPanel("OF_Panel_Ofertas.fxml");
 		
 	}
 
