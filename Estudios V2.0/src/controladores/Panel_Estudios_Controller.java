@@ -8,20 +8,32 @@ package controladores;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import modelo.Conexion;
 import modelo.Estudio;
 import modelo.Usuario;
@@ -149,6 +161,17 @@ public class Panel_Estudios_Controller implements Initializable {
 		//Cerramos la conexion
 		miConexion.cerrarConexionBD();
 		
+		/*Creamos un fichero ODB. Crearemos uno por cada estudio. A este archivo le incluiremos objetos
+		 * de tipo IndustrialJdo.java, serán igual que los objetos de tipo Industrial.java, con la 
+		 * salvedad que se le incluye un codigo (id) de estudio. El archivo debe crearse en el servidor.
+		 * De momento lo creamos en una carpeta del proyecto (simuladorServer)
+		*/
+		EntityManagerFactory em = Persistence.createEntityManagerFactory(
+				"../simuladorServer/"+txtReferencia.getText()+".odb");
+		EntityManager operador = em.createEntityManager();
+		
+		operador.close();
+		
 		if(resultado == 1) {
 			//Añadimos el industrial insertado en la BBDD al Tableview Industriales
 			listaEstudios.add(est);
@@ -268,6 +291,40 @@ public class Panel_Estudios_Controller implements Initializable {
 				
 				
 		);
+	}
+	
+	/**
+	 * Método por el que mostramos el estudio en su Panel de control, lo lanzamos cuando pulsamos el
+	 * botón cargar.
+	 * 
+	 * @param Event, evento generado por el usuario
+	 * @throws InterruptedException 
+	 */
+	@FXML public void cargarEstudio (ActionEvent Event) throws InterruptedException {
+		
+		
+		etiEstado.setText("Cargando Estudio seleccionado...");
+		Thread.sleep(2000);
+		
+		URL url = getClass().getResource("../vistas/Panel_OferEst.fxml");
+		
+		try {
+			Node node = FXMLLoader.load(url);
+			Scene scene = new Scene((Parent) node);
+			Stage appStage = (Stage) ((Node) Event.getSource()).getScene().getWindow();
+			appStage.setScene(scene);
+			appStage.toFront();
+			appStage.centerOnScreen();
+			appStage.show();
+			
+		}catch(Exception ex) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACION RELEVANTE");
+			alert.setHeaderText("NO se ha podido cargar el panel");
+			alert.setContentText("Si no aparece la opción que has elegido, no pierdas la calma."
+				+ " Cierra la aplicación y vuelve a entrar en ella.");
+			alert.showAndWait();
+		}
 	}
 	
 	/**

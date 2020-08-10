@@ -59,13 +59,7 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="contenidoOferta" layoutX="300.0" layoutY="32.0" prefHeight="966.0" prefWidth="1600.0">
-         <children>
-            <Label layoutX="600.0" layoutY="35.0" text="Ofertas del Estudio:">
-               <font>
-                  <Font name="Verdana Bold Italic" size="36.0" />
-               </font>
-            </Label>
-         </children>
+        
       </AnchorPane>
    </children>
 </AnchorPane>

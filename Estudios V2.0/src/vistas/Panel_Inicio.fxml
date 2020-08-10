@@ -65,7 +65,7 @@
             <Font name="Verdana" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="1334.0" layoutY="790.0" mnemonicParsing="false" onAction="#cargarEstudio" prefHeight="30.0" prefWidth="180.0" text="Cargar">
+      <Button layoutX="1334.0" layoutY="790.0" mnemonicParsing="false" onAction="#cargarEstudio" prefHeight="30.0" prefWidth="180.0" text="Ir al panel de ofertas">
          <font>
             <Font name="Verdana" size="14.0" />
          </font>
