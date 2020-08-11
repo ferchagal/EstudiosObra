@@ -1,12 +1,16 @@
 /**
  * Módulo: Estudios de Obra. Aplicación de escritorio
- * Archivo: IndustrialJdo.java
- * Objetivo: Clase modelo - industrialJdo.
+ * Archivo: OfertasJdo.java
+ * Objetivo: Clase modelo - OfertaslJdo.
  * Equipo/Persona: Fernando Chacón Galea  28.614.518 - B
  */
 package modelo;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +20,9 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  * Clase para crear persistencia de objetos, se creará un archivo .odb por cada Estudio que hagamos
@@ -26,7 +33,7 @@ import javafx.beans.property.StringProperty;
  * Entidad manejada por EntityManager
  */
 @Entity
-public class IndustrialJdo implements Serializable {
+public class OfertasJdo implements Serializable {
 	
 	/**
 	 * Atributo de clase de tipo long, define un codigo para cada industrial, propio del estudio actual.
@@ -61,14 +68,9 @@ public class IndustrialJdo implements Serializable {
 	private StringProperty telefono;
 	
 	/**
-	 * Atributo de tipo cadena de texto, define un telefono del industrial
+	 * Atributo de tipo cadena de texto, define la actividad a la que se dedica el industrial
 	 */
-	private StringProperty telefono02;
-	
-	/**
-	 * Atributo de tipo Actividad, define la actividad a la que se dedica el industrial
-	 */
-	private Actividad actividad;
+	private StringProperty actividad;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define el nombre de la empresa para la que trabaja el 
@@ -77,16 +79,16 @@ public class IndustrialJdo implements Serializable {
 	private StringProperty empresa;
 	
 	/**
-	 * Atributo de tipo cadena de texto, define el nombre de la localidad donde se ubica la
-	 * empresa a la que pertenece el industrial, o su delegación.
+	 * Atributo de tipo Fecha(Date), define la fecha de solicitud de oferta 
+	 * industrial.
 	 */
-	private StringProperty localidad;
+	private Date solicitada;
 	
 	/**
-	 * Atributo de tipo Zona, define la zona donde actua la empresa a la que pertenece el
-	 * el industrial
+	 * Atributo de tipo Fecha(Date), define la fecha de solicitud de oferta 
+	 * industrial.
 	 */
-	private Zona zona;
+	private StringProperty estado;
 	
 	/**
 	 * Atributo de tipo cadena de texto, son comentarios que se pueden insertar en el industrial
@@ -102,27 +104,73 @@ public class IndustrialJdo implements Serializable {
 	 * @param apellidos, cadena de texto
 	 * @param email, cadena de texto
 	 * @param telefono, cadena de texto
-	 * @param telefono02, cadena de texto
-	 * @param actividad, obtejo de tipo actividad
+	 * @param actividad, cadena de texto
 	 * @param empresa, cadena de texto
 	 * @param localidad, cadena de texto
 	 * @param zona, objeto de tipo zona
 	 * @param comentarios, cadena de texto
 	 */
-	public IndustrialJdo(Integer codigo_industrial, String nombre, String apellidos,String email,
-			String telefono, String telefono02, Actividad actividad, String empresa, 
-			String localidad, Zona zona, String comentarios) {
+	public OfertasJdo(Integer codigo_industrial, String nombre, String apellidos,String email,
+			String telefono,  String actividad, String empresa, Date solicitada,
+			String estado, String comentarios) {
 		this.codigo_industrial = new SimpleIntegerProperty(codigo_industrial);
 		this.nombre = new SimpleStringProperty(nombre);
 		this.apellidos = new SimpleStringProperty(apellidos);
 		this.email = new SimpleStringProperty(email);
-		this.telefono = new SimpleStringProperty (telefono);
-		this.telefono02 = new SimpleStringProperty(telefono02);
-		this.actividad = actividad;
+		this.telefono = new SimpleStringProperty (telefono);		
+		this.actividad = new SimpleStringProperty(actividad);
 		this.empresa = new SimpleStringProperty (empresa);
-		this.localidad = new SimpleStringProperty(localidad);
-		this.zona = zona;
+		this.solicitada = solicitada;
+		this.estado = new SimpleStringProperty(estado);
 		this.comentarios = new SimpleStringProperty (comentarios);		
+	}
+	
+	/**
+	 * Método para poder cargar el tableView desde los diferentes estudios
+	 * 
+	 * @param miConexion, objeto de tipo Connection
+	 * @param lista, lista de tipo Estudio, se cargan todos los estudios en ella
+	 */
+	public static void datosTablaOfertasJdo(Connection miConexion, ObservableList<OfertasJdo>lista) {
+		try {
+			 Statement consulta = miConexion.createStatement();
+			 
+			 ResultSet rs = consulta.executeQuery(
+					 "SELECT A.codigo_industrial, " +
+					 "A.nombre, " +
+					 "A.apellidos, " +
+					 "A.email, " +
+					 "A.telefono, " +
+					 "A.actividad, " +
+					 "A.empresa, " +
+					 "A.solicitada, " +
+					 "A.estado, " +
+					 "A.comentarios, " +
+					 "FROM industriales A "
+					 );
+					 
+			 while(rs.next()) {
+				 lista.add(
+						 new OfertasJdo(
+								 rs.getInt("codigo_industrial"),
+								 rs.getString("nombre"),
+								 rs.getString("apellidos"),
+								 rs.getString("email"),
+								 rs.getString("telefono"),
+								 rs.getString("actividad"),
+								 rs.getString("empresa"),
+								 rs.getDate("solicitada"),
+								 rs.getString("estado"),
+								 rs.getString("comentarios")
+								 )
+						 );
+			 }
+			
+		}catch(Exception ex) {
+			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
+					+ " Pongase en contacto con su Administrador",ButtonType.CLOSE);
+			alerta.showAndWait();
+		}
 	}
 	
 	/**
@@ -261,32 +309,32 @@ public class IndustrialJdo implements Serializable {
 	}
 	
 	/**
-	 * Método para obtener el telefono02 del industrial
+	 * Método para obtener la actividad del industrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final StringProperty telefono02Property() {
-		return this.telefono02;
+	public final StringProperty actividadProperty() {
+		return this.actividad;
 	}
 	
 	/**
-	 * Método para obtener el telefono02 del industrial
+	 * Método para obtener la actividad del industrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final String getTelefono02() {
-		return this.telefono02Property().get();
+	public final String getActividad() {
+		return this.actividadProperty().get();
 	}
 	
 	/**
-	 * Método para establecer el telefono02 del industrial
+	 * Método para establecer la actividad del industrial
 	 * 
-	 * @param telefono02, debe ser una cadena de texto
+	 * @param actividad, debe ser una cadena de texto
 	 */
-	public final void setTelefono02(final String telefono02) {
-		this.telefono02Property().set(telefono02);
-	}	
-	
+	public final void setActividad(final String actividad) {
+		this.actividadProperty().set(actividad);
+	}
+		
 	/**
 	 * Método para obtener la empresa del industrial
 	 * 
@@ -315,32 +363,50 @@ public class IndustrialJdo implements Serializable {
 	}
 	
 	/**
-	 * Método para obtener la localidad del industrial
+	 * Método para obtener la fecha de solicitud de la oferta
 	 * 
-	 * @return devuelve una cadena de texto
+	 * @return devuelve una fecha
 	 */
-	public final StringProperty localidadProperty() {
-		return this.localidad;
+	public Date getSolicitada() {
+		return solicitada;
 	}
 	
 	/**
-	 * Método para obtener la localidad del industrial
+	 * Método para establecer una fecha de solicitud de la oferta.
 	 * 
-	 * @return devuelve una cadena de texto
+	 * @param solicitada, debe ser una fecha valida de tipo Date.
 	 */
-	public final String getLocalidad() {
-		return this.localidadProperty().get();
+	public void setSolicitada(Date solicitada) {
+		this.solicitada = solicitada;
 	}
 	
 	/**
-	 * Método para establecer la localidad del industrial
+	 * Método para obtener el estado de la oferta
 	 * 
-	 * @param localidad, debe ser una cadena de texto
+	 * @return devuelve una cadena de texto
 	 */
-	public final void setLocalidad(final String localidad) {
-		this.localidadProperty().set(localidad);
+	public final StringProperty estadoProperty() {
+		return this.estado;
 	}
 	
+	/**
+	 * Método para obtener el estado de la oferta
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final String getEstado() {
+		return this.estadoProperty().get();
+	}
+	
+	/**
+	 * Método para establecer el estado de la oferta
+	 * 
+	 * @param comentarios, devuelve una cadena de texto
+	 */
+	public final void setEstado(final String estado) {
+		this.estadoProperty().set(estado);
+	}
+		
 	/**
 	 * Método para obtener los comentarios del industrial
 	 * 
@@ -367,41 +433,4 @@ public class IndustrialJdo implements Serializable {
 	public final void setComentarios(final String comentarios) {
 		this.comentariosProperty().set(comentarios);
 	}
-
-	/**
-	 * Método para obtener la Actividad del industrial
-	 * 
-	 * @return devuelve una actividad
-	 */
-	public Actividad getActividad() {
-		return actividad;
-	}
-	
-	/**
-	 * Método para establecer la actividad del Industrial
-	 * 
-	 * @param actividad, debe ser una actividad recogida en la tabla actividades de la BD
-	 */
-	public void setActividad(Actividad actividad) {
-		this.actividad = actividad;
-	}
-
-	/**
-	 * Método para obtener la Zona del industrial
-	 * 
-	 * @return devuelve una zona
-	 */
-	public Zona getZona() {
-		return zona;
-	}
-
-	/**
-	 * Método para establecer la zona del Industrial
-	 * 
-	 * @param zona, debe ser una zona recogida en la tabla zonas de la BD
-	 */
-	public void setZona(Zona zona) {
-		this.zona = zona;
-	}
-	
 }

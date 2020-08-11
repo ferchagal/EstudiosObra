@@ -13,7 +13,7 @@
             <Font name="Verdana Bold Italic" size="24.0" />
          </font></Label>
             <ComboBox fx:id="cbEstudios" layoutX="778.0" layoutY="41.0" onAction="#cargarListaEstudio" prefWidth="265.0" promptText="Selecciona un Estudio de la lista" />
-            <TableView layoutX="136.0" layoutY="170.0" prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="150.0">
+            <TableView fx:id="tablaOfertas" layoutX="136.0" layoutY="170.0" prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="150.0">
               <columns>
                 <TableColumn fx:id="clCodigo_Industrial" minWidth="120.0" prefWidth="120.0" text="Cod. Industrial" />
                   <TableColumn fx:id="clNombre" minWidth="100.0" prefWidth="100.0" text="Nombre" />
@@ -21,9 +21,10 @@
                   <TableColumn fx:id="clEmail" minWidth="200.0" prefWidth="200.0" text="email" />
                   <TableColumn fx:id="clTelefono" minWidth="120.0" prefWidth="120.0" text="Teléfono" />
                   <TableColumn fx:id="clActividad" minWidth="120.0" prefWidth="120.0" text="Actividad" />
+                  <TableColumn fx:id="clEmpresa" minWidth="120.0" prefWidth="120.0" text="Empresa" />
                   <TableColumn fx:id="clSolicitada" minWidth="120.0" prefWidth="120.0" text="Solicitada" />
                   <TableColumn fx:id="clEstado" minWidth="120.0" prefWidth="120.0" text="Estado" />
-                  <TableColumn fx:id="clComentarios" minWidth="360.0" prefWidth="360.0" text="Comentarios" />
+                  <TableColumn fx:id="clComentarios" minWidth="240.0" prefWidth="240.0" text="Comentarios" />
               </columns>
             </TableView>
      </children>

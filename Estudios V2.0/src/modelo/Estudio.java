@@ -221,6 +221,46 @@ public class Estudio {
 			alerta.showAndWait();
 		}
 	}
+	
+	/**
+	 * Sobrecargamos el método toString() para que nos devuelva la zona cuando la solicitemos.
+	 */
+	@Override
+	public String toString() {
+		
+		return String.valueOf(referencia.get());
+	}
+	
+	/**
+	 * Método para poder cargar los combobox desde la tabla estudios de la BD
+	 * 
+	 * @param miConexion
+	 * @param lista
+	 */
+	public static void datosComboEstudios (Connection miConexion, ObservableList<String>lista) {
+		try {
+			Statement consulta = miConexion.createStatement();
+			
+			ResultSet rs = consulta.executeQuery(
+					"SELECT A.referencia " +
+					"FROM estudios A"
+					);
+			
+			while(rs.next()) {
+				lista.add(
+						String.valueOf(rs.getInt("referencia"))
+						);
+			}
+			
+			
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
+					+ " Pongase en contacto con su Administrador",ButtonType.CLOSE);
+			alerta.showAndWait();
+		}
+	}
 
 	/**
 	 * Metodo para obtener el codigo del estudio

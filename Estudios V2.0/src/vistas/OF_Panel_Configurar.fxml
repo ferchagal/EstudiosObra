@@ -6,16 +6,37 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="966.0" prefWidth="1600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controladores.OF_Panel_Configurar_Controller">
+<AnchorPane prefHeight="966.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.OF_Panel_Configurar_Controller">
    <children>
-      <AnchorPane prefHeight="966.0" prefWidth="600.0" style="-fx-background-color: #9FB9F6;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="926.0" prefWidth="1560.0" style="-fx-background-color: #9FB9F6;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
-            <Label layoutX="184.0" layoutY="36.0" text="Configuración de Ofertas:">
+            <Label layoutX="30.0" layoutY="36.0" text="Configurador de Ofertas del Estudio:">
                <font>
-                  <Font name="Verdana Italic" size="18.0" />
+                  <Font name="Verdana Italic" size="16.0" />
                </font>
             </Label>
+            <ComboBox fx:id="cbEstudios" layoutX="335.0" layoutY="31.0" prefWidth="265.0" promptText="Selecciona un Estudio de la lista" />
+            <ScrollPane layoutX="35.0" layoutY="600.0" prefViewportHeight="300.0" prefViewportWidth="1490.0">
+               <content>
+                  <TableView fx:id="tablaIndustriales" layoutX="35.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="1490.0">
+                    <columns>
+                      <TableColumn fx:id="clCodigo_Industrial" minWidth="60.0" prefWidth="60.0" text="Código" />
+                      <TableColumn fx:id="clNombre" minWidth="100.0" prefWidth="100.0" text="Nombre" />
+                        <TableColumn fx:id="clApellidos" minWidth="180.0" prefWidth="180.0" text="Apellidos" />
+                        <TableColumn fx:id="clEmail" minWidth="200.0" prefWidth="200.0" text="Email" />
+                        <TableColumn fx:id="clTelefono" minWidth="100.0" prefWidth="100.0" text="Teléfono" />
+                        <TableColumn fx:id="clTelefono02" minWidth="100.0" prefWidth="100.0" text="Teléfono 02" />
+                        <TableColumn fx:id="clActividad" minWidth="150.0" prefWidth="150.0" text="Actividad" />
+                        <TableColumn fx:id="clEmpresa" minWidth="150.0" prefWidth="150.0" text="Empresa" />
+                        <TableColumn fx:id="clLocalidad" minWidth="150.0" prefWidth="150.0" text="Localidad" />
+                        <TableColumn fx:id="clZona" minWidth="100.0" prefWidth="100.0" text="Zona" />
+                        <TableColumn fx:id="clComentarios" minWidth="200.0" prefWidth="200.0" text="Comentarios" />
+                    </columns>
+                  </TableView>
+               </content>
+            </ScrollPane>
+            <Label layoutX="80.0" layoutY="100.0" text="Selecciona la Zona del Estudio:" />
+            <ComboBox fx:id="cbZona" layoutX="335.0" layoutY="95.0" prefWidth="180.0" promptText="Zona del Estudio" />
          </children>
       </AnchorPane>
    </children>
