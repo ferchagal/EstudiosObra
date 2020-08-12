@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -16,9 +17,9 @@
                </font>
             </Label>
             <ComboBox fx:id="cbEstudios" layoutX="335.0" layoutY="31.0" prefWidth="265.0" promptText="Selecciona un Estudio de la lista" />
-            <ScrollPane layoutX="35.0" layoutY="600.0" prefViewportHeight="300.0" prefViewportWidth="1490.0">
+            <ScrollPane layoutX="35.0" layoutY="620.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefViewportHeight="300.0" prefViewportWidth="1490.0" prefWidth="1482.0">
                <content>
-                  <TableView fx:id="tablaIndustriales" layoutX="35.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="1490.0">
+                  <TableView fx:id="tablaIndustriales" layoutX="35.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="1480.0">
                     <columns>
                       <TableColumn fx:id="clCodigo_Industrial" minWidth="60.0" prefWidth="60.0" text="Código" />
                       <TableColumn fx:id="clNombre" minWidth="100.0" prefWidth="100.0" text="Nombre" />
@@ -28,15 +29,578 @@
                         <TableColumn fx:id="clTelefono02" minWidth="100.0" prefWidth="100.0" text="Teléfono 02" />
                         <TableColumn fx:id="clActividad" minWidth="150.0" prefWidth="150.0" text="Actividad" />
                         <TableColumn fx:id="clEmpresa" minWidth="150.0" prefWidth="150.0" text="Empresa" />
-                        <TableColumn fx:id="clLocalidad" minWidth="150.0" prefWidth="150.0" text="Localidad" />
+                        <TableColumn fx:id="clLocalidad" minWidth="120.0" prefWidth="120.0" text="Localidad" />
                         <TableColumn fx:id="clZona" minWidth="100.0" prefWidth="100.0" text="Zona" />
                         <TableColumn fx:id="clComentarios" minWidth="200.0" prefWidth="200.0" text="Comentarios" />
                     </columns>
                   </TableView>
                </content>
             </ScrollPane>
-            <Label layoutX="80.0" layoutY="100.0" text="Selecciona la Zona del Estudio:" />
-            <ComboBox fx:id="cbZona" layoutX="335.0" layoutY="95.0" prefWidth="180.0" promptText="Zona del Estudio" />
+            <Label layoutX="80.0" layoutY="90.0" text="Selecciona la Zona del Estudio:">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font></Label>
+            <ComboBox fx:id="cbZona" layoutX="335.0" layoutY="85.0" prefWidth="180.0" promptText="Zona del Estudio" />
+            <Label layoutX="80.0" layoutY="135.0" text="Selecciona las Actividades a incluir en el Estudio:">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font></Label>
+            <GridPane layoutX="35.0" layoutY="165.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1100.0" style="-fx-background-color: #ffffff;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <CheckBox fx:id="chb_acerosCorrugados" mnemonicParsing="false" text="Aceros Corrugados">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_aislamientos" mnemonicParsing="false" text="Aislamientos" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_alicatadoresSoladores" mnemonicParsing="false" text="Alicatadores - Soladores" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_alquilerMaquinaria" mnemonicParsing="false" text="Alquiler Maquinaria" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_ascensores" mnemonicParsing="false" text="Ascensores" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_asfaltos" mnemonicParsing="false" text="Asfaltos" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_automatismos" mnemonicParsing="false" text="Automatismos" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_bombasHormigon" mnemonicParsing="false" text="Bombas Hormigón" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_carpFenolica" mnemonicParsing="false" text="Carp. Fenólica" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_carpMadera" mnemonicParsing="false" text="Carp. Madera" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_carpMetalica" mnemonicParsing="false" text="Carp. Metálica" GridPane.rowIndex="10">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_carpRF" mnemonicParsing="false" text="Carp. RF" GridPane.rowIndex="11">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_cimentacEspeciales" mnemonicParsing="false" text="Cimentac. Especiales" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_contenedEscombros" mnemonicParsing="false" text="Contened. Escombros" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_cubiertas" mnemonicParsing="false" text="Cubiertas" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_demoliciones" mnemonicParsing="false" text="Demoliciones" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_desatascos" mnemonicParsing="false" text="Desatascos" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_direccionFacultativa" mnemonicParsing="false" text="Dirección Facultativa" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_ensayos" mnemonicParsing="false" text="Ensayos" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_especiales" mnemonicParsing="false" text="Especiales" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_estrucHormigon" mnemonicParsing="false" text="Estruct. de Hormigón" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_estrucMetalicas" mnemonicParsing="false" text="Estruct. Metálicas" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_ferreteria" mnemonicParsing="false" text="Ferretería" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_gruasMoviles" mnemonicParsing="false" text="Grúas Móviles" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_gruasTorre" mnemonicParsing="false" text="Grúas Torre" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_hormigonPoroso" mnemonicParsing="false" text="Hormigón Poroso" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_hormigonPulido" mnemonicParsing="false" text="Hormigón Pulido" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_hormigones" mnemonicParsing="false" text="Hormigones" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_ignifugados" mnemonicParsing="false" text="Ignifugados" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_impermeabilizaciones" mnemonicParsing="false" text="Impermeabilizaciones" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_instAireComprimido" mnemonicParsing="false" text="Inst. Aire Comprimido" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_instClimatizacion" mnemonicParsing="false" text="Inst. Climatización" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_instElectricidad" mnemonicParsing="false" text="Inst. Electricidad" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_instFontaneria" mnemonicParsing="false" text="Inst. Fontanería" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_instGas" mnemonicParsing="false" text="Inst. Gas" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_instGasesEscape" mnemonicParsing="false" text="Inst. Gases Escape" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_limpieza" mnemonicParsing="false" text="Limpieza" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_mamparas" mnemonicParsing="false" text="Mamparas" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_manoObra" mnemonicParsing="false" text="Mano de Obra" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_montPlacasAlveolares" mnemonicParsing="false" text="Mont. Placas Alveolares" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_morteros" mnemonicParsing="false" text="Morteros" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_movimientoTierras" mnemonicParsing="false" text="Movimiento de Tierras" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_panelesArquitectonicos" mnemonicParsing="false" text="Paneles Arquitectonicos" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_pavimentosEspeciales" mnemonicParsing="false" text="Pavimentos Especiales" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_perfCorteHormigon" mnemonicParsing="false" text="Perf. y Corte Hormigón" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_piedrasNaturales" mnemonicParsing="false" text="Piedras Naturales" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_pintores" mnemonicParsing="false" text="Pintores" GridPane.columnIndex="3" GridPane.rowIndex="10">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_piscinas" mnemonicParsing="false" text="Piscinas" GridPane.columnIndex="3" GridPane.rowIndex="11">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_polveros" mnemonicParsing="false" text="Polveros" GridPane.columnIndex="4">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_prefHormigon" mnemonicParsing="false" text="Pref. de Hormigón" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_prl" mnemonicParsing="false" text="PRL" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_revCeramicos" mnemonicParsing="false" text="Rev. Cerámicos" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_revestimientos" mnemonicParsing="false" text="Revestimientos" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_rotulosSenyalitica" mnemonicParsing="false" text="Rótulos y Señalítica" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_sanitarios" mnemonicParsing="false" text="Sanitarios" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_senyalizacionVial" mnemonicParsing="false" text="Señalización Vial" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_sueloTecnico" mnemonicParsing="false" text="Suelo Técnico" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_tabGranFormato" mnemonicParsing="false" text="Tab. Gran Formato" GridPane.columnIndex="4" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_terrazosContinuos" mnemonicParsing="false" text="Terrazos Continuos" GridPane.columnIndex="4" GridPane.rowIndex="10">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_toldos" mnemonicParsing="false" text="Toldos" GridPane.columnIndex="4" GridPane.rowIndex="11">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_trabajosVerticales" mnemonicParsing="false" text="Trabajos Verticales" GridPane.columnIndex="5">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_urbanizadoras" mnemonicParsing="false" text="Urbanizadoras" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_vidrios" mnemonicParsing="false" text="Vidrios" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_vinilos" mnemonicParsing="false" text="Vinilos" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="chb_yesoLaminado" mnemonicParsing="false" text="Yeso Laminado" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Verdana" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+               </children>
+            </GridPane>
+            <Label layoutX="80.0" layoutY="590.0" text="Industriales a incluir en el Estudio:">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="1250.0" layoutY="165.0" mnemonicParsing="false" onAction="#cargarIndustriales" prefHeight="30.0" prefWidth="220.0" text="Previsualizar Selección">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
