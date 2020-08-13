@@ -283,6 +283,72 @@ public class Industrial {
 			alerta.showAndWait();
 		}
 	}
+	
+	/**
+	 * Método para poder cargar el tableView Industriales filtrados para ofertas Estudio desde la tabla 
+	 * industriales de la BD
+	 * 
+	 * @param miConexion, objeto de tipo Connection
+	 * @param lista, lista de tipo Industrial, se cargan todos los industriales en ella
+	 * @param cadena de texto, se le pasa como parametro parte de la consulta, la cadena se crea con los
+	 * checkBox seleccionados
+	 * @param cadena de texto, se le pasa como parametro parte de la consulta, la zona seleccionada en el
+	 * cbZona.
+	 */
+	public static void datosTablaIndustrialesEstudio (Connection miConexion, ObservableList<Industrial>lista,
+			String actividades, String zona) {
+		try {
+			Statement consulta = miConexion.createStatement();
+			
+			ResultSet rs = consulta.executeQuery(
+					"SELECT A.codigo_industrial, " +
+					"A.nombre, " +
+					"A.apellidos, " +
+					"A.email, " +
+					"A.telefono, " +
+					"A.telefono02, " +
+					"A.codigo_actividad, " +
+					"A.empresa, " +
+					"A.localidad, " +
+					"A.codigo_zona, " +
+					"A.comentarios, " +
+					"B.actividad, " +
+					"C.zona " +
+					"FROM industriales A "+ 
+					"INNER JOIN actividades B " +
+					"ON (A.codigo_actividad = B.codigo_actividad) "+
+					"INNER JOIN zonas C " +
+					"ON (A.codigo_zona = C.codigo_zona) " +
+					"WHERE" + actividades + " AND zona = 'España' OR zona = '"+ zona
+					
+					);
+			
+			while(rs.next()) {
+				lista.add(
+						new Industrial(
+								rs.getInt("codigo_industrial"),
+								rs.getString("nombre"),
+								rs.getString("apellidos"),
+								rs.getString("email"),
+								rs.getString("telefono"),
+								rs.getString("telefono02"),
+								new Actividad(rs.getInt("codigo_actividad"),rs.getString("actividad")),
+								rs.getString("empresa"),
+								rs.getString("localidad"),
+								new Zona(rs.getInt("codigo_zona"),rs.getString("zona")),
+								rs.getString("comentarios")
+								)
+						);
+						
+			}
+			
+					
+		} catch (Exception e) {
+			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
+					+ " Pongase en contacto con su Administrador",ButtonType.CLOSE);
+			alerta.showAndWait();
+		}
+	}
 
 	/**
 	 * Metodo para obtener el codigo del industrial

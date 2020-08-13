@@ -10,11 +10,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -24,6 +29,7 @@ import modelo.Actividad;
 import modelo.Conexion;
 import modelo.Estudio;
 import modelo.Industrial;
+import modelo.OfertasJdo;
 import modelo.Zona;
 
 public class OF_Panel_Configurar_Controller implements Initializable {
@@ -53,6 +59,13 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 				chb_sanitarios, chb_senyalizacionVial, chb_sueloTecnico, chb_tabGranFormato,
 				chb_terrazosContinuos, chb_toldos, chb_trabajosVerticales, chb_urbanizadoras,
 				chb_vidrios, chb_vinilos, chb_yesoLaminado;
+	
+	/**
+	 * Button para añadir industriales al estudio seleccionado en el comboBox Estudios, lo
+	 * iniciamos para poder desHabilitarlo en el inicio del panel, y habilitarlo cuando
+	 * mostramos Industriales filtrados para añadir en el estudio.
+	 */
+	@FXML private Button btnAddIndustriales;
 	
 	/**
 	 * Desplegable donde mostramos los estudios que están en la tabla estudios de la BD
@@ -156,12 +169,17 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 	private ObservableList <Industrial> listaIndustriales;
 	
 	/**
+	 * Lista de tipo ObservableList para crear el Estudio
+	 */
+	private ObservableList <OfertasJdo> listaOfertas;
+	
+	/**
 	 * Método lanzado al pulsar sobre el botón "Previsualizar selección", nos muestra en la tabla
 	 * los industriales que hemos filtrado a traves del combobox y los checkbox
 	 * 
 	 * @param event, evento generado por el usuario
 	 */
-	@FXML private void cargarIndustriales(ActionEvent event) {
+	@FXML public void cargarIndustriales(ActionEvent event) {
 		//Iniciamos el Arraylist donde guardaremos los checkBox Seleccionados
 		chbSeleccionados = new ArrayList<String>();
 		
@@ -235,13 +253,17 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 		//Creamos un String para guardar la concatenación de todos los CheckBox seleccionados
 		String actividades ="";
 		
-		//con un bucle for mejorado vamos creando el string actividades
+		//con un bucle for vamos creando el string actividades
 		for(int i=0; i<chbSeleccionados.size(); i++) {
-			actividades = actividades +" actividad = " + chbSeleccionados.get(i) + "OR";
+			actividades = actividades +" actividad = '" + chbSeleccionados.get(i) +  "' OR";
 			i++;
 		}
 		
-		System.out.println(actividades);
+		//debemos quitar los dos últimos caracteres del string para que la consulta funcione
+		actividades = actividades.substring(0, actividades.length()-2);	
+		
+		//Creamos un String que recoja la zona seleccionada en el cbZonas
+		String zona = cbZona.getSelectionModel().getSelectedItem().getZona()+"'";
 				
 		//Conectamos con la BD
 		miConexion = new Conexion();
@@ -250,8 +272,9 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 		//Iniciamos el ObservableList de la tabla
 		listaIndustriales = FXCollections.observableArrayList();
 						
-		//Llenamos el tableview
-		Industrial.datosTablaIndustriales(miConexion.getConnection(), listaIndustriales);
+		//Llenamos el tableview con los Industriales filtrados
+		Industrial.datosTablaIndustrialesEstudio(miConexion.getConnection(), listaIndustriales, actividades,
+				zona);
 						
 		//Añadimos los objetos al tableview
 		tablaIndustriales.setItems(listaIndustriales);
@@ -271,6 +294,135 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 						
 		//Cerramos la conexion
 		miConexion.cerrarConexionBD();
+		
+		//Habilitamos el boton btnAddIndustriales
+		btnAddIndustriales.setDisable(false);
+	}
+	
+	/**
+	 * Método para limpiar los filtros apliclados, limpiamos la zona de estudio y los checkBox seleccionados,
+	 * Volvemos a mostrar todos los industriales en la tabla
+	 * 
+	 * @param event, evento generado por el usuario
+	 */
+	@FXML public void limpiarFiltros (ActionEvent event) {
+		
+		//Reseteamos el ComboBox
+		cbZona.getSelectionModel().clearSelection();
+		
+		//Reseteamos los checkBox
+		chb_acerosCorrugados.setSelected(false);
+		chb_aislamientos.setSelected(false);
+		chb_alicatadoresSoladores.setSelected(false); 
+		chb_alquilerMaquinaria.setSelected(false);
+		chb_ascensores.setSelected(false);
+		chb_asfaltos.setSelected(false);
+		chb_automatismos.setSelected(false);
+		chb_bombasHormigon.setSelected(false);
+		chb_carpFenolica.setSelected(false);
+		chb_carpMadera.setSelected(false);
+		chb_carpMetalica.setSelected(false);
+		chb_carpRF.setSelected(false);
+		chb_cimentacEspeciales.setSelected(false);
+		chb_contenedEscombros.setSelected(false);
+		chb_cubiertas.setSelected(false);
+		chb_demoliciones.setSelected(false);
+		chb_desatascos.setSelected(false);
+		chb_direccionFacultativa.setSelected(false);
+		chb_ensayos.setSelected(false);
+		chb_especiales.setSelected(false);
+		chb_estrucHormigon.setSelected(false);
+		chb_estrucMetalicas.setSelected(false);
+		chb_ferreteria.setSelected(false);
+		chb_gruasMoviles.setSelected(false);
+		chb_gruasTorre.setSelected(false);
+		chb_hormigonPoroso.setSelected(false);
+		chb_hormigonPulido.setSelected(false);
+		chb_hormigones.setSelected(false);
+		chb_ignifugados.setSelected(false);
+		chb_impermeabilizaciones.setSelected(false);
+		chb_instAireComprimido.setSelected(false);
+		chb_instClimatizacion.setSelected(false);
+		chb_instElectricidad.setSelected(false);
+		chb_instFontaneria.setSelected(false);
+		chb_instGas.setSelected(false);
+		chb_instGasesEscape.setSelected(false);
+		chb_limpieza.setSelected(false);
+		chb_mamparas.setSelected(false);
+		chb_manoObra.setSelected(false);
+		chb_montPlacasAlveolares.setSelected(false);
+		chb_morteros.setSelected(false);
+		chb_movimientoTierras.setSelected(false);
+		chb_panelesArquitectonicos.setSelected(false);
+		chb_pavimentosEspeciales.setSelected(false);
+		chb_perfCorteHormigon.setSelected(false);
+		chb_piedrasNaturales.setSelected(false);
+		chb_pintores.setSelected(false);
+		chb_piscinas.setSelected(false);
+		chb_polveros.setSelected(false);
+		chb_prefHormigon.setSelected(false);
+		chb_prl.setSelected(false);
+		chb_revCeramicos.setSelected(false);
+		chb_revestimientos.setSelected(false);
+		chb_rotulosSenyalitica.setSelected(false);
+		chb_sanitarios.setSelected(false);
+		chb_senyalizacionVial.setSelected(false);
+		chb_sueloTecnico.setSelected(false);
+		chb_tabGranFormato.setSelected(false);
+		chb_terrazosContinuos.setSelected(false);
+		chb_toldos.setSelected(false);
+		chb_trabajosVerticales.setSelected(false);
+		chb_urbanizadoras.setSelected(false);
+		chb_vidrios.setSelected(false);
+		chb_vinilos.setSelected(false);
+		chb_yesoLaminado.setSelected(false);
+		
+		//Reiniciamos el tableview
+		//Conectamos con la BD
+		miConexion = new Conexion();
+		miConexion.conectarBD();
+				
+		//Iniciamos los ObservableList 
+		listaIndustriales = FXCollections.observableArrayList();
+						
+		//Llenamos el tableView
+		Industrial.datosTablaIndustriales(miConexion.getConnection(), listaIndustriales);
+						
+		//Añadimos los objetos al tableView
+		tablaIndustriales.setItems(listaIndustriales);
+				
+		//Enlazamos las columnas con los atributos
+		clCodigo_Industrial.setCellValueFactory(new PropertyValueFactory<Industrial, Integer>("codigo_industrial") );
+		clNombre.setCellValueFactory(new PropertyValueFactory<Industrial, String>("nombre"));
+		clApellidos.setCellValueFactory(new PropertyValueFactory<Industrial, String>("apellidos"));
+		clEmail.setCellValueFactory(new PropertyValueFactory<Industrial, String>("email"));
+		clTelefono.setCellValueFactory(new PropertyValueFactory<Industrial, String>("telefono"));
+		clTelefono02.setCellValueFactory(new PropertyValueFactory<Industrial, String>("telefono02"));
+		clActividad.setCellValueFactory(new PropertyValueFactory<Industrial, Actividad>("actividad"));
+		clEmpresa.setCellValueFactory(new PropertyValueFactory<Industrial, String>("empresa"));
+		clLocalidad.setCellValueFactory(new PropertyValueFactory<Industrial, String>("localidad"));
+		clZona.setCellValueFactory(new PropertyValueFactory<Industrial, Zona>("zona"));
+		clComentarios.setCellValueFactory(new PropertyValueFactory<Industrial, String>("comentarios"));
+						
+		//Cerramos la conexion
+		miConexion.cerrarConexionBD();
+		
+	}
+	
+	/**
+	 * Método para añadir los industriales al estudio seleccionado en el comboBox cbEstudios
+	 * @param Event
+	 */
+	@FXML public void addIndustriales (ActionEvent Event) {
+		/*Creamos un fichero ODB. Crearemos uno por cada estudio. A este archivo le incluiremos objetos
+		 * de tipo OfertasJdo.java. El archivo debe crearse en el servidor. De momento lo creamos en una
+		 * carpeta del proyecto (simuladorServer)
+		*/
+		EntityManagerFactory em = Persistence.createEntityManagerFactory(
+				"../simuladorServer/"+cbEstudios.getValue()+".odb");
+		EntityManager operador = em.createEntityManager();
+		
+		operador.close();
 	}
 	
 	/**
@@ -284,6 +436,9 @@ public class OF_Panel_Configurar_Controller implements Initializable {
      */	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		//Deshabilitamos el boton btnAddIndustriales
+		btnAddIndustriales.setDisable(true);
 		
 		//Iniciamos el Arraylist donde guardaremos los checkBox Seleccionados
 		chbSeleccionados = new ArrayList<String>();

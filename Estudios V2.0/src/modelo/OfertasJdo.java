@@ -8,14 +8,15 @@ package modelo;
 
 import java.io.Serializable;
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -34,7 +35,7 @@ import javafx.scene.control.ButtonType;
  */
 @Entity
 public class OfertasJdo implements Serializable {
-	
+		
 	/**
 	 * Atributo de clase de tipo long, define un codigo para cada industrial, propio del estudio actual.
 	 */
@@ -82,7 +83,7 @@ public class OfertasJdo implements Serializable {
 	 * Atributo de tipo Fecha(Date), define la fecha de solicitud de oferta 
 	 * industrial.
 	 */
-	private Date solicitada;
+	private StringProperty solicitada;
 	
 	/**
 	 * Atributo de tipo Fecha(Date), define la fecha de solicitud de oferta 
@@ -106,12 +107,12 @@ public class OfertasJdo implements Serializable {
 	 * @param telefono, cadena de texto
 	 * @param actividad, cadena de texto
 	 * @param empresa, cadena de texto
-	 * @param localidad, cadena de texto
-	 * @param zona, objeto de tipo zona
+	 * @param solicitada, cadena de texto
+	 * @param estado, cadena de texto
 	 * @param comentarios, cadena de texto
 	 */
 	public OfertasJdo(Integer codigo_industrial, String nombre, String apellidos,String email,
-			String telefono,  String actividad, String empresa, Date solicitada,
+			String telefono,  String actividad, String empresa, String solicitada,
 			String estado, String comentarios) {
 		this.codigo_industrial = new SimpleIntegerProperty(codigo_industrial);
 		this.nombre = new SimpleStringProperty(nombre);
@@ -120,7 +121,7 @@ public class OfertasJdo implements Serializable {
 		this.telefono = new SimpleStringProperty (telefono);		
 		this.actividad = new SimpleStringProperty(actividad);
 		this.empresa = new SimpleStringProperty (empresa);
-		this.solicitada = solicitada;
+		this.solicitada = new SimpleStringProperty (solicitada);
 		this.estado = new SimpleStringProperty(estado);
 		this.comentarios = new SimpleStringProperty (comentarios);		
 	}
@@ -159,7 +160,7 @@ public class OfertasJdo implements Serializable {
 								 rs.getString("telefono"),
 								 rs.getString("actividad"),
 								 rs.getString("empresa"),
-								 rs.getDate("solicitada"),
+								 rs.getString("solicitada"),
 								 rs.getString("estado"),
 								 rs.getString("comentarios")
 								 )
@@ -172,6 +173,80 @@ public class OfertasJdo implements Serializable {
 			alerta.showAndWait();
 		}
 	}
+	
+	/**
+	 * Método para poder cargar el tableView Industriales filtrados para ofertas Estudio desde la tabla 
+	 * industriales de la BD
+	 * 
+	 * @param miConexion, objeto de tipo Connection
+	 * @param lista, lista de tipo Industrial, se cargan todos los industriales en ella
+	 * @param actividades, cadena de texto que se le pasa como parametro parte de la consulta, la cadena
+	 * se crea con los checkBox seleccionados
+	 * @param zona, cadena de texto que se le pasa como parametro parte de la consulta, se obtiene de la
+	 * seleccion hecho en el comboBox cbZona 
+	 */
+	public static void datosTablaIndustrialesEstudio (Connection miConexion, ObservableList<OfertasJdo>lista,
+			String actividades, String zona) {
+		
+		//Creamos un objeto de tipo Date y lo transformamos al formato de fecha deseado
+		Date utilDate = new Date();
+		utilDate.getTime();
+		String formatoFecha = "dd/MM/yyyy";
+		SimpleDateFormat fecha = new SimpleDateFormat(formatoFecha);
+		
+		try {
+			Statement consulta = miConexion.createStatement();
+			
+			ResultSet rs = consulta.executeQuery(
+					"SELECT A.codigo_industrial, " +
+					"A.nombre, " +
+					"A.apellidos, " +
+					"A.email, " +
+					"A.telefono, " +
+					"A.telefono02, " +
+					"A.codigo_actividad, " +
+					"A.empresa, " +
+					"A.localidad, " +
+					"A.codigo_zona, " +
+					"A.comentarios, " +
+					"B.actividad, " +
+					"C.zona " +
+					"FROM industriales A "+ 
+					"INNER JOIN actividades B " +
+					"ON (A.codigo_actividad = B.codigo_actividad) "+
+					"INNER JOIN zonas C " +
+					"ON (A.codigo_zona = C.codigo_zona) " +
+					"WHERE" + actividades + " AND zona = 'España' OR zona = '"+ zona
+					
+					);
+			
+			while(rs.next()) {
+				lista.add(
+						new OfertasJdo(
+								 rs.getInt("codigo_industrial"),
+								 rs.getString("nombre"),
+								 rs.getString("apellidos"),
+								 rs.getString("email"),
+								 rs.getString("telefono"),
+								 rs.getString("actividad"),
+								 rs.getString("empresa"),
+								 fecha.format(utilDate),
+								 "Pendiente",
+								 "Sin comentarios"
+								 )
+						);
+						
+			}
+			
+					
+		} catch (Exception e) {
+			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
+					+ " Pongase en contacto con su Administrador",ButtonType.CLOSE);
+			alerta.showAndWait();
+		}
+	}
+	
+	
 	
 	/**
 	 * Metodo para obtener el codigo del industrial
@@ -336,6 +411,33 @@ public class OfertasJdo implements Serializable {
 	}
 		
 	/**
+	 * Método para obtener cuando ha sido solicitada la oferta al industrial
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final StringProperty solicitadaProperty() {
+		return this.solicitada;
+	}
+	
+	/**
+	 * Método para obtener cuando ha sido solicitada la oferta al industrial
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final String getSolicitada() {
+		return this.solicitadaProperty().get();
+	}
+	
+	/**
+	 * Método para establecer cuando ha sido solicitada la oferta al industrial
+	 * 
+	 * @param empresa, debe ser una cadena de texto
+	 */
+	public final void setSolicitada(final String solicitada) {
+		this.empresaProperty().set(solicitada);
+	}
+	
+	/**
 	 * Método para obtener la empresa del industrial
 	 * 
 	 * @return devuelve una cadena de texto
@@ -360,24 +462,6 @@ public class OfertasJdo implements Serializable {
 	 */
 	public final void setEmpresa(final String empresa) {
 		this.empresaProperty().set(empresa);
-	}
-	
-	/**
-	 * Método para obtener la fecha de solicitud de la oferta
-	 * 
-	 * @return devuelve una fecha
-	 */
-	public Date getSolicitada() {
-		return solicitada;
-	}
-	
-	/**
-	 * Método para establecer una fecha de solicitud de la oferta.
-	 * 
-	 * @param solicitada, debe ser una fecha valida de tipo Date.
-	 */
-	public void setSolicitada(Date solicitada) {
-		this.solicitada = solicitada;
 	}
 	
 	/**

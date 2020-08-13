@@ -161,17 +161,6 @@ public class Panel_Estudios_Controller implements Initializable {
 		//Cerramos la conexion
 		miConexion.cerrarConexionBD();
 		
-		/*Creamos un fichero ODB. Crearemos uno por cada estudio. A este archivo le incluiremos objetos
-		 * de tipo IndustrialJdo.java, serán igual que los objetos de tipo Industrial.java, con la 
-		 * salvedad que se le incluye un codigo (id) de estudio. El archivo debe crearse en el servidor.
-		 * De momento lo creamos en una carpeta del proyecto (simuladorServer)
-		*/
-		EntityManagerFactory em = Persistence.createEntityManagerFactory(
-				"../simuladorServer/"+txtReferencia.getText()+".odb");
-		EntityManager operador = em.createEntityManager();
-		
-		operador.close();
-		
 		if(resultado == 1) {
 			//Añadimos el industrial insertado en la BBDD al Tableview Industriales
 			listaEstudios.add(est);

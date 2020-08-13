@@ -596,7 +596,17 @@
                   <Font name="Verdana" size="15.0" />
                </font>
             </Label>
-            <Button layoutX="1250.0" layoutY="165.0" mnemonicParsing="false" onAction="#cargarIndustriales" prefHeight="30.0" prefWidth="220.0" text="Previsualizar Selección">
+            <Button layoutX="1250.0" layoutY="165.0" mnemonicParsing="false" onAction="#cargarIndustriales" prefHeight="30.0" prefWidth="220.0" text="Aplicar Filtros">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="1250.0" layoutY="225.0" mnemonicParsing="false" onAction="#limpiarFiltros" prefHeight="30.0" prefWidth="220.0" text="Limpiar Filtros">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAddIndustriales" layoutX="1250.0" layoutY="565.0" mnemonicParsing="false" onAction="#addIndustriales" prefHeight="30.0" prefWidth="220.0" text="Incluir Industriales">
                <font>
                   <Font name="Verdana" size="15.0" />
                </font>
