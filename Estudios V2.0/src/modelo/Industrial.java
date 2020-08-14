@@ -319,7 +319,7 @@ public class Industrial {
 					"ON (A.codigo_actividad = B.codigo_actividad) "+
 					"INNER JOIN zonas C " +
 					"ON (A.codigo_zona = C.codigo_zona) " +
-					"WHERE" + actividades + " AND zona = 'España' OR zona = '"+ zona
+					"WHERE (" + actividades + ") AND (zona = 'España' OR zona = '"+ zona + ")"
 					
 					);
 			

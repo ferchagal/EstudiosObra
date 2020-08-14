@@ -276,24 +276,18 @@ public class Panel_Estudios_Controller implements Initializable {
 							btnEliminar.setDisable(false);
 						}
 					}
-				}
-				
-				
+				}				
 		);
 	}
 	
 	/**
-	 * Método por el que mostramos el estudio en su Panel de control, lo lanzamos cuando pulsamos el
-	 * botón cargar.
+	 * Método por el que cambiamos al Panel de estudios/ofertas, lo lanzamos cuando pulsamos el
+	 * botón "Ir al panel de Ofertas".
 	 * 
 	 * @param Event, evento generado por el usuario
 	 * @throws InterruptedException 
 	 */
-	@FXML public void cargarEstudio (ActionEvent Event) throws InterruptedException {
-		
-		
-		etiEstado.setText("Cargando Estudio seleccionado...");
-		Thread.sleep(2000);
+	@FXML public void cargarPanelOfertas (ActionEvent Event) throws InterruptedException {		
 		
 		URL url = getClass().getResource("../vistas/Panel_OferEst.fxml");
 		

@@ -169,100 +169,16 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 	private ObservableList <Industrial> listaIndustriales;
 	
 	/**
-	 * Lista de tipo ObservableList para crear el Estudio
-	 */
-	private ObservableList <OfertasJdo> listaOfertas;
-	
-	/**
-	 * Método lanzado al pulsar sobre el botón "Previsualizar selección", nos muestra en la tabla
+	 * Método lanzado al pulsar sobre el botón "Aplicar Filtros", nos muestra en la tabla
 	 * los industriales que hemos filtrado a traves del combobox y los checkbox
 	 * 
 	 * @param event, evento generado por el usuario
 	 */
 	@FXML public void cargarIndustriales(ActionEvent event) {
-		//Iniciamos el Arraylist donde guardaremos los checkBox Seleccionados
-		chbSeleccionados = new ArrayList<String>();
 		
-		//Llenamos el ArrayList segun tengamos seleccionados los checkBox
-		if(chb_acerosCorrugados.isSelected()) chbSeleccionados.add("Aceros Corrugados");
-		if(chb_aislamientos.isSelected()) chbSeleccionados.add("Aislamientos");
-		if(chb_alicatadoresSoladores.isSelected()) chbSeleccionados.add("Alicatadores - Soladores"); 
-		if(chb_alquilerMaquinaria.isSelected()) chbSeleccionados.add("Alquiler de Maquinaria");
-		if(chb_ascensores.isSelected()) chbSeleccionados.add("Ascensores");
-		if(chb_asfaltos.isSelected()) chbSeleccionados.add("Asfaltos");
-		if(chb_automatismos.isSelected()) chbSeleccionados.add("Automatismos");
-		if(chb_bombasHormigon.isSelected()) chbSeleccionados.add("Bombas de Hormigón");
-		if(chb_carpFenolica.isSelected()) chbSeleccionados.add("Carp. Fenólica");
-		if(chb_carpMadera.isSelected()) chbSeleccionados.add("Carp. Madera");
-		if(chb_carpMetalica.isSelected()) chbSeleccionados.add("Carp. Metálica");
-		if(chb_carpRF.isSelected()) chbSeleccionados.add("Carp. RF");
-		if(chb_cimentacEspeciales.isSelected()) chbSeleccionados.add("Cimentaciones Especiales");
-		if(chb_contenedEscombros.isSelected()) chbSeleccionados.add("Contenedores Escombros");
-		if(chb_cubiertas.isSelected()) chbSeleccionados.add("Cubiertas");
-		if(chb_demoliciones.isSelected()) chbSeleccionados.add("Demoliciones");
-		if(chb_desatascos.isSelected()) chbSeleccionados.add("Desatascos");
-		if(chb_direccionFacultativa.isSelected()) chbSeleccionados.add("Dirección Facultativa");
-		if(chb_ensayos.isSelected()) chbSeleccionados.add("Ensayos");
-		if(chb_especiales.isSelected()) chbSeleccionados.add("Especiales");
-		if(chb_estrucHormigon.isSelected()) chbSeleccionados.add("Estructuras de Hormigón");
-		if(chb_estrucMetalicas.isSelected()) chbSeleccionados.add("Estructuras Metálicas");
-		if(chb_ferreteria.isSelected()) chbSeleccionados.add("Ferretería");
-		if(chb_gruasMoviles.isSelected()) chbSeleccionados.add("Grúas Móviles");
-		if(chb_gruasTorre.isSelected()) chbSeleccionados.add("Grúas Torre");
-		if(chb_hormigonPoroso.isSelected()) chbSeleccionados.add("Hormigón Poroso");
-		if(chb_hormigonPulido.isSelected()) chbSeleccionados.add("Hormigón Pulido");
-		if(chb_hormigones.isSelected()) chbSeleccionados.add("Hormigones");
-		if(chb_ignifugados.isSelected()) chbSeleccionados.add("Ignifugados");
-		if(chb_impermeabilizaciones.isSelected()) chbSeleccionados.add("Impermeabilizaciones");
-		if(chb_instAireComprimido.isSelected()) chbSeleccionados.add("Inst. Aire Comprimido");
-		if(chb_instClimatizacion.isSelected()) chbSeleccionados.add("Inst. Climatización");
-		if(chb_instElectricidad.isSelected()) chbSeleccionados.add("Inst. Electricidad");
-		if(chb_instFontaneria.isSelected()) chbSeleccionados.add("Inst. Fontanería");
-		if(chb_instGas.isSelected()) chbSeleccionados.add("Inst. Gas");
-		if(chb_instGasesEscape.isSelected()) chbSeleccionados.add("Inst. Gases de Escape");
-		if(chb_limpieza.isSelected()) chbSeleccionados.add("Limpieza");
-		if(chb_mamparas.isSelected()) chbSeleccionados.add("Mamparas");
-		if(chb_manoObra.isSelected()) chbSeleccionados.add("Mano de Obra");
-		if(chb_montPlacasAlveolares.isSelected()) chbSeleccionados.add("Montadores Placas Alveolares");
-		if(chb_morteros.isSelected()) chbSeleccionados.add("Morteros");
-		if(chb_movimientoTierras.isSelected()) chbSeleccionados.add("Movimientos de Tierras");
-		if(chb_panelesArquitectonicos.isSelected()) chbSeleccionados.add("Paneles Arquitectóonicos");
-		if(chb_pavimentosEspeciales.isSelected()) chbSeleccionados.add("Pavimentos Especiales");
-		if(chb_perfCorteHormigon.isSelected()) chbSeleccionados.add("Perforaciones y Corte de Hormigón");
-		if(chb_piedrasNaturales.isSelected()) chbSeleccionados.add("Piedras Naturales");
-		if(chb_pintores.isSelected()) chbSeleccionados.add("Pintores");
-		if(chb_piscinas.isSelected()) chbSeleccionados.add("Piscinas");
-		if(chb_polveros.isSelected()) chbSeleccionados.add("Polveros");
-		if(chb_prefHormigon.isSelected()) chbSeleccionados.add("Prefabricados de Hormigón");
-		if(chb_prl.isSelected()) chbSeleccionados.add("PRL");
-		if(chb_revCeramicos.isSelected()) chbSeleccionados.add("Rev. Cerámicos");
-		if(chb_revestimientos.isSelected()) chbSeleccionados.add("Revestimientos");
-		if(chb_rotulosSenyalitica.isSelected()) chbSeleccionados.add("Rótulos y Señalitica");
-		if(chb_sanitarios.isSelected()) chbSeleccionados.add("Sanitarios");
-		if(chb_senyalizacionVial.isSelected()) chbSeleccionados.add("Señalización Vial");
-		if(chb_sueloTecnico.isSelected()) chbSeleccionados.add("Suelo Técnico");
-		if(chb_tabGranFormato.isSelected()) chbSeleccionados.add("Tab. Gran Formato");
-		if(chb_terrazosContinuos.isSelected()) chbSeleccionados.add("Terrazos Continuos");
-		if(chb_toldos.isSelected()) chbSeleccionados.add("Toldos");
-		if(chb_trabajosVerticales.isSelected()) chbSeleccionados.add("Trabajos Verticales");
-		if(chb_urbanizadoras.isSelected()) chbSeleccionados.add("Urbanizadoras");
-		if(chb_vidrios.isSelected()) chbSeleccionados.add("Vidrios");
-		if(chb_vinilos.isSelected()) chbSeleccionados.add("Vinilos");
-		if(chb_yesoLaminado.isSelected()) chbSeleccionados.add("Yeso Laminado");
-		
-		//Creamos un String para guardar la concatenación de todos los CheckBox seleccionados
-		String actividades ="";
-		
-		//con un bucle for vamos creando el string actividades
-		for(int i=0; i<chbSeleccionados.size(); i++) {
-			actividades = actividades +" actividad = '" + chbSeleccionados.get(i) +  "' OR";
-			i++;
-		}
-		
-		//debemos quitar los dos últimos caracteres del string para que la consulta funcione
-		actividades = actividades.substring(0, actividades.length()-2);	
-		
-		//Creamos un String que recoja la zona seleccionada en el cbZonas
+		//creamos el string actividades donde recogemos todos los checkbox seleccionados
+		String actividades = crearStringComboBoxSelec ();
+		//creamos el string donde recogemos la zona seleccionada en el combobox
 		String zona = cbZona.getSelectionModel().getSelectedItem().getZona()+"'";
 				
 		//Conectamos con la BD
@@ -297,6 +213,7 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 		
 		//Habilitamos el boton btnAddIndustriales
 		btnAddIndustriales.setDisable(false);
+		
 	}
 	
 	/**
@@ -407,22 +324,146 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 		//Cerramos la conexion
 		miConexion.cerrarConexionBD();
 		
+		//deshabilitamos el boton btnAddIndustriales
+		btnAddIndustriales.setDisable(true);
+		
 	}
 	
 	/**
 	 * Método para añadir los industriales al estudio seleccionado en el comboBox cbEstudios
-	 * @param Event
+	 * 
+	 * @param Event, evento generado por el usuario
 	 */
 	@FXML public void addIndustriales (ActionEvent Event) {
+		
+		//creamos el string actividades donde recogemos todos los checkbox seleccionados
+		String actividades = crearStringComboBoxSelec ();
+		//creamos el string donde recogemos la zona seleccionada en el combobox
+		String zona = cbZona.getSelectionModel().getSelectedItem().getZona()+"'";
+		
+		//Conectamos con la BD
+		miConexion = new Conexion();
+		miConexion.conectarBD();
+		
 		/*Creamos un fichero ODB. Crearemos uno por cada estudio. A este archivo le incluiremos objetos
 		 * de tipo OfertasJdo.java. El archivo debe crearse en el servidor. De momento lo creamos en una
 		 * carpeta del proyecto (simuladorServer)
-		*/
+		*/		
 		EntityManagerFactory em = Persistence.createEntityManagerFactory(
-				"../simuladorServer/"+cbEstudios.getValue()+".odb");
+				"../Estudios V2.0/simuladorServer/"+cbEstudios.getValue()+".odb");
 		EntityManager operador = em.createEntityManager();
 		
+		//Abrimos las transacciones hacia el fichero
+		operador.getTransaction().begin();
+		
+		/* Llamamos al método estático datosTablaIndustrialesEstudio() de la clase OfertasJdo para guardar
+		 *  los industriales filtrados en el archivo .odb creado anteriormente. Le pasamos como parametros
+		 *  un objeto conexion de tipo Connection, un objeto operador de tipo EntityManager, un string
+		 *  actividades donde recogemos todos los checkbox seleccionados, un string zona donde recogemos
+		 *  la zona seleccionada en el comboBox  */
+		OfertasJdo.datosTablaIndustrialesEstudio(miConexion.getConnection(), operador, actividades, zona);
+		
+		//Realizamos un commit
+		operador.getTransaction().commit();
+		
+		//Cerramos las conexiones
 		operador.close();
+		em.close();
+		
+		//Cerramos la conexion con la BD
+		miConexion.cerrarConexionBD();
+	}
+	
+	/**
+	 * Método que recoge los comboBox que estan seleccionados y crea un String que lo añadiremos a
+	 * la consulta a la BD para que nos muestre los industriales solictados en los filtros.
+	 * 
+	 * @return una cadena de texto.
+	 */
+	private String crearStringComboBoxSelec () {
+		//Iniciamos el Arraylist donde guardaremos los checkBox Seleccionados
+		chbSeleccionados = new ArrayList<String>();
+				
+		//Llenamos el ArrayList segun tengamos seleccionados los checkBox
+		if(chb_acerosCorrugados.isSelected()) chbSeleccionados.add("Aceros Corrugados");
+		if(chb_aislamientos.isSelected()) chbSeleccionados.add("Aislamientos");
+		if(chb_alicatadoresSoladores.isSelected()) chbSeleccionados.add("Alicatadores - Soladores"); 
+		if(chb_alquilerMaquinaria.isSelected()) chbSeleccionados.add("Alquiler de Maquinaria");
+		if(chb_ascensores.isSelected()) chbSeleccionados.add("Ascensores");
+		if(chb_asfaltos.isSelected()) chbSeleccionados.add("Asfaltos");
+		if(chb_automatismos.isSelected()) chbSeleccionados.add("Automatismos");
+		if(chb_bombasHormigon.isSelected()) chbSeleccionados.add("Bombas de Hormigón");
+		if(chb_carpFenolica.isSelected()) chbSeleccionados.add("Carp. Fenólica");
+		if(chb_carpMadera.isSelected()) chbSeleccionados.add("Carp. Madera");
+		if(chb_carpMetalica.isSelected()) chbSeleccionados.add("Carp. Metálica");
+		if(chb_carpRF.isSelected()) chbSeleccionados.add("Carp. RF");
+		if(chb_cimentacEspeciales.isSelected()) chbSeleccionados.add("Cimentaciones Especiales");
+		if(chb_contenedEscombros.isSelected()) chbSeleccionados.add("Contenedores Escombros");
+		if(chb_cubiertas.isSelected()) chbSeleccionados.add("Cubiertas");
+		if(chb_demoliciones.isSelected()) chbSeleccionados.add("Demoliciones");
+		if(chb_desatascos.isSelected()) chbSeleccionados.add("Desatascos");
+		if(chb_direccionFacultativa.isSelected()) chbSeleccionados.add("Dirección Facultativa");
+		if(chb_ensayos.isSelected()) chbSeleccionados.add("Ensayos");
+		if(chb_especiales.isSelected()) chbSeleccionados.add("Especiales");
+		if(chb_estrucHormigon.isSelected()) chbSeleccionados.add("Estructuras de Hormigón");
+		if(chb_estrucMetalicas.isSelected()) chbSeleccionados.add("Estructuras Metálicas");
+		if(chb_ferreteria.isSelected()) chbSeleccionados.add("Ferretería");
+		if(chb_gruasMoviles.isSelected()) chbSeleccionados.add("Grúas Móviles");
+		if(chb_gruasTorre.isSelected()) chbSeleccionados.add("Grúas Torre");
+		if(chb_hormigonPoroso.isSelected()) chbSeleccionados.add("Hormigón Poroso");
+		if(chb_hormigonPulido.isSelected()) chbSeleccionados.add("Hormigón Pulido");
+		if(chb_hormigones.isSelected()) chbSeleccionados.add("Hormigones");
+		if(chb_ignifugados.isSelected()) chbSeleccionados.add("Ignifugados");
+		if(chb_impermeabilizaciones.isSelected()) chbSeleccionados.add("Impermeabilizaciones");
+		if(chb_instAireComprimido.isSelected()) chbSeleccionados.add("Inst. Aire Comprimido");
+		if(chb_instClimatizacion.isSelected()) chbSeleccionados.add("Inst. Climatización");
+		if(chb_instElectricidad.isSelected()) chbSeleccionados.add("Inst. Electricidad");
+		if(chb_instFontaneria.isSelected()) chbSeleccionados.add("Inst. Fontanería");
+		if(chb_instGas.isSelected()) chbSeleccionados.add("Inst. Gas");
+		if(chb_instGasesEscape.isSelected()) chbSeleccionados.add("Inst. Gases de Escape");
+		if(chb_limpieza.isSelected()) chbSeleccionados.add("Limpieza");
+		if(chb_mamparas.isSelected()) chbSeleccionados.add("Mamparas");
+		if(chb_manoObra.isSelected()) chbSeleccionados.add("Mano de Obra");
+		if(chb_montPlacasAlveolares.isSelected()) chbSeleccionados.add("Montadores Placas Alveolares");
+		if(chb_morteros.isSelected()) chbSeleccionados.add("Morteros");
+		if(chb_movimientoTierras.isSelected()) chbSeleccionados.add("Movimientos de Tierras");
+		if(chb_panelesArquitectonicos.isSelected()) chbSeleccionados.add("Paneles Arquitectóonicos");
+		if(chb_pavimentosEspeciales.isSelected()) chbSeleccionados.add("Pavimentos Especiales");
+		if(chb_perfCorteHormigon.isSelected()) chbSeleccionados.add("Perforaciones y Corte de Hormigón");
+		if(chb_piedrasNaturales.isSelected()) chbSeleccionados.add("Piedras Naturales");
+		if(chb_pintores.isSelected()) chbSeleccionados.add("Pintores");
+		if(chb_piscinas.isSelected()) chbSeleccionados.add("Piscinas");
+		if(chb_polveros.isSelected()) chbSeleccionados.add("Polveros");
+		if(chb_prefHormigon.isSelected()) chbSeleccionados.add("Prefabricados de Hormigón");
+		if(chb_prl.isSelected()) chbSeleccionados.add("PRL");
+		if(chb_revCeramicos.isSelected()) chbSeleccionados.add("Rev. Cerámicos");
+		if(chb_revestimientos.isSelected()) chbSeleccionados.add("Revestimientos");
+		if(chb_rotulosSenyalitica.isSelected()) chbSeleccionados.add("Rótulos y Señalitica");
+		if(chb_sanitarios.isSelected()) chbSeleccionados.add("Sanitarios");
+		if(chb_senyalizacionVial.isSelected()) chbSeleccionados.add("Señalización Vial");
+		if(chb_sueloTecnico.isSelected()) chbSeleccionados.add("Suelo Técnico");
+		if(chb_tabGranFormato.isSelected()) chbSeleccionados.add("Tab. Gran Formato");
+		if(chb_terrazosContinuos.isSelected()) chbSeleccionados.add("Terrazos Continuos");
+		if(chb_toldos.isSelected()) chbSeleccionados.add("Toldos");
+		if(chb_trabajosVerticales.isSelected()) chbSeleccionados.add("Trabajos Verticales");
+		if(chb_urbanizadoras.isSelected()) chbSeleccionados.add("Urbanizadoras");
+		if(chb_vidrios.isSelected()) chbSeleccionados.add("Vidrios");
+		if(chb_vinilos.isSelected()) chbSeleccionados.add("Vinilos");
+		if(chb_yesoLaminado.isSelected()) chbSeleccionados.add("Yeso Laminado");
+				
+		//Creamos un String para guardar la concatenación de todos los CheckBox seleccionados
+		String actividades ="";
+				
+		//con un bucle for vamos creando el string actividades
+		for(int i=0; i<chbSeleccionados.size(); i++) {
+			actividades = actividades +" actividad = '" + chbSeleccionados.get(i) +  "' OR";
+			i++;
+		}
+				
+		//debemos quitar los dos últimos caracteres del string para que la consulta funcione
+		actividades = actividades.substring(0, actividades.length()-2);	
+				
+		return actividades;
 	}
 	
 	/**

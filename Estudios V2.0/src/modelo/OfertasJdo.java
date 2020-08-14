@@ -8,13 +8,12 @@ package modelo;
 
 import java.io.Serializable;
 import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javafx.beans.property.IntegerProperty;
@@ -46,56 +45,56 @@ public class OfertasJdo implements Serializable {
 	 * Atributo de tipo entero, define un código para cada industrial. Es asignado automaticamente
 	 * por la BD.
 	 */
-	private IntegerProperty codigo_industrial;
+	private int codigo_industrial;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define el nombre de pila del industrial.
 	 */
-	private StringProperty nombre;
+	private String nombre;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define los apellidos del industrial.
 	 */
-	private StringProperty apellidos;
+	private String apellidos;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define el email del industrial.
 	 */
-	private StringProperty email;
+	private String email;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define un telefono del industrial
 	 */
-	private StringProperty telefono;
+	private String telefono;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define la actividad a la que se dedica el industrial
 	 */
-	private StringProperty actividad;
+	private String actividad;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define el nombre de la empresa para la que trabaja el 
 	 * industrial.
 	 */
-	private StringProperty empresa;
+	private String empresa;
 	
 	/**
 	 * Atributo de tipo Fecha(Date), define la fecha de solicitud de oferta 
 	 * industrial.
 	 */
-	private StringProperty solicitada;
+	private String solicitada;
 	
 	/**
 	 * Atributo de tipo Fecha(Date), define la fecha de solicitud de oferta 
 	 * industrial.
 	 */
-	private StringProperty estado;
+	private String estado;
 	
 	/**
 	 * Atributo de tipo cadena de texto, son comentarios que se pueden insertar en el industrial
 	 * para tener mas datos sobre él.
 	 */
-	private StringProperty comentarios;
+	private String comentarios;
 	
 	/**
 	 * Constructor de clase
@@ -114,16 +113,16 @@ public class OfertasJdo implements Serializable {
 	public OfertasJdo(Integer codigo_industrial, String nombre, String apellidos,String email,
 			String telefono,  String actividad, String empresa, String solicitada,
 			String estado, String comentarios) {
-		this.codigo_industrial = new SimpleIntegerProperty(codigo_industrial);
-		this.nombre = new SimpleStringProperty(nombre);
-		this.apellidos = new SimpleStringProperty(apellidos);
-		this.email = new SimpleStringProperty(email);
-		this.telefono = new SimpleStringProperty (telefono);		
-		this.actividad = new SimpleStringProperty(actividad);
-		this.empresa = new SimpleStringProperty (empresa);
-		this.solicitada = new SimpleStringProperty (solicitada);
-		this.estado = new SimpleStringProperty(estado);
-		this.comentarios = new SimpleStringProperty (comentarios);		
+		this.codigo_industrial = codigo_industrial;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.telefono = telefono;		
+		this.actividad = actividad;
+		this.empresa = empresa;
+		this.solicitada = solicitada;
+		this.estado = estado;
+		this.comentarios = comentarios;		
 	}
 	
 	/**
@@ -185,7 +184,7 @@ public class OfertasJdo implements Serializable {
 	 * @param zona, cadena de texto que se le pasa como parametro parte de la consulta, se obtiene de la
 	 * seleccion hecho en el comboBox cbZona 
 	 */
-	public static void datosTablaIndustrialesEstudio (Connection miConexion, ObservableList<OfertasJdo>lista,
+	public static void datosTablaIndustrialesEstudio (Connection miConexion, EntityManager operador,
 			String actividades, String zona) {
 		
 		//Creamos un objeto de tipo Date y lo transformamos al formato de fecha deseado
@@ -216,12 +215,12 @@ public class OfertasJdo implements Serializable {
 					"ON (A.codigo_actividad = B.codigo_actividad) "+
 					"INNER JOIN zonas C " +
 					"ON (A.codigo_zona = C.codigo_zona) " +
-					"WHERE" + actividades + " AND zona = 'España' OR zona = '"+ zona
+					"WHERE (" + actividades + ") AND (zona = 'España' OR zona = '"+ zona + ")"
 					
 					);
 			
 			while(rs.next()) {
-				lista.add(
+				operador.persist(
 						new OfertasJdo(
 								 rs.getInt("codigo_industrial"),
 								 rs.getString("nombre"),
@@ -240,30 +239,20 @@ public class OfertasJdo implements Serializable {
 			
 					
 		} catch (Exception e) {
+			e.printStackTrace();
 			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
 					+ " Pongase en contacto con su Administrador",ButtonType.CLOSE);
 			alerta.showAndWait();
 		}
 	}
-	
-	
-	
+		
 	/**
 	 * Metodo para obtener el codigo del industrial
 	 * 
 	 * @return devuelve el codigo
 	 */
-	public final IntegerProperty codigo_industrialProperty() {
-		return this.codigo_industrial;
-	}
-	
-	/**
-	 * Metodo para obtener el codigo del industrial
-	 * 
-	 * @return devuelve el codigo
-	 */
-	public final int getCodigo_industrial() {
-		return this.codigo_industrialProperty().get();
+	public int getCodigo_industrial() {
+		return codigo_industrial;
 	}
 	
 	/**
@@ -271,26 +260,17 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param codigo_industrial, debe ser un número entero
 	 */
-	public final void setCodigo_industrial(final int codigo_industrial) {
-		this.codigo_industrialProperty().set(codigo_industrial);
+	public void setCodigo_industrial(int codigo_industrial) {
+		this.codigo_industrial = codigo_industrial;
 	}
-	
-	/**
-	 * Método para obtener el nombre del industrial
-	 * 
-	 * @return devuelve una cadena de texto
-	 */
-	public final StringProperty nombreProperty() {
-		return this.nombre;
-	}
-	
+		
 	/**
 	 * Método para obtener el nombre delindustrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final String getNombre() {
-		return this.nombreProperty().get();
+	public String getNombre() {
+		return nombre;
 	}
 	
 	/**
@@ -298,26 +278,18 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param nombre, debe ser una cadena de texto
 	 */
-	public final void setNombre(final String nombre) {
-		this.nombreProperty().set(nombre);
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
+
 	/**
 	 * Método para obtener los apellidos del industrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final StringProperty apellidosProperty() {
-		return this.apellidos;
-	}
-	
-	/**
-	 * Método para obtener los apellidos del industrial
-	 * 
-	 * @return devuelve una cadena de texto
-	 */
-	public final String getApellidos() {
-		return this.apellidosProperty().get();
+	public String getApellidos() {
+		return apellidos;
 	}
 	
 	/**
@@ -325,8 +297,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param apellidos, debe ser una cadena de texto
 	 */
-	public final void setApellidos(final String apellidos) {
-		this.apellidosProperty().set(apellidos);
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
 	
 	/**
@@ -334,17 +306,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final StringProperty emailProperty() {
+	public String getEmail() {
 		return this.email;
-	}
-	
-	/**
-	 * Método para obtener el email del industrial
-	 * 
-	 * @return devuelve una cadena de texto
-	 */
-	public final String getEmail() {
-		return this.emailProperty().get();
 	}
 	
 	/**
@@ -352,26 +315,18 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param email, debe ser una cadena de texto
 	 */
-	public final void setEmail(final String email) {
-		this.emailProperty().set(email);
+	public void setEmail(String email) {
+		this.email = email;
 	}
+	
 	
 	/**
 	 * Método para obtener el telefono del industrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final StringProperty telefonoProperty() {
-		return this.telefono;
-	}
-	
-	/**
-	 * Método para obtener el telefono del industrial
-	 * 
-	 * @return devuelve una cadena de texto
-	 */
-	public final String getTelefono() {
-		return this.telefonoProperty().get();
+	public String getTelefono() {
+		return telefono;
 	}
 	
 	/**
@@ -379,26 +334,17 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param telefono, debe ser una cadena de texto
 	 */
-	public final void setTelefono(final String telefono) {
-		this.telefonoProperty().set(telefono);
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
-	
+		
 	/**
 	 * Método para obtener la actividad del industrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final StringProperty actividadProperty() {
-		return this.actividad;
-	}
-	
-	/**
-	 * Método para obtener la actividad del industrial
-	 * 
-	 * @return devuelve una cadena de texto
-	 */
-	public final String getActividad() {
-		return this.actividadProperty().get();
+	public String getActividad() {
+		return actividad;
 	}
 	
 	/**
@@ -406,26 +352,17 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param actividad, debe ser una cadena de texto
 	 */
-	public final void setActividad(final String actividad) {
-		this.actividadProperty().set(actividad);
+	public void setActividad(String actividad) {
+		this.actividad = actividad;
 	}
-		
+			
 	/**
 	 * Método para obtener cuando ha sido solicitada la oferta al industrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final StringProperty solicitadaProperty() {
-		return this.solicitada;
-	}
-	
-	/**
-	 * Método para obtener cuando ha sido solicitada la oferta al industrial
-	 * 
-	 * @return devuelve una cadena de texto
-	 */
-	public final String getSolicitada() {
-		return this.solicitadaProperty().get();
+	public String getSolicitada() {
+		return solicitada;
 	}
 	
 	/**
@@ -433,8 +370,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param empresa, debe ser una cadena de texto
 	 */
-	public final void setSolicitada(final String solicitada) {
-		this.empresaProperty().set(solicitada);
+	public void setSolicitada(String solicitada) {
+		this.solicitada = solicitada;
 	}
 	
 	/**
@@ -442,17 +379,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final StringProperty empresaProperty() {
-		return this.empresa;
-	}
-	
-	/**
-	 * Método para obtener la empresa del industrial
-	 * 
-	 * @return devuelve una cadena de texto
-	 */
-	public final String getEmpresa() {
-		return this.empresaProperty().get();
+	public String getEmpresa() {
+		return empresa;
 	}
 	
 	/**
@@ -460,8 +388,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param empresa, debe ser una cadena de texto
 	 */
-	public final void setEmpresa(final String empresa) {
-		this.empresaProperty().set(empresa);
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
 	}
 	
 	/**
@@ -469,17 +397,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final StringProperty estadoProperty() {
-		return this.estado;
-	}
-	
-	/**
-	 * Método para obtener el estado de la oferta
-	 * 
-	 * @return devuelve una cadena de texto
-	 */
-	public final String getEstado() {
-		return this.estadoProperty().get();
+	public String getEstado() {
+		return estado;
 	}
 	
 	/**
@@ -487,8 +406,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param comentarios, devuelve una cadena de texto
 	 */
-	public final void setEstado(final String estado) {
-		this.estadoProperty().set(estado);
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 		
 	/**
@@ -496,17 +415,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public final StringProperty comentariosProperty() {
-		return this.comentarios;
-	}
-	
-	/**
-	 * Método para obtener los comentarios del industrial
-	 * 
-	 * @return devuelve una cadena de texto
-	 */
-	public final String getComentarios() {
-		return this.comentariosProperty().get();
+	public String getComentarios() {
+		return comentarios;
 	}
 	
 	/**
@@ -514,7 +424,7 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param comentarios, devuelve una cadena de texto
 	 */
-	public final void setComentarios(final String comentarios) {
-		this.comentariosProperty().set(comentarios);
+	public void setComentarios(String comentarios) {
+		this.comentarios = comentarios;
 	}
 }
