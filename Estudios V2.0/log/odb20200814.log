@@ -1,0 +1,159 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-08-14 12:45:24 #1 store] 
+Database 'D:\Proyectos Fer git\simuladorServer\20200801.odb' is opened by 11236@Fer-PC
+
+[2020-08-14 12:45:24 #2 store] 
+Configuration path: ?
+
+[2020-08-14 12:45:33 #3 store] 
+Database 'D:\Proyectos Fer git\simuladorServer\20200801.odb' is closed by 11236@Fer-PC
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-08-14 12:47:09 #1 store] 
+Database 'D:\Proyectos Fer git\simuladorServer\20200801.odb' is opened by 14240@Fer-PC
+
+[2020-08-14 12:47:09 #2 store] 
+Configuration path: ?
+
+[2020-08-14 12:47:13 #3 store] 
+Database 'D:\Proyectos Fer git\simuladorServer\20200801.odb' is closed by 14240@Fer-PC
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-08-14 12:50:35 #1 store] 
+Database 'D:\Proyectos Fer git\simuladorServer\20200801.odb' is opened by 2564@Fer-PC
+
+[2020-08-14 12:50:35 #2 store] 
+Configuration path: ?
+
+[2020-08-14 12:50:35 #3 type.registry] 
+New type modelo.OfertasJdo
+
+[2020-08-14 12:50:35 #4 type] 
+Type modelo.OfertasJdo is not enhanced.
+
+[2020-08-14 12:50:35 #5 type.registry] 
+New type javafx.beans.Observable
+
+[2020-08-14 12:50:35 #6 type.registry] 
+New type javafx.beans.value.ObservableValue
+
+[2020-08-14 12:50:35 #7 type.registry] 
+New type javafx.beans.value.ObservableObjectValue
+
+[2020-08-14 12:50:35 #8 type.registry] 
+New type javafx.beans.value.ObservableStringValue
+
+[2020-08-14 12:50:35 #9 type.registry] 
+New type javafx.beans.binding.StringExpression
+
+[2020-08-14 12:50:35 #10 type.registry] 
+New type javafx.beans.property.ReadOnlyProperty
+
+[2020-08-14 12:50:35 #11 type.registry] 
+New type javafx.beans.property.ReadOnlyStringProperty
+
+[2020-08-14 12:50:35 #12 type.registry] 
+New type javafx.beans.value.WritableValue
+
+[2020-08-14 12:50:35 #13 type.registry] 
+New type javafx.beans.property.Property
+
+[2020-08-14 12:50:35 #14 type.registry] 
+New type javafx.beans.value.WritableObjectValue
+
+[2020-08-14 12:50:35 #15 type.registry] 
+New type javafx.beans.value.WritableStringValue
+
+[2020-08-14 12:50:35 #16 type.registry] 
+New type javafx.beans.property.StringProperty
+
+[2020-08-14 12:50:35 #17 type.registry] 
+New type javafx.beans.value.ObservableNumberValue
+
+[2020-08-14 12:50:35 #18 type.registry] 
+New type javafx.beans.binding.NumberExpression
+
+[2020-08-14 12:50:35 #19 type.registry] 
+New type javafx.beans.binding.NumberExpressionBase
+
+[2020-08-14 12:50:35 #20 type.registry] 
+New type javafx.beans.value.ObservableIntegerValue
+
+[2020-08-14 12:50:35 #21 type.registry] 
+New type javafx.beans.binding.IntegerExpression
+
+[2020-08-14 12:50:35 #22 type.registry] 
+New type javafx.beans.property.ReadOnlyIntegerProperty
+
+[2020-08-14 12:50:35 #23 type.registry] 
+New type javafx.beans.value.WritableNumberValue
+
+[2020-08-14 12:50:35 #24 type.registry] 
+New type javafx.beans.value.WritableIntegerValue
+
+[2020-08-14 12:50:35 #25 type.registry] 
+New type javafx.beans.property.IntegerProperty
+
+[2020-08-14 12:50:35 #26 type.registry] 
+New type javafx.beans.property.IntegerPropertyBase
+
+[2020-08-14 12:50:35 #27 type.registry] 
+New type javafx.beans.property.SimpleIntegerProperty
+
+[2020-08-14 12:50:35 #28 type.registry] 
+New type javafx.beans.property.StringPropertyBase
+
+[2020-08-14 12:50:35 #29 type.registry] 
+New type javafx.beans.property.SimpleStringProperty
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-08-14 13:24:19 #1 store] 
+Database 'D:\Proyectos Fer git\simuladorServer\20200801.odb' has been recovered (tr. 3-5)
+
+[2020-08-14 13:24:19 #2 store] 
+Database 'D:\Proyectos Fer git\simuladorServer\20200801.odb' is opened by 11920@Fer-PC
+
+[2020-08-14 13:24:19 #3 store] 
+Configuration path: ?
+
+[2020-08-14 13:24:19 #4 type] 
+Type modelo.OfertasJdo is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-08-14 13:44:51 #1 store] 
+Database 'D:\Proyectos Fer git\simuladorServer\20200801.odb' has been recovered (tr. 6-6)
+
+[2020-08-14 13:44:51 #2 store] 
+Database 'D:\Proyectos Fer git\simuladorServer\20200801.odb' is opened by 8628@Fer-PC
+
+[2020-08-14 13:44:51 #3 store] 
+Configuration path: ?
+
+[2020-08-14 13:44:51 #4 type] 
+Type modelo.OfertasJdo is not enhanced.
+
+[2020-08-14 13:44:51 #5 store] 
+Database 'D:\Proyectos Fer git\simuladorServer\20200801.odb' is closed by 8628@Fer-PC
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-08-14 13:48:20 #1 store] 
+Database 'D:\Proyectos Fer git\Estudios V2.0\simuladorServer\20200801.odb' is opened by 11420@Fer-PC
+
+[2020-08-14 13:48:20 #2 store] 
+Configuration path: ?
+
+[2020-08-14 13:48:20 #3 type.registry] 
+New type modelo.OfertasJdo
+
+[2020-08-14 13:48:20 #4 type] 
+Type modelo.OfertasJdo is not enhanced.
+
+[2020-08-14 13:48:20 #5 store] 
+Database 'D:\Proyectos Fer git\Estudios V2.0\simuladorServer\20200801.odb' is closed by 11420@Fer-PC
+
