@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import modelo.Actividad;
 import modelo.Conexion;
 import modelo.Estudio;
@@ -325,6 +326,9 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 		//deshabilitamos el boton btnAddIndustriales
 		btnAddIndustriales.setDisable(true);
 		
+		//limpiamos la etiqueta de estado
+		etiEstado.setText("");
+		
 	}
 	
 	/**
@@ -365,6 +369,7 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 		
 		//Creamos un mensanje con las acciones realizadas
 		if (industrialesInsertados == 0) {
+			etiEstado.setTextFill(Color.RED);
 			etiEstado.setText("No se ha insertado ningún industrial en el Estudio");
 		}else {
 			etiEstado.setText("Se han insertado " + industrialesInsertados + " Industriales en el Estudio " +

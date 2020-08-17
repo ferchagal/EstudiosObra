@@ -13,7 +13,7 @@
             <Font name="Verdana Bold Italic" size="24.0" />
          </font></Label>
             <ComboBox fx:id="cbEstudios" layoutX="778.0" layoutY="41.0" onAction="#cargarListaEstudio" prefWidth="265.0" promptText="Selecciona un Estudio de la lista" />
-            <TableView fx:id="tablaOfertas" layoutX="136.0" layoutY="170.0" prefHeight="200.0" prefWidth="1200.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="150.0">
+            <TableView fx:id="tablaOfertas" layoutX="136.0" layoutY="170.0" prefHeight="660.0" prefWidth="1440.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="150.0">
               <columns>
                 <TableColumn fx:id="clCodigo_Industrial" minWidth="120.0" prefWidth="120.0" text="Cod. Industrial" />
                   <TableColumn fx:id="clNombre" minWidth="100.0" prefWidth="100.0" text="Nombre" />

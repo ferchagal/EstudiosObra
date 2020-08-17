@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="966.0" prefWidth="1600.0" style="-fx-background-color: #9FB9F6;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controladores.OF_Panel_Ofertas_Controller">
+<AnchorPane prefHeight="966.0" prefWidth="1600.0" style="-fx-background-color: #9FB9F6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.OF_Panel_Ofertas_Controller">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label layoutX="450.0" layoutY="25.0" text="Gestión de Ofertas del Estudio:">
+               <font>
+                  <Font name="Verdana Italic" size="24.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbEstudios" layoutX="865.0" layoutY="25.0" onAction="#cargarListaEstudio" prefWidth="265.0" promptText="Selecciona un Estudio de la lista" />
+            <TableView fx:id="tablaOfertas" layoutX="72.0" layoutY="326.0" prefHeight="500.0" prefWidth="1440.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0">
+              <columns>
+                <TableColumn fx:id="clCodigo_Industrial" minWidth="120.0" prefWidth="120.0" text="Cod. Industrial" />
+                <TableColumn fx:id="clNombre" minWidth="100.0" prefWidth="100.0" text="Nombre" />
+                  <TableColumn fx:id="clApellidos" minWidth="180.0" prefWidth="180.0" text="Apellidos" />
+                  <TableColumn fx:id="clEmail" minWidth="200.0" prefWidth="200.0" text="email" />
+                  <TableColumn fx:id="clTelefono" minWidth="120.0" prefWidth="120.0" text="Teléfono" />
+                  <TableColumn fx:id="clActividad" minWidth="120.0" prefWidth="120.0" text="Actividad" />
+                  <TableColumn fx:id="clEmpresa" minWidth="120.0" prefWidth="120.0" text="Empresa" />
+                  <TableColumn fx:id="clSolicitada" minWidth="120.0" prefWidth="120.0" text="Solicitada" />
+                  <TableColumn fx:id="clEstado" minWidth="120.0" prefWidth="120.0" text="Estado" />
+                  <TableColumn fx:id="clComentarios" minWidth="240.0" prefWidth="240.0" text="Comentarios" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

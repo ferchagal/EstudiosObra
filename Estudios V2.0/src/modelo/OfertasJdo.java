@@ -119,8 +119,10 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param miConexion, objeto de tipo Connection
 	 * @param lista, lista de tipo Estudio, se cargan todos los estudios en ella
+	 * @param nombreTabla, cadena de texto con el nombre de la tabla
 	 */
-	public static void datosTablaOfertasJdo(Connection miConexion, ObservableList<OfertasJdo>lista) {
+	public static void datosTablaOfertasJdo(Connection miConexion, ObservableList<OfertasJdo>lista,
+			String nombreTabla) {
 		try {
 			 Statement consulta = miConexion.createStatement();
 			 
@@ -134,12 +136,18 @@ public class OfertasJdo implements Serializable {
 					 "A.empresa, " +
 					 "A.solicitada, " +
 					 "A.estado, " +
-					 "A.comentarios, " +
-					 "FROM industriales A "
+					 "A.comentarios " +
+					 "FROM "+ nombreTabla +" A "
 					 );
-					 
-			 while(rs.next()) {
-				 lista.add(
+			 
+			 if(!rs.next()) {
+				 Alert alerta = new Alert (Alert.AlertType.INFORMATION,"El estudio elegido no tiene,"
+							+ " elementos que mostrar...",ButtonType.CLOSE);
+					alerta.showAndWait();
+			 }
+			 else {		 
+				 while(rs.next()) {
+					 lista.add(
 						 new OfertasJdo(
 								 rs.getInt("codigo_industrial"),
 								 rs.getString("nombre"),
@@ -153,11 +161,13 @@ public class OfertasJdo implements Serializable {
 								 rs.getString("comentarios")
 								 )
 						 );
+				 }
 			 }
-			
 		}catch(Exception ex) {
-			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
-					+ " Pongase en contacto con su Administrador",ButtonType.CLOSE);
+			ex.printStackTrace();
+			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Tabla no encontrada, "
+					+ "agregue Industriales a la tabla para crearla en 'Configurar Estudio'",
+					ButtonType.CLOSE);
 			alerta.showAndWait();
 		}
 	}
@@ -213,7 +223,7 @@ public class OfertasJdo implements Serializable {
 			int industrialesInsertados = 0;
 			
 			while(rs.next()) {
-				insertarOfertas = miConexion.prepareStatement("INSERT INTO e" + nombreTabla + " "
+				insertarOfertas = miConexion.prepareStatement("INSERT INTO " + nombreTabla + " "
 						+"(codigo_industrial, nombre, apellidos, email, telefono, actividad, empresa,"
 						+"solicitada, estado, comentarios) VALUES (?,?,?,?,?,?,?,?,?,?)");
 				
@@ -256,7 +266,7 @@ public class OfertasJdo implements Serializable {
 		try {
 			PreparedStatement consulta;
 			
-			consulta = miConexion.prepareStatement("CREATE TABLE e" + nombreTabla + " ("
+			consulta = miConexion.prepareStatement("CREATE TABLE " + nombreTabla + " ("
 					+ "codigo_industrial INT NOT NULL,"
 					+ "nombre VARCHAR(50) NOT NULL,"
 					+ "apellidos VARCHAR(50) NOT NULL,"
@@ -274,7 +284,7 @@ public class OfertasJdo implements Serializable {
 			
 		}catch(Exception ex) {
 			ex.printStackTrace();
-			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
+			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Algo no ha ido como se esperaba,"
 					+ " No se ha podido crear la Tabla para guardar los Industriales del estudio."
 					,ButtonType.CLOSE);
 			alerta.showAndWait();

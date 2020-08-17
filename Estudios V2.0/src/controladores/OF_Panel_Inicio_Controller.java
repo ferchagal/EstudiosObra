@@ -47,19 +47,20 @@ public class OF_Panel_Inicio_Controller implements Initializable{
 	@FXML private TableColumn <OfertasJdo, String> clTelefono;
 	@FXML private TableColumn <OfertasJdo, String> clActividad;
 	@FXML private TableColumn <OfertasJdo, String> clEmpresa;
-	@FXML private TableColumn <OfertasJdo, Date> clSolicitada;
+	@FXML private TableColumn <OfertasJdo, String> clSolicitada;
 	@FXML private TableColumn <OfertasJdo, String> clEstado;
 	@FXML private TableColumn <OfertasJdo, String> clComentarios;
 	
 	/**
 	 * Objeto de tipo Connection. Para configurar la conexion a la BBDD
 	 */
-	private Conexion miConexion;
-	
-	
+	private Conexion miConexion;	
 	
 	
 	@FXML private void cargarListaEstudio() {
+		
+		//Creamos un string con el nombre de la tabla de la que queremos mostrar los industriales
+		String nombreTabla = cbEstudios.getSelectionModel().getSelectedItem();
 		
 		//Conectamos con la BD
 		miConexion = new Conexion();
@@ -69,7 +70,7 @@ public class OF_Panel_Inicio_Controller implements Initializable{
 		listaOfertas = FXCollections.observableArrayList();
 		
 		//Llenamos el TableView
-		OfertasJdo.datosTablaOfertasJdo(miConexion.getConnection(), listaOfertas);
+		OfertasJdo.datosTablaOfertasJdo(miConexion.getConnection(), listaOfertas, nombreTabla);
 		
 		//Añadimos los objetos a la tabla
 		tablaOfertas.setItems(listaOfertas);
@@ -82,23 +83,12 @@ public class OF_Panel_Inicio_Controller implements Initializable{
 		clTelefono.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("telefono"));
 		clActividad.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("actividad"));
 		clEmpresa.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("empresa"));
-		clSolicitada.setCellValueFactory(new PropertyValueFactory<OfertasJdo, Date>("solicitada"));
+		clSolicitada.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("solicitada"));
 		clEstado.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("estado"));
 		clComentarios.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("comentarios"));
 		
-		//Seleccionamos un estudio en el comboBox y lo mostramos en el TableView
-		cbEstudios.valueProperty().addListener(
-				new ChangeListener<String>() {
-					@Override 
-					public void changed(ObservableValue<? extends String>arg0,
-							String estudioAnterior, String estudioSeleccionado) {
-						if(estudioSeleccionado!= null) {
-							
-						}
-						
-					}
-			
-		});
+		//Cerramos la conexion
+		miConexion.cerrarConexionBD();
 		
 	}
 

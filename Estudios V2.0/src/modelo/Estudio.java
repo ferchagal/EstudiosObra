@@ -32,9 +32,9 @@ public class Estudio {
 	private IntegerProperty codigo_estudio;
 	
 	/**
-	 * Atributo de tipo entero, define una referencia para cada estudio, es asignado por el usuario
+	 * Atributo de cadena de texto, define una referencia para cada estudio, es asignado por el usuario
 	 */
-	private IntegerProperty referencia;
+	private StringProperty referencia;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define la denominación de la obra
@@ -66,17 +66,17 @@ public class Estudio {
 	 * 
 	 * @param codigo_estudio, debe ser un numero entero, es asignado automaticamente por la BD, asi que lo
 	 * mejor es que pongamos un cero, y en la inserción la BD le asigna el código automaticamente.
-	 * @param referencia, debe ser un numero entero.
+	 * @param referencia, debe ser una cadena de texto
 	 * @param designacion, debe ser una cadena de texto.
 	 * @param anyo, debe ser un número entero, debe ser el año de estudio.
 	 * @param adjudicada,debe ser una cadena de texto.
 	 * @param usuario, debe ser un objeto de tipo Usuario.
 	 * @param zona, debe ser un objeto de tipo Zona.
 	 */
-	public Estudio (Integer codigo_estudio, Integer referencia, String designacion, Integer anyo, String adjudicada,
+	public Estudio (Integer codigo_estudio, String referencia, String designacion, Integer anyo, String adjudicada,
 			Usuario usuario, Zona zona) {
 		this.codigo_estudio = new SimpleIntegerProperty(codigo_estudio);
-		this.referencia = new SimpleIntegerProperty(referencia);
+		this.referencia = new SimpleStringProperty(referencia);
 		this.designacion = new SimpleStringProperty(designacion);
 		this.anyo = new SimpleIntegerProperty(anyo);
 		this.adjudicada = new SimpleStringProperty(adjudicada);
@@ -98,7 +98,7 @@ public class Estudio {
 					"(referencia, designacion, anyo, adjudicada, codigo_usuario, codigo_zona) " +
 					"VALUES (?,?,?,?,?,?)");
 			
-			consulta.setInt(1, referencia.get());
+			consulta.setString(1, referencia.get());
 			consulta.setString(2, designacion.get());
 			consulta.setInt(3, anyo.get());
 			consulta.setString(4, adjudicada.get());
@@ -133,7 +133,7 @@ public class Estudio {
 					+ "codigo_zona = ? "
 					+ "WHERE codigo_estudio = ?");
 			
-			consulta.setInt(1, referencia.get());
+			consulta.setString(1, referencia.get());
 			consulta.setString(2,  designacion.get());
 			consulta.setInt(3, anyo.get());
 			consulta.setString(4, adjudicada.get());
@@ -206,7 +206,7 @@ public class Estudio {
 				lista.add(
 						new Estudio(
 								rs.getInt("codigo_estudio"),
-								rs.getInt("referencia"),
+								rs.getString("referencia"),
 								rs.getString("designacion"),
 								rs.getInt("anyo"),
 								rs.getString("adjudicada"),
@@ -223,12 +223,12 @@ public class Estudio {
 	}
 	
 	/**
-	 * Sobrecargamos el método toString() para que nos devuelva la zona cuando la solicitemos.
+	 * Sobrecargamos el método toString() para que nos devuelva el Estudio cuando lo solicitemos.
 	 */
 	@Override
 	public String toString() {
 		
-		return String.valueOf(referencia.get());
+		return referencia.get();
 	}
 	
 	/**
@@ -248,7 +248,7 @@ public class Estudio {
 			
 			while(rs.next()) {
 				lista.add(
-						String.valueOf(rs.getInt("referencia"))
+						rs.getString("referencia")
 						);
 			}
 			
@@ -294,7 +294,7 @@ public class Estudio {
 	 * 
 	 * @return devuelve un número entero
 	 */
-	public final IntegerProperty referenciaProperty() {
+	public final StringProperty referenciaProperty() {
 		return this.referencia;
 	}
 	
@@ -303,7 +303,7 @@ public class Estudio {
 	 * 
 	 * @return devuelve un número entero
 	 */
-	public final int getReferencia() {
+	public final String getReferencia() {
 		return this.referenciaProperty().get();
 	}
 	
@@ -312,7 +312,7 @@ public class Estudio {
 	 * 
 	 * @param referencia, debe ser un número entero
 	 */
-	public final void setReferencia(final int referencia) {
+	public final void setReferencia(final String referencia) {
 		this.referenciaProperty().set(referencia);
 	}
 

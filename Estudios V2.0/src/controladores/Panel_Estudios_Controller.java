@@ -91,7 +91,7 @@ public class Panel_Estudios_Controller implements Initializable {
 	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
 	 * se refiere la columna clReferencia
 	 */
-	@FXML private TableColumn<Estudio, Integer> clReferencia;
+	@FXML private TableColumn<Estudio, String> clReferencia;
 	
 	/**
 	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
@@ -141,7 +141,7 @@ public class Panel_Estudios_Controller implements Initializable {
 	@FXML public void guardarEstudio (ActionEvent Event) {
 		//Creamos una nueva instancia de estudio
 		Estudio est = new Estudio(0,
-				Integer.valueOf(txtReferencia.getText()),
+				txtReferencia.getText(),
 				txtDesignacion.getText(),
 				Integer.valueOf(txtAnyo.getText()),
 				txtAdjudicada.getText(),
@@ -176,7 +176,7 @@ public class Panel_Estudios_Controller implements Initializable {
 		//Creamos una nueva instancia de estudio
 		Estudio est = new Estudio(
 				Integer.valueOf(txtCodigo_Estudio.getText()),
-				Integer.valueOf(txtReferencia.getText()),
+				txtReferencia.getText(),
 				txtDesignacion.getText(),
 				Integer.valueOf(txtAnyo.getText()),
 				txtAdjudicada.getText(),
@@ -258,7 +258,7 @@ public class Panel_Estudios_Controller implements Initializable {
 							Estudio estudioAnterior, Estudio estudioSeleccionado) {
 						if(estudioSeleccionado!= null) {
 							txtCodigo_Estudio.setText(String.valueOf(estudioSeleccionado.getCodigo_estudio()));
-							txtReferencia.setText(String.valueOf(estudioSeleccionado.getReferencia()));
+							txtReferencia.setText(estudioSeleccionado.getReferencia());
 							txtDesignacion.setText(estudioSeleccionado.getDesignacion());
 							txtAnyo.setText(String.valueOf(estudioSeleccionado.getAnyo()));
 							txtAdjudicada.setText(estudioSeleccionado.getAdjudicada());
@@ -338,7 +338,7 @@ public class Panel_Estudios_Controller implements Initializable {
 		
 		//Enlazamos las columnas con los atributos
 		clCodigo_Estudio.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("codigo_estudio"));
-		clReferencia.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("referencia"));
+		clReferencia.setCellValueFactory(new PropertyValueFactory<Estudio, String>("referencia"));
 		clDesignacion.setCellValueFactory(new PropertyValueFactory<Estudio, String>("Designacion"));
 		clAnyo.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("anyo"));
 		clAdjudicada.setCellValueFactory(new PropertyValueFactory<Estudio, String>("adjudicada"));

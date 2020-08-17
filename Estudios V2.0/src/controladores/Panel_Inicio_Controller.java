@@ -56,7 +56,7 @@ public class Panel_Inicio_Controller implements Initializable  {
 	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
 	 * se refiere la columna clReferencia
 	 */
-	@FXML private TableColumn<Estudio, Integer> clReferencia;
+	@FXML private TableColumn<Estudio, String> clReferencia;
 	
 	/**
 	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
@@ -154,7 +154,7 @@ public class Panel_Inicio_Controller implements Initializable  {
 		
 		//Enlazar columnas con atributos
 		clCodigo_Estudio.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("codigo_estudio"));
-		clReferencia.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("referencia"));
+		clReferencia.setCellValueFactory(new PropertyValueFactory<Estudio, String>("referencia"));
 		clDesignacion.setCellValueFactory(new PropertyValueFactory<Estudio, String>("designacion"));
 		clAnyo.setCellValueFactory(new PropertyValueFactory<Estudio, Integer>("anyo"));
 		clAdjudicada.setCellValueFactory(new PropertyValueFactory<Estudio, String>("adjudicada"));
