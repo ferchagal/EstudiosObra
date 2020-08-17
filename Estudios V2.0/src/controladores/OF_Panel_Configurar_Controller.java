@@ -9,11 +9,6 @@ package controladores;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,6 +35,8 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 	 * Strings.
 	 */
 	private ArrayList <String> chbSeleccionados;
+	
+	@FXML Label etiEstado;
 	
 	/**
 	 * CheckBox donde recogemos las actividades que existen en el Estudio
@@ -340,38 +338,38 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 		String actividades = crearStringComboBoxSelec ();
 		//creamos el string donde recogemos la zona seleccionada en el combobox
 		String zona = cbZona.getSelectionModel().getSelectedItem().getZona()+"'";
+		//creamos un string con el nombre de la tabla a crear
+		String nombreTabla = cbEstudios.getSelectionModel().getSelectedItem();
+		//creamos un int donde recogemos los industriales que se han insertado en la tabla
+		int industrialesInsertados;
 		
 		//Conectamos con la BD
 		miConexion = new Conexion();
 		miConexion.conectarBD();
 		
-		/*Creamos un fichero ODB. Crearemos uno por cada estudio. A este archivo le incluiremos objetos
-		 * de tipo OfertasJdo.java. El archivo debe crearse en el servidor. De momento lo creamos en una
-		 * carpeta del proyecto (simuladorServer)
-		*/		
-		EntityManagerFactory em = Persistence.createEntityManagerFactory(
-				"../Estudios V2.0/simuladorServer/"+cbEstudios.getValue()+".odb");
-		EntityManager operador = em.createEntityManager();
-		
-		//Abrimos las transacciones hacia el fichero
-		operador.getTransaction().begin();
+		//Creamos la tabla donde vamos a insertar los industriales filtrado
+		OfertasJdo.crearTabla(nombreTabla, miConexion.getConnection());		
 		
 		/* Llamamos al método estático datosTablaIndustrialesEstudio() de la clase OfertasJdo para guardar
-		 *  los industriales filtrados en el archivo .odb creado anteriormente. Le pasamos como parametros
-		 *  un objeto conexion de tipo Connection, un objeto operador de tipo EntityManager, un string
+		 *  los industriales filtrados en la tabla creada anteriormente. Le pasamos como parametros
+		 *  un objeto conexion de tipo Connection, un string con el nombre de la tabla, un string
 		 *  actividades donde recogemos todos los checkbox seleccionados, un string zona donde recogemos
 		 *  la zona seleccionada en el comboBox  */
-		OfertasJdo.datosTablaIndustrialesEstudio(miConexion.getConnection(), operador, actividades, zona);
+		industrialesInsertados = OfertasJdo.datosTablaIndustrialesEstudio(miConexion.getConnection(),
+				nombreTabla, actividades, zona);
 		
-		//Realizamos un commit
-		operador.getTransaction().commit();
 		
-		//Cerramos las conexiones
-		operador.close();
-		em.close();
 		
 		//Cerramos la conexion con la BD
 		miConexion.cerrarConexionBD();
+		
+		//Creamos un mensanje con las acciones realizadas
+		if (industrialesInsertados == 0) {
+			etiEstado.setText("No se ha insertado ningún industrial en el Estudio");
+		}else {
+			etiEstado.setText("Se han insertado " + industrialesInsertados + " Industriales en el Estudio " +
+		nombreTabla);
+		}
 	}
 	
 	/**
@@ -465,7 +463,7 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 				
 		return actividades;
 	}
-	
+		
 	/**
      * Método de inicialización del controlador, iniciamos la conexion con la BD, cargamos el comboBox,
      * y volvemos a cerrar la conexion con la BD

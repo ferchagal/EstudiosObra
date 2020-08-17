@@ -611,6 +611,11 @@
                   <Font name="Verdana" size="15.0" />
                </font>
             </Button>
+            <Label fx:id="etiEstado" layoutX="410.0" layoutY="590.0" prefHeight="20.0" prefWidth="800.0" textFill="#348a12">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

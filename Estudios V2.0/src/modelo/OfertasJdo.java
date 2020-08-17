@@ -8,14 +8,11 @@ package modelo;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -25,76 +22,68 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 /**
- * Clase para crear persistencia de objetos, se creará un archivo .odb por cada Estudio que hagamos
+ * Clase para crear la tabla donde se mostraran los industriales a los que les pediremos las ofertas,
+ * se creará una tabla por estudio.
  * 
  * @author Fernando Chacón Galea
  * @version 2020.06.22 - V2
- * 
- * Entidad manejada por EntityManager
  */
-@Entity
 public class OfertasJdo implements Serializable {
-		
-	/**
-	 * Atributo de clase de tipo long, define un codigo para cada industrial, propio del estudio actual.
-	 */
-	@Id @GeneratedValue
-	private long id;
-	
+			
 	/**
 	 * Atributo de tipo entero, define un código para cada industrial. Es asignado automaticamente
 	 * por la BD.
 	 */
-	private int codigo_industrial;
+	private IntegerProperty codigo_industrial;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define el nombre de pila del industrial.
 	 */
-	private String nombre;
+	private StringProperty nombre;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define los apellidos del industrial.
 	 */
-	private String apellidos;
+	private StringProperty apellidos;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define el email del industrial.
 	 */
-	private String email;
+	private StringProperty email;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define un telefono del industrial
 	 */
-	private String telefono;
+	private StringProperty telefono;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define la actividad a la que se dedica el industrial
 	 */
-	private String actividad;
+	private StringProperty actividad;
 	
 	/**
 	 * Atributo de tipo cadena de texto, define el nombre de la empresa para la que trabaja el 
 	 * industrial.
 	 */
-	private String empresa;
+	private StringProperty empresa;
 	
 	/**
 	 * Atributo de tipo Fecha(Date), define la fecha de solicitud de oferta 
 	 * industrial.
 	 */
-	private String solicitada;
+	private StringProperty solicitada;
 	
 	/**
 	 * Atributo de tipo Fecha(Date), define la fecha de solicitud de oferta 
 	 * industrial.
 	 */
-	private String estado;
+	private StringProperty estado;
 	
 	/**
 	 * Atributo de tipo cadena de texto, son comentarios que se pueden insertar en el industrial
 	 * para tener mas datos sobre él.
 	 */
-	private String comentarios;
+	private StringProperty comentarios;
 	
 	/**
 	 * Constructor de clase
@@ -113,16 +102,16 @@ public class OfertasJdo implements Serializable {
 	public OfertasJdo(Integer codigo_industrial, String nombre, String apellidos,String email,
 			String telefono,  String actividad, String empresa, String solicitada,
 			String estado, String comentarios) {
-		this.codigo_industrial = codigo_industrial;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.email = email;
-		this.telefono = telefono;		
-		this.actividad = actividad;
-		this.empresa = empresa;
-		this.solicitada = solicitada;
-		this.estado = estado;
-		this.comentarios = comentarios;		
+		this.codigo_industrial = new SimpleIntegerProperty(codigo_industrial);
+		this.nombre = new SimpleStringProperty(nombre);
+		this.apellidos = new SimpleStringProperty(apellidos);
+		this.email = new SimpleStringProperty(email);
+		this.telefono = new SimpleStringProperty (telefono);		
+		this.actividad = new SimpleStringProperty(actividad);
+		this.empresa = new SimpleStringProperty (empresa);
+		this.solicitada = new SimpleStringProperty (solicitada);
+		this.estado = new SimpleStringProperty(estado);
+		this.comentarios = new SimpleStringProperty (comentarios);		
 	}
 	
 	/**
@@ -184,7 +173,7 @@ public class OfertasJdo implements Serializable {
 	 * @param zona, cadena de texto que se le pasa como parametro parte de la consulta, se obtiene de la
 	 * seleccion hecho en el comboBox cbZona 
 	 */
-	public static void datosTablaIndustrialesEstudio (Connection miConexion, EntityManager operador,
+	public static int datosTablaIndustrialesEstudio (Connection miConexion, String nombreTabla,
 			String actividades, String zona) {
 		
 		//Creamos un objeto de tipo Date y lo transformamos al formato de fecha deseado
@@ -195,6 +184,8 @@ public class OfertasJdo implements Serializable {
 		
 		try {
 			Statement consulta = miConexion.createStatement();
+			
+			PreparedStatement insertarOfertas;
 			
 			ResultSet rs = consulta.executeQuery(
 					"SELECT A.codigo_industrial, " +
@@ -219,40 +210,93 @@ public class OfertasJdo implements Serializable {
 					
 					);
 			
+			int industrialesInsertados = 0;
+			
 			while(rs.next()) {
-				operador.persist(
-						new OfertasJdo(
-								 rs.getInt("codigo_industrial"),
-								 rs.getString("nombre"),
-								 rs.getString("apellidos"),
-								 rs.getString("email"),
-								 rs.getString("telefono"),
-								 rs.getString("actividad"),
-								 rs.getString("empresa"),
-								 fecha.format(utilDate),
-								 "Pendiente",
-								 "Sin comentarios"
-								 )
-						);
-						
+				insertarOfertas = miConexion.prepareStatement("INSERT INTO e" + nombreTabla + " "
+						+"(codigo_industrial, nombre, apellidos, email, telefono, actividad, empresa,"
+						+"solicitada, estado, comentarios) VALUES (?,?,?,?,?,?,?,?,?,?)");
+				
+				insertarOfertas.setInt(1, rs.getInt("codigo_industrial"));
+				insertarOfertas.setString(2, rs.getString("nombre"));
+				insertarOfertas.setString(3, rs.getString("apellidos"));
+				insertarOfertas.setString(4, rs.getString("email"));
+				insertarOfertas.setString(5, rs.getString("telefono"));
+				insertarOfertas.setString(6, rs.getString("actividad"));
+				insertarOfertas.setString(7, rs.getString("empresa"));
+				insertarOfertas.setString(8, fecha.format(utilDate));
+				insertarOfertas.setString(9, "Pendiente");
+				insertarOfertas.setString(10, "Sin comentarios");
+				
+				industrialesInsertados = industrialesInsertados + insertarOfertas.executeUpdate();						
 			}
+			
+			return industrialesInsertados;
 			
 					
 		} catch (Exception e) {
+			
 			e.printStackTrace();
 			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
 					+ " Pongase en contacto con su Administrador",ButtonType.CLOSE);
 			alerta.showAndWait();
+			
+			return 0;
 		}
 	}
-		
+	
+	/**
+	 * Método para crear la tabla en la BD para insertar los industriales filtrados en los checkbox y
+	 * el comboBox.
+	 * 
+	 * @param nombreTabla, cadena de texto con el nombre de la tabla a crear
+	 * @param miConexion, objeto de tipo Connection
+	 */
+	public static void crearTabla(String nombreTabla, Connection miConexion) {
+		try {
+			PreparedStatement consulta;
+			
+			consulta = miConexion.prepareStatement("CREATE TABLE e" + nombreTabla + " ("
+					+ "codigo_industrial INT NOT NULL,"
+					+ "nombre VARCHAR(50) NOT NULL,"
+					+ "apellidos VARCHAR(50) NOT NULL,"
+					+ "email VARCHAR(100) NULL,"
+					+ "telefono VARCHAR(9) NOT NULL,"
+					+ "actividad VARCHAR(100) NOT NULL,"
+					+ "empresa VARCHAR(100) NULL,"
+					+ "solicitada VARCHAR(45) NOT NULL,"
+					+ "estado VARCHAR(45) NOT NULL,"
+					+ "comentarios VARCHAR(1000) NULL,"
+					+ "PRIMARY KEY (codigo_industrial))");
+			
+			consulta.execute();
+			consulta.close();
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Base de Datos no encontrada,"
+					+ " No se ha podido crear la Tabla para guardar los Industriales del estudio."
+					,ButtonType.CLOSE);
+			alerta.showAndWait();
+		}
+	}
+	
 	/**
 	 * Metodo para obtener el codigo del industrial
 	 * 
 	 * @return devuelve el codigo
 	 */
-	public int getCodigo_industrial() {
-		return codigo_industrial;
+	public final IntegerProperty codigo_industrialProperty() {
+		return this.codigo_industrial;
+	}
+	
+	/**
+	 * Metodo para obtener el codigo del industrial
+	 * 
+	 * @return devuelve el codigo
+	 */
+	public final int getCodigo_industrial() {
+		return this.codigo_industrialProperty().get();
 	}
 	
 	/**
@@ -260,17 +304,26 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param codigo_industrial, debe ser un número entero
 	 */
-	public void setCodigo_industrial(int codigo_industrial) {
-		this.codigo_industrial = codigo_industrial;
+	public final void setCodigo_industrial(final int codigo_industrial) {
+		this.codigo_industrialProperty().set(codigo_industrial);
 	}
-		
+	
+	/**
+	 * Método para obtener el nombre del industrial
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final StringProperty nombreProperty() {
+		return this.nombre;
+	}
+	
 	/**
 	 * Método para obtener el nombre delindustrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public String getNombre() {
-		return nombre;
+	public final String getNombre() {
+		return this.nombreProperty().get();
 	}
 	
 	/**
@@ -278,18 +331,26 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param nombre, debe ser una cadena de texto
 	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public final void setNombre(final String nombre) {
+		this.nombreProperty().set(nombre);
 	}
 	
-
 	/**
 	 * Método para obtener los apellidos del industrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public String getApellidos() {
-		return apellidos;
+	public final StringProperty apellidosProperty() {
+		return this.apellidos;
+	}
+	
+	/**
+	 * Método para obtener los apellidos del industrial
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final String getApellidos() {
+		return this.apellidosProperty().get();
 	}
 	
 	/**
@@ -297,8 +358,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param apellidos, debe ser una cadena de texto
 	 */
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+	public final void setApellidos(final String apellidos) {
+		this.apellidosProperty().set(apellidos);
 	}
 	
 	/**
@@ -306,8 +367,17 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public String getEmail() {
+	public final StringProperty emailProperty() {
 		return this.email;
+	}
+	
+	/**
+	 * Método para obtener el email del industrial
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final String getEmail() {
+		return this.emailProperty().get();
 	}
 	
 	/**
@@ -315,18 +385,26 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param email, debe ser una cadena de texto
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public final void setEmail(final String email) {
+		this.emailProperty().set(email);
 	}
-	
 	
 	/**
 	 * Método para obtener el telefono del industrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public String getTelefono() {
-		return telefono;
+	public final StringProperty telefonoProperty() {
+		return this.telefono;
+	}
+	
+	/**
+	 * Método para obtener el telefono del industrial
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final String getTelefono() {
+		return this.telefonoProperty().get();
 	}
 	
 	/**
@@ -334,17 +412,26 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param telefono, debe ser una cadena de texto
 	 */
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public final void setTelefono(final String telefono) {
+		this.telefonoProperty().set(telefono);
 	}
-		
+	
 	/**
 	 * Método para obtener la actividad del industrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public String getActividad() {
-		return actividad;
+	public final StringProperty actividadProperty() {
+		return this.actividad;
+	}
+	
+	/**
+	 * Método para obtener la actividad del industrial
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final String getActividad() {
+		return this.actividadProperty().get();
 	}
 	
 	/**
@@ -352,17 +439,26 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param actividad, debe ser una cadena de texto
 	 */
-	public void setActividad(String actividad) {
-		this.actividad = actividad;
+	public final void setActividad(final String actividad) {
+		this.actividadProperty().set(actividad);
 	}
-			
+		
 	/**
 	 * Método para obtener cuando ha sido solicitada la oferta al industrial
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public String getSolicitada() {
-		return solicitada;
+	public final StringProperty solicitadaProperty() {
+		return this.solicitada;
+	}
+	
+	/**
+	 * Método para obtener cuando ha sido solicitada la oferta al industrial
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final String getSolicitada() {
+		return this.solicitadaProperty().get();
 	}
 	
 	/**
@@ -370,8 +466,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param empresa, debe ser una cadena de texto
 	 */
-	public void setSolicitada(String solicitada) {
-		this.solicitada = solicitada;
+	public final void setSolicitada(final String solicitada) {
+		this.empresaProperty().set(solicitada);
 	}
 	
 	/**
@@ -379,8 +475,17 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public String getEmpresa() {
-		return empresa;
+	public final StringProperty empresaProperty() {
+		return this.empresa;
+	}
+	
+	/**
+	 * Método para obtener la empresa del industrial
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final String getEmpresa() {
+		return this.empresaProperty().get();
 	}
 	
 	/**
@@ -388,8 +493,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param empresa, debe ser una cadena de texto
 	 */
-	public void setEmpresa(String empresa) {
-		this.empresa = empresa;
+	public final void setEmpresa(final String empresa) {
+		this.empresaProperty().set(empresa);
 	}
 	
 	/**
@@ -397,8 +502,17 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public String getEstado() {
-		return estado;
+	public final StringProperty estadoProperty() {
+		return this.estado;
+	}
+	
+	/**
+	 * Método para obtener el estado de la oferta
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final String getEstado() {
+		return this.estadoProperty().get();
 	}
 	
 	/**
@@ -406,8 +520,8 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param comentarios, devuelve una cadena de texto
 	 */
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public final void setEstado(final String estado) {
+		this.estadoProperty().set(estado);
 	}
 		
 	/**
@@ -415,8 +529,17 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @return devuelve una cadena de texto
 	 */
-	public String getComentarios() {
-		return comentarios;
+	public final StringProperty comentariosProperty() {
+		return this.comentarios;
+	}
+	
+	/**
+	 * Método para obtener los comentarios del industrial
+	 * 
+	 * @return devuelve una cadena de texto
+	 */
+	public final String getComentarios() {
+		return this.comentariosProperty().get();
 	}
 	
 	/**
@@ -424,7 +547,7 @@ public class OfertasJdo implements Serializable {
 	 * 
 	 * @param comentarios, devuelve una cadena de texto
 	 */
-	public void setComentarios(String comentarios) {
-		this.comentarios = comentarios;
+	public final void setComentarios(final String comentarios) {
+		this.comentariosProperty().set(comentarios);
 	}
 }
