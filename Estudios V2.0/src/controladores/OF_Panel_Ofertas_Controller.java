@@ -7,21 +7,60 @@
 package controladores;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Conexion;
 import modelo.Estudio;
 import modelo.OfertasJdo;
 
 public class OF_Panel_Ofertas_Controller implements Initializable{
+	
+	//------------------- COMPONENTES  y MÉTODOS PARA LA GESTIÓN DE LAS OFERTAS ---------------------
+	
+	@FXML Label etiEstado;
+	
+	@FXML Button btnGuardar, btnActualizar, btnEliminar;
+	
+	@FXML TextField txtCodigoIndustrial, txtNombre, txtApellidos, txtEmail, txtEmpresa, txtActividad,
+					txtTelefono, txtComentarios;
+	
+	@FXML DatePicker dpSolicitada;
+	
+	@FXML ComboBox <String> cbEstado;
+	
+	private ObservableList <String> listaEstados;
+	
+	@FXML public void guardarIndustrial() {
+		
+	}
+	
+	@FXML public void actualizarIndustrial() {
+		
+	}
+	
+	@FXML public void eliminarIndustrial() {
+		
+	}
+	
+	@FXML public void nuevoIndustrial() {
+		
+	}
+	
+	
+	//--------------------------------------------------------------------------------------------FIN
 	
 	/**
 	 * Desplegable donde mostramos los estudios que están en la tabla estudios de la BD
@@ -59,6 +98,10 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 	 */
 	private Conexion miConexion;
 	
+	/**
+	 * Método para mostrar los industriales contenidos en el estudio que seleccionemos en el comboBox
+	 * cbEstudios.
+	 */
 	@FXML private void cargarListaEstudio() {
 		
 		//Creamos un string con el nombre de la tabla de la que queremos mostrar los industriales
@@ -96,21 +139,29 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		//Conectamos con la BD
-				miConexion = new Conexion();
-				miConexion.conectarBD();
+		miConexion = new Conexion();
+		miConexion.conectarBD();
 				
-				//Iniciamos los ObservableList 
-				listaEstudios = FXCollections.observableArrayList();
+		//Iniciamos los ObservableList 
+		listaEstudios = FXCollections.observableArrayList();
+		listaEstados = FXCollections.observableArrayList();	
 				
-				//Llenamos el comboBox
-				Estudio.datosComboEstudios(miConexion.getConnection(), listaEstudios);
+		//Llenamos el comboBox
+		Estudio.datosComboEstudios(miConexion.getConnection(), listaEstudios);
+		
+		//Llenamos la listaEstados
+		listaEstados.add("Oferta Solicitada");
+		listaEstados.add("Oferta Recibida");
+		listaEstados.add("Oferta Rechazada");
 				
-				//Añadimos los objetos al comboBox
-				cbEstudios.setItems(listaEstudios);
+		//Añadimos los objetos al comboBox
+		cbEstudios.setItems(listaEstudios);
+		cbEstado.setItems(listaEstados);
 				
-				//Cerramos la conexion
-				miConexion.cerrarConexionBD();
+		//Cerramos la conexion
+		miConexion.cerrarConexionBD();
 		
 	}
 
