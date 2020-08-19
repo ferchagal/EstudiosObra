@@ -31,6 +31,11 @@ import javafx.scene.control.ButtonType;
 public class OfertasJdo implements Serializable {
 			
 	/**
+	 * Version
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Atributo de tipo entero, define un código para cada industrial. Es asignado automaticamente
 	 * por la BD.
 	 */
