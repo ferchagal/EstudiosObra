@@ -104,6 +104,38 @@ public class Panel_OferEst_Controller implements Initializable {
 	}
 	
 	/**
+	 * Método que se ejecuta cuando pulsamos el botón "Ofertas", y se muestra la pantalla de 
+	 * Ofertas de la aplicación. Ejecuta el método cargarPanel () que apunta al 
+	 * archivo xml que define la interfaz del panel. 
+	 * 
+	 * @param event Evento generado por el usuario.
+	 */
+	@FXML private void cargarPanelOfertas(ActionEvent event) throws InterruptedException {
+		
+		URL url = getClass().getResource("../vistas/Panel_OferEst.fxml");
+		
+		try {
+			Node node = FXMLLoader.load(url);
+			Scene scene = new Scene((Parent) node);
+			Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			appStage.setScene(scene);
+			appStage.toFront();
+			appStage.centerOnScreen();
+			appStage.show();
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACION RELEVANTE");
+			alert.setHeaderText("NO se ha podido cargar el panel");
+			alert.setContentText("Si no aparece la opción que has elegido, no pierdas la calma."
+				+ " Cierra la aplicación y vuelve a entrar en ella.");
+			alert.showAndWait();
+		}
+	}
+	
+	/**
 	 * Método que se encarga de cargar el panel que se le pasa como parámetro.
 	 * 
 	 * @param panel cadena de texto que representa el nombre del archivo .xml que se debe cargar.

@@ -191,10 +191,5 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Button layoutX="1387.0" layoutY="849.0" mnemonicParsing="false" onAction="#cargarPanelOfertas" prefHeight="30.0" prefWidth="180.0" text="Ir al panel de Ofertas">
-         <font>
-            <Font name="Verdana" size="14.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

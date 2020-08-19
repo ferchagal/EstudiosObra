@@ -274,37 +274,7 @@ public class Panel_Estudios_Controller implements Initializable {
 				}				
 		);
 	}
-	
-	/**
-	 * Método por el que cambiamos al Panel de estudios/ofertas, lo lanzamos cuando pulsamos el
-	 * botón "Ir al panel de Ofertas".
-	 * 
-	 * @param Event, evento generado por el usuario
-	 * @throws InterruptedException 
-	 */
-	@FXML public void cargarPanelOfertas (ActionEvent Event) throws InterruptedException {		
 		
-		URL url = getClass().getResource("../vistas/Panel_OferEst.fxml");
-		
-		try {
-			Node node = FXMLLoader.load(url);
-			Scene scene = new Scene((Parent) node);
-			Stage appStage = (Stage) ((Node) Event.getSource()).getScene().getWindow();
-			appStage.setScene(scene);
-			appStage.toFront();
-			appStage.centerOnScreen();
-			appStage.show();
-			
-		}catch(Exception ex) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("INFORMACION RELEVANTE");
-			alert.setHeaderText("NO se ha podido cargar el panel");
-			alert.setContentText("Si no aparece la opción que has elegido, no pierdas la calma."
-				+ " Cierra la aplicación y vuelve a entrar en ella.");
-			alert.showAndWait();
-		}
-	}
-	
 	/**
      * Método de inicialización del controlador, iniciamos la conexion con la BD, cargamos los comboBox,
      * cargamos el tableview de Estudios, lanzamos el metodo que gestiona la seleccion de los diferentes

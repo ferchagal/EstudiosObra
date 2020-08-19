@@ -13,10 +13,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * Controlador encargado de la gestión de la ventana principal
@@ -93,6 +96,39 @@ public class VistaPrincipal_Controller implements Initializable {
 			cargarPanel("Panel_Estudios.fxml");
 		
 	}
+	
+	/**
+	 * Método que se ejecuta cuando pulsamos el botón "Ofertas", y se muestra la pantalla de 
+	 * Ofertas de la aplicación. Ejecuta el método cargarPanel () que apunta al 
+	 * archivo xml que define la interfaz del panel. 
+	 * 
+	 * @param event Evento generado por el usuario.
+	 */
+	@FXML private void cargarPanelOfertas(ActionEvent event) throws InterruptedException {
+		
+		URL url = getClass().getResource("../vistas/Panel_OferEst.fxml");
+		
+		try {
+			Node node = FXMLLoader.load(url);
+			Scene scene = new Scene((Parent) node);
+			Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			appStage.setScene(scene);
+			appStage.toFront();
+			appStage.centerOnScreen();
+			appStage.show();
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACION RELEVANTE");
+			alert.setHeaderText("NO se ha podido cargar el panel");
+			alert.setContentText("Si no aparece la opción que has elegido, no pierdas la calma."
+				+ " Cierra la aplicación y vuelve a entrar en ella.");
+			alert.showAndWait();
+		}
+	}
+	
 		
 	/**
 	 * Método que se encarga de cargar el panel que se le pasa como parámetro.
