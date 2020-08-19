@@ -363,5 +363,4 @@ public class Panel_Industriales_Controller implements Initializable{
 		//cerramos la conexion
 		miConexion.cerrarConexionBD();
 	}
-
 }

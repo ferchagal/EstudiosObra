@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 
 /**
  * Clase principal de la aplicación, lanza la aplicación.
+ * 
  * @author Fernando Chacón Galea
  * @version 2020.06.22 - V2
  */

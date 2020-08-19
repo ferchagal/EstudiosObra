@@ -27,8 +27,6 @@ import javafx.stage.Stage;
 import modelo.Conexion;
 import javafx.scene.control.Alert.AlertType;
 
-
-
 /**
  * 
  * @author Fernando Chacón Galea
@@ -135,5 +133,4 @@ public class Login_Controller implements Initializable {
 		txtUsuario.setFocusTraversable(false);
 		txtContrasena.setFocusTraversable(false);
 	}
-
 }

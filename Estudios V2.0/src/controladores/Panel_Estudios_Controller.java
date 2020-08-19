@@ -351,5 +351,4 @@ public class Panel_Estudios_Controller implements Initializable {
 		//cerramos la conexion con la BD
 		miConexion.cerrarConexionBD();		
 	}
-
 }

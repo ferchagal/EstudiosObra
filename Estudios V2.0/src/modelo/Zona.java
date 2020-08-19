@@ -164,6 +164,5 @@ public class Zona {
 	 */
 	public final void setZona(final String zona) {
 		this.zonaProperty().set(zona);
-	}
-	
+	}	
 }

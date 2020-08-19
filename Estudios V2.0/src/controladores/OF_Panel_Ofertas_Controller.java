@@ -7,14 +7,20 @@
 package controladores;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
-
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -28,39 +34,7 @@ import modelo.OfertasJdo;
 
 public class OF_Panel_Ofertas_Controller implements Initializable{
 	
-	//------------------- COMPONENTES  y MÉTODOS PARA LA GESTIÓN DE LAS OFERTAS ---------------------
-	
-	@FXML Label etiEstado;
-	
-	@FXML Button btnGuardar, btnActualizar, btnEliminar;
-	
-	@FXML TextField txtCodigoIndustrial, txtNombre, txtApellidos, txtEmail, txtEmpresa, txtActividad,
-					txtTelefono, txtComentarios;
-	
-	@FXML DatePicker dpSolicitada;
-	
-	@FXML ComboBox <String> cbEstado;
-	
-	private ObservableList <String> listaEstados;
-	
-	@FXML public void guardarIndustrial() {
-		
-	}
-	
-	@FXML public void actualizarIndustrial() {
-		
-	}
-	
-	@FXML public void eliminarIndustrial() {
-		
-	}
-	
-	@FXML public void nuevoIndustrial() {
-		
-	}
-	
-	
-	//--------------------------------------------------------------------------------------------FIN
+
 	
 	/**
 	 * Desplegable donde mostramos los estudios que están en la tabla estudios de la BD
@@ -82,15 +56,64 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 	 */
 	private ObservableList <OfertasJdo> listaOfertas;
 	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clCodigo_Industrial
+	 */	
 	@FXML private TableColumn <OfertasJdo,Integer> clCodigo_Industrial;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clNombre
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clNombre;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clApellidos
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clApellidos;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clEmail
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clEmail;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clTelefono
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clTelefono;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clActividad
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clActividad;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clEmpresa
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clEmpresa;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clSolicitada
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clSolicitada;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clEstado
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clEstado;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clComentarios
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clComentarios;
 	
 	/**
@@ -132,11 +155,231 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 		clEstado.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("estado"));
 		clComentarios.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("comentarios"));
 		
+		//seleccionamos un industrial de la tabla
+		gestionarEventos();
+		
 		//Cerramos la conexion
 		miConexion.cerrarConexionBD();
 		
 	}
+	
+	/**
+	 * Método para gestionar la seleccion de un registro en la tableView Ofertas
+	 */
+	private void gestionarEventos() {
+		//Creamos un objeto para dar formato a la hora introducida al DatePicker desde un string de la BD
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		
+		tablaOfertas.getSelectionModel().selectedItemProperty().addListener(
+				new ChangeListener<OfertasJdo>() {
+				
+					@Override
+					public void changed(ObservableValue<? extends OfertasJdo> arg0, OfertasJdo indAnterior,
+							OfertasJdo indSeleccionado) {
+						if(indSeleccionado!= null) {
+							txtCodigoIndustrial.setText(String.valueOf(indSeleccionado.getCodigo_industrial()));
+							txtNombre.setText(indSeleccionado.getNombre());
+							txtApellidos.setText(indSeleccionado.getApellidos());
+							txtEmail.setText(indSeleccionado.getEmail());
+							txtTelefono.setText(indSeleccionado.getTelefono());
+							txtActividad.setText(indSeleccionado.getActividad());
+							txtEmpresa.setText(indSeleccionado.getEmpresa());
+							try {
+								dpSolicitada.setValue(formatter.parse(indSeleccionado.getSolicitada())
+										.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+							} catch (ParseException e) {
+								
+								e.printStackTrace();
+								
+								Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Error al transformar "
+										+ "la fecha de la petición de la oferta.",ButtonType.CLOSE);
+								alerta.showAndWait();
+							}
+							cbEstado.setValue(indSeleccionado.getEstado());
+							txtComentarios.setText(indSeleccionado.getComentarios());
+							
+							//Controlamos los botones
+							btnGuardar.setDisable(true);
+							btnActualizar.setDisable(false);
+							btnEliminar.setDisable(false);
+							
+						}
+					}
+				}
+				
+		);
+		
+	}
+	
+	//------------------- COMPONENTES  y MÉTODOS PARA LA GESTIÓN DE LAS OFERTAS ---------------------
+	
+	/**
+	 * Etiqueta donde vamos mostrando las acciones que realizamos
+	 */
+	@FXML Label etiEstado;
+	
+	/**
+	 * Botones para gestionar las acciones a realizar con los estudios
+	 */
+	@FXML Button btnGuardar, btnActualizar, btnEliminar;
+	
+	/**
+	 * Campos donde recogemos los datos de los industriales
+	 */
+	@FXML TextField txtCodigoIndustrial, txtNombre, txtApellidos, txtEmail, txtEmpresa, txtActividad,
+					txtTelefono, txtComentarios;
+	/**
+	 * Campo donde recogemos la fecha de solicitud de la oferta
+	 */
+	@FXML DatePicker dpSolicitada;
+	
+	/**
+	 * ComboBox donde recogemos los Estados de las ofertas
+	 */
+	@FXML ComboBox <String> cbEstado;
+	
+	/**
+	 * Lista de tipo ObservableList para rellenar el combobox Estados
+	 */
+	private ObservableList <String> listaEstados;
+	
+	/**
+	 * Método para crear un nuevo Industrial, se agrega a la BD a la tabla Oferta seleccionada
+	 * 
+	 * @param Event evento generado por el usuario
+	 */
+	@FXML public void guardarIndustrial(ActionEvent Event) {
+		//Creamos una nueva instancia de OfertasJdo
+		OfertasJdo ind = new OfertasJdo (0,
+				txtNombre.getText(),
+				txtApellidos.getText(),
+				txtEmail.getText(),
+				txtTelefono.getText(),
+				txtActividad.getText(),
+				txtEmpresa.getText(),
+				dpSolicitada.getValue().toString(),
+				cbEstado.getSelectionModel().getSelectedItem(),
+				txtComentarios.getText());
+		
+		//abrimos conexion con la BD
+		miConexion.conectarBD();
+		//llamamos al metodo guardas de la clase OfertasJdo
+		int resultado = ind.guardarIndustrial(miConexion.getConnection(), 
+				cbEstudios.getSelectionModel().getSelectedItem());
+		//Cerramos la conexion con la BD
+		miConexion.cerrarConexionBD();
+		
+		if(resultado == 1) {
+			//añadimos el industrial insertado a la tabla Ofertas
+			listaOfertas.add(ind);
+			
+			etiEstado.setText("Industrial insertado correctamente al Estudio" +
+								cbEstudios.getSelectionModel().getSelectedItem() + ".");
+		}else {
+			etiEstado.setText("Industrial no insertado...");
+		}
+	}
+	
+	/**
+	 * Método para actualizar un registro de la tabla industriales, se actualiza en la BD y se muestra
+	 * en la tablaView Ofertas.
+	 * 
+	 * @param Event, evento generado por el usuario
+	 */
+	@FXML public void actualizarIndustrial() {
+		//Creamos una nueva instancia de OfertasJdo
+				OfertasJdo ind = new OfertasJdo (0,
+						txtNombre.getText(),
+						txtApellidos.getText(),
+						txtEmail.getText(),
+						txtTelefono.getText(),
+						txtActividad.getText(),
+						txtEmpresa.getText(),
+						dpSolicitada.getValue().toString(),
+						cbEstado.getSelectionModel().getSelectedItem(),
+						txtComentarios.getText());
+				
+				//abrimos conexion con la BD
+				miConexion.conectarBD();
+				//llamamos al metodo guardas de la clase OfertasJdo
+				int resultado = ind.actualizarIndustrial(miConexion.getConnection(), 
+						cbEstudios.getSelectionModel().getSelectedItem());
+				//Cerramos la conexion con la BD
+				miConexion.cerrarConexionBD();
+				
+				if(resultado == 1) {
+					//Añadimos el industrial actualizado en la Tabla Estudio
+					listaOfertas.add(tablaOfertas.getSelectionModel().getSelectedIndex(), ind);
+					listaOfertas.remove(tablaOfertas.getSelectionModel().getSelectedIndex());
+					
+					etiEstado.setText("Industrial actualizado correctamente");
+				}else {
+					etiEstado.setText("No se ha podido actualizar el industrial...");
+				}
+	}
+	
+	/**
+	 * Método para eliminar un industrial de la tabla Oferta de la BD
+	 * 
+	 * @param Event, evento generado por el usuario
+	 */
+	@FXML public void eliminarIndustrial() {
+		
+		//Abrimos la conexion con la BD
+		miConexion.conectarBD();
+		//Eliminamos de la tabla el industrial seleccionado
+		int resultado = tablaOfertas.getSelectionModel().getSelectedItem().eliminarIndustrial(
+				miConexion.getConnection(), cbEstudios.getSelectionModel().getSelectedItem()
+				);
+		//Cerramos la conexión con la BD
+		miConexion.cerrarConexionBD();
+	
+		if(resultado == 1) {
+			//Eliminamos el industrial de la tabla
+			listaOfertas.remove(tablaOfertas.getSelectionModel().getSelectedIndex());
+			
+			etiEstado.setText("Industrial eliminado correctamente");
+		}else {
+			etiEstado.setText("No se ha podido eliminar el industrial...");
+		}
+	}	
+	
+	/**
+	 * Método que limpia los textfield para poder insertar un nuevo Industrial en la tabla industriales
+	 * de la BD
+	 * 
+	 * @param Event, evento generado por el usuario
+	 */
+	@FXML public void nuevoIndustrial(ActionEvent Event) {
+		txtCodigoIndustrial.setText(null);
+		txtNombre.setText(null);
+		txtApellidos.setText(null);
+		txtEmail.setText(null);
+		txtEmpresa.setText(null);
+		txtActividad.setText(null);
+		txtTelefono.setText(null);
+		txtComentarios.setText(null);
+		dpSolicitada.setValue(null);
+		cbEstado.setValue(null);
+		
+		btnGuardar.setDisable(false);
+		btnActualizar.setDisable(true);
+		btnEliminar.setDisable(true);
+		
+		etiEstado.setText("Esperando acción...");
+		
+	}	
+	//--------------------------------------------------------------------------------------------FIN
 
+	/**
+     * Método de inicialización del controlador, iniciamos la conexion con la BD, cargamos los comboBox,
+     * y volvemos a cerrar la conexion con la BD
+     * 
+     * @param url La ubicación utilizada para resolver rutas relativas para el objeto raíz, o nul
+     * si no se conoce la ubicación.
+     * @param rb Los recursos utilizados para localizar el objeto raíz, o null si el objeto raíz
+     * no se localizó
+     */	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -156,7 +399,7 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 		listaEstados.add("Oferta Recibida");
 		listaEstados.add("Oferta Rechazada");
 				
-		//Añadimos los objetos al comboBox
+		//Añadimos los objetos a los comboBox
 		cbEstudios.setItems(listaEstudios);
 		cbEstado.setItems(listaEstados);
 				
@@ -164,5 +407,4 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 		miConexion.cerrarConexionBD();
 		
 	}
-
 }

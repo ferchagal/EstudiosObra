@@ -122,17 +122,14 @@ public class Panel_OferEst_Controller implements Initializable {
 				
 			
 			}catch(Exception ex) {
-				/*Alert alert = new Alert(AlertType.INFORMATION);
+				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("INFORMACION RELEVANTE");
 				alert.setHeaderText("NO se ha podido cargar el panel");
 				alert.setContentText("Si no aparece la opción que has elegido, no pierdas la calma."
 					+ " Cierra la aplicación y vuelve a entrar en ella.");
-				alert.showAndWait();*/
+				alert.showAndWait();
 				ex.printStackTrace();
-			}
-		
-		
-		
+			}	
 	}
 
 	/**
@@ -149,5 +146,4 @@ public class Panel_OferEst_Controller implements Initializable {
 		cargarPanel("OF_Panel_Inicio.fxml");
 		
 	}
-
 }

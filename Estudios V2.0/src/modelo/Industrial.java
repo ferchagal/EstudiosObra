@@ -627,7 +627,5 @@ public class Industrial {
 	 */
 	public void setZona(Zona zona) {
 		this.zona = zona;
-	}
-	
-	
+	}	
 }

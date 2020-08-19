@@ -101,8 +101,6 @@ public class VistaPrincipal_Controller implements Initializable {
 	 */
 	private void cargarPanel(String panel) {
 		
-		
-		
 			contenido.getChildren().clear();		
 		
 			URL url = getClass().getResource("../vistas/"+panel);
@@ -113,21 +111,16 @@ public class VistaPrincipal_Controller implements Initializable {
 				
 			
 			}catch(Exception ex) {
-				/*Alert alert = new Alert(AlertType.INFORMATION);
+				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("INFORMACION RELEVANTE");
 				alert.setHeaderText("NO se ha podido cargar el panel");
 				alert.setContentText("Si no aparece la opción que has elegido, no pierdas la calma."
 					+ " Cierra la aplicación y vuelve a entrar en ella.");
-				alert.showAndWait();*/
+				alert.showAndWait();
 				ex.printStackTrace();
-			}
-		
-		
-		
+			}		
 	}
 	
-	
-
 	/**
      * Método de inicialización del controlador, cargamos el panel de Inicio.
      * 
@@ -138,12 +131,7 @@ public class VistaPrincipal_Controller implements Initializable {
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		cargarPanel("Panel_Inicio.fxml");
-		
-		
-		
-		
-		
-	}
+		cargarPanel("Panel_Inicio.fxml");		
 	
+	}
 }

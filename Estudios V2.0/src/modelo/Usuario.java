@@ -207,6 +207,5 @@ public class Usuario {
 	 */
 	public final void setPassword(final String password) {
 		this.passwordProperty().set(password);
-	}
-	
+	}	
 }

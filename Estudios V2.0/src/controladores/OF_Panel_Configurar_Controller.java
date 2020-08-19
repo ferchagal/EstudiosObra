@@ -520,10 +520,6 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 		clComentarios.setCellValueFactory(new PropertyValueFactory<Industrial, String>("comentarios"));
 				
 		//Cerramos la conexion
-		miConexion.cerrarConexionBD();
-
-		
-		
+		miConexion.cerrarConexionBD();		
 	}
-
 }

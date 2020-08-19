@@ -40,15 +40,64 @@ public class OF_Panel_Inicio_Controller implements Initializable{
 	 */
 	private ObservableList <OfertasJdo> listaOfertas;
 	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clCodigo_Industrial
+	 */
 	@FXML private TableColumn <OfertasJdo,Integer> clCodigo_Industrial;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clNombre
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clNombre;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clApellidos
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clApellidos;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clEmail
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clEmail;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clTelefono
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clTelefono;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clActividad
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clActividad;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clEmpresa
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clEmpresa;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clSolicitada
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clSolicitada;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clEstado
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clEstado;
+	
+	/**
+	 * TableColum donde indicamos a que atributo-campo del objeto-tabla de tipo Estudio
+	 * se refiere la columna clComentarios
+	 */
 	@FXML private TableColumn <OfertasJdo, String> clComentarios;
 	
 	/**
@@ -56,7 +105,10 @@ public class OF_Panel_Inicio_Controller implements Initializable{
 	 */
 	private Conexion miConexion;	
 	
-	
+	/**
+	 * Método para mostrar los industriales contenidos en el estudio que seleccionemos en el comboBox
+	 * cbEstudios.
+	 */
 	@FXML private void cargarListaEstudio() {
 		
 		//Creamos un string con el nombre de la tabla de la que queremos mostrar los industriales
@@ -119,19 +171,6 @@ public class OF_Panel_Inicio_Controller implements Initializable{
 		cbEstudios.setItems(listaEstudios);
 		
 		//Cerramos la conexion
-		miConexion.cerrarConexionBD();		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		miConexion.cerrarConexionBD();			
 	}
-
 }

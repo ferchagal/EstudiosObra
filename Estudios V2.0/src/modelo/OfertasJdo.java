@@ -115,6 +115,102 @@ public class OfertasJdo implements Serializable {
 	}
 	
 	/**
+	 * Método para guardar un industrial nuevo en la tabla del Estudio correspondiente.
+	 * 
+	 * @param miConexion, objeto de tipo Connection
+	 * @param nombreTabla, debe ser una cade de texto, debe ser el nombre de la tabla donde queremos
+	 * insertar el industrial (el Estudio en si)
+	 * @return devuelve un número entero, 1 o 0, 1 cuando se ha insertado el registro correctamente,
+	 * 0 cuando el registro no se ha podido insertar.
+	 */
+	public int guardarIndustrial(Connection miConexion, String nombreTabla) {
+		try {
+			PreparedStatement consulta = miConexion.prepareStatement("INSERT INTO " + nombreTabla + 
+					" (nombre, apellidos, email, telefono, actividad, empresa, solicitada, estado,"
+					+ "comentarios) VALUES (?,?,?,?,?,?,?,?,?)");
+			
+			consulta.setString(1, nombre.get());
+			consulta.setString(2,  apellidos.get());
+			consulta.setString(3, email.get());
+			consulta.setString(4, telefono.get());
+			consulta.setString(5, actividad.get());
+			consulta.setString(6, empresa.get());
+			consulta.setString(7, solicitada.get());
+			consulta.setString(8, estado.get());
+			consulta.setString(9, comentarios.get());
+			
+			return consulta.executeUpdate();
+			
+		}catch(Exception ex) {
+
+			return 0;
+		}
+	}
+	
+	/**
+	 * Método para actualizar un industrial de la tabla Estudio donde estemos trabajando.
+	 *  
+	 * @param miConexion, objeto de tipo Connection.
+	 * @param nombreTabla, cadena de texto, debe ser el nombre del estuio (su tabla) en el que 
+	 * estemos trabajando.
+	 * @return devuelve un numero entero, 1 ó 0, 1 cuando se ha actualizado el registro correctamente,
+	 * 0 cuando el registro no se ha podido actualizar.
+	 */
+	public int actualizarIndustrial(Connection miConexion, String nombreTabla) {
+		try {
+			PreparedStatement consulta = miConexion.prepareStatement("UPDATE " + nombreTabla + "SET"
+					+ "nombre = ?, "
+					+ "apellidos = ?, "
+					+ "email = ?, "
+					+ "telefono = ?, "
+					+ "actividad = ?, "
+					+ "empresa = ?, "
+					+ "solicitada = ?, "
+					+ "estado = ?, "
+					+ "comentarios = ? "
+					+ "WHERE codigo_industrial = ?");
+			
+			consulta.setString(1, nombre.get());
+			consulta.setString(2,  apellidos.get());
+			consulta.setString(3, email.get());
+			consulta.setString(4, telefono.get());
+			consulta.setString(5, actividad.get());
+			consulta.setString(6, empresa.get());
+			consulta.setString(7, solicitada.get());
+			consulta.setString(8, estado.get());
+			consulta.setString(9, comentarios.get());
+			consulta.setInt(10, codigo_industrial.get());
+			
+			return consulta.executeUpdate();
+			
+		}catch (Exception ex) {
+			return 0;
+		}
+	}
+	
+	/**
+	 * Método para eliminar un industrial de la tabla Estudio seleccionada,
+	 * 
+	 * @param miConexion, objeto de tipo Connection
+	 * @param nombreTabla, cadena de texto con el nombre del estudio (la tabla en la BD)
+	 * @return devuelve un numero entero, 1 ó 0, 1 cuando se ha eliminado el registro correctamente,
+	 * 0 cuando el registro no se ha podido eliminar.
+	 */
+	public int eliminarIndustrial (Connection miConexion, String nombreTabla) {
+		try{
+			PreparedStatement consulta = miConexion.prepareStatement("DELETE FROM " + nombreTabla + 
+					"WHERE codigo_industrial = ?");
+			
+			consulta.setInt(1,  codigo_industrial.get());
+			
+			return consulta.executeUpdate();
+			
+		}catch(Exception ex) {
+			return 0;
+		}
+	}
+	
+	/**
 	 * Método para poder cargar el tableView desde los diferentes estudios
 	 * 
 	 * @param miConexion, objeto de tipo Connection

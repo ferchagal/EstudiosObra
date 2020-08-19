@@ -165,5 +165,4 @@ public class Panel_Inicio_Controller implements Initializable  {
 		miConexion.cerrarConexionBD();
 		
 	}
-
 }
