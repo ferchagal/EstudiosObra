@@ -54,7 +54,7 @@
                               <Font name="Verdana" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtCodigoIndustrial" layoutX="120.0" layoutY="10.0" prefHeight="30.0" prefWidth="200.0" />
+                        <TextField fx:id="txtCodigoIndustrial" editable="false" layoutX="120.0" layoutY="10.0" prefHeight="30.0" prefWidth="200.0" />
                         <TextField fx:id="txtNombre" layoutX="120.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" />
                         <TextField fx:id="txtApellidos" layoutX="120.0" layoutY="80.0" prefHeight="30.0" prefWidth="200.0" />
                         <TextField fx:id="txtEmail" layoutX="120.0" layoutY="115.0" prefHeight="30.0" prefWidth="200.0" />

@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="1002.0" prefWidth="1904.0" style="-fx-background-color: #034BF1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.VistaPrincipal_Controller">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="996.0" prefWidth="1898.0" styleClass="fondo" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
@@ -27,7 +26,7 @@
                                     <Font name="Verdana" size="15.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#cargarPanelEstudios" prefHeight="40.0" prefWidth="180.0" text="Gestión Estudios">
+                              <Button mnemonicParsing="false" onAction="#cargarPanelEstudios" prefHeight="40.0" prefWidth="180.0" text="Gestionar Estudios">
                                  <VBox.margin>
                                     <Insets left="80.0" right="40.0" top="20.0" />
                                  </VBox.margin>
@@ -35,7 +34,7 @@
                                     <Font name="Verdana" size="12.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#cargarPanelIndustriales" prefHeight="40.0" prefWidth="180.0" text="Gestión Industriales">
+                              <Button mnemonicParsing="false" onAction="#cargarPanelIndustriales" prefHeight="40.0" prefWidth="180.0" text="Gestionar Industriales">
                                  <VBox.margin>
                                     <Insets left="80.0" right="40.0" top="20.0" />
                                  </VBox.margin>
@@ -49,6 +48,22 @@
                                  </font>
                                  <VBox.margin>
                                     <Insets left="60.0" right="60.0" top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Configurar Estudio">
+                                 <font>
+                                    <Font name="Verdana" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="80.0" right="40.0" top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button disable="true" layoutX="10.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Gestionar Ofertas">
+                                 <font>
+                                    <Font name="Verdana" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="80.0" right="40.0" top="20.0" />
                                  </VBox.margin>
                               </Button>
                               <Button mnemonicParsing="false" onAction="#salirAplicacion" prefHeight="40.0" prefWidth="180.0" text="Salir">

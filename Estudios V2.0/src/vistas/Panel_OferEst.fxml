@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="1002.0" prefWidth="1904.0" style="-fx-background-color: #034BF1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.Panel_OferEst_Controller">
    <children>
       <AnchorPane prefHeight="998.0" prefWidth="1900.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
@@ -32,6 +31,22 @@
                            <VBox.margin>
                               <Insets left="60.0" right="60.0" top="50.0" />
                            </VBox.margin>
+                        </Button>
+                        <Button disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Gestionar Estudios">
+                           <font>
+                              <Font name="Verdana" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="80.0" right="40.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Gestionar Industriales">
+                           <VBox.margin>
+                              <Insets left="80.0" right="40.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Verdana" size="12.0" />
+                           </font>
                         </Button>
                         <Button mnemonicParsing="false" onAction="#cargarPanelOfertas" prefHeight="40.0" prefWidth="180.0" text="Ofertas">
                            <font>
