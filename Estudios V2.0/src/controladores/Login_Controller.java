@@ -115,6 +115,7 @@ public class Login_Controller implements Initializable {
 		
 	}
 	
+	
 	/**
 	 * Método para salir de la aplicación
 	 * 
