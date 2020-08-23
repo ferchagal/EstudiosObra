@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import application.Main;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +25,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import modelo.Conexion;
 import javafx.scene.control.Alert.AlertType;
 
@@ -33,14 +37,17 @@ import javafx.scene.control.Alert.AlertType;
  * @version 2020.06.22 - V2
  */
 public class Login_Controller implements Initializable {
+	/**
+	 * Panel principal de la pantalla de login
+	 */
+	@FXML AnchorPane root;
 	
 	/**
 	 * Campos de donde recogemos los datos de inicio de sesion
 	 */
 	@FXML TextField txtUsuario;
-	
 	@FXML PasswordField txtContrasena;
-	
+		
 	/**
 	 * Objeto de tipo Connection. Para configurar la conexión a la BBDD.
 	 */
@@ -53,6 +60,8 @@ public class Login_Controller implements Initializable {
 	 * @param Event evento generado por el usuario
 	 */
 	@FXML public void iniciarAplicacion (ActionEvent Event) {
+		
+		
 		
 		String usuario = txtUsuario.getText();
 		String contrasena = txtContrasena.getText();
@@ -114,9 +123,62 @@ public class Login_Controller implements Initializable {
 	@FXML public void salirAplicacion (ActionEvent Event){
 		System.exit(0);
 	}
+	
+	/**
+	 * Método que gestiona la animación del inicio de la aplicación
+	 */
+	private void cargarPresentacion() {
+		try {
+			Main.presentacionCargada = true;
+			
+			AnchorPane panel = FXMLLoader.load(getClass().getResource("../vistas/Panel_Presentacion.fxml"));
+			AnchorPane panel01 = FXMLLoader.load(getClass().getResource("../vistas/Login.fxml"));
+			
+			root.getChildren().setAll(panel);
+			
+			FadeTransition transicion = new FadeTransition(Duration.seconds(3), panel);
+			transicion.setFromValue(0);
+			transicion.setToValue(1);
+			transicion.setCycleCount(1);
+			
+			FadeTransition transicion01 = new FadeTransition(Duration.seconds(3), panel);
+			transicion01.setFromValue(1);
+			transicion01.setToValue(0);
+			transicion01.setCycleCount(1);
+			
+			FadeTransition transicion02 = new FadeTransition(Duration.millis(100), panel01);
+			transicion02.setFromValue(0);
+			transicion02.setToValue(1);
+			transicion02.setCycleCount(1);
+			
+			transicion.play();
+			
+			transicion.setOnFinished((e) -> {
+				transicion01.play();
+			});
+			
+			transicion01.setOnFinished((e) -> {
+				transicion02.play();
+			});
+			
+			transicion02.setOnFinished((e)->{
+				try {
+					AnchorPane parentContent = FXMLLoader.load(getClass().getResource("../vistas/Login.fxml"));
+					root.getChildren().setAll(parentContent);
+				}catch(Exception ex) {
+					
+				}
+			});
+			
+			
+		}catch(Exception ex) {
+			
+		}
+		
+	}
 
 	/**
-     * Método de inicialización del controlador, iniciamos la conexion con la BD
+     * Método de inicialización del controlador, iniciamos con la animación, y hacemos la conexion con la BD.
      * 
      * @param url La ubicación utilizada para resolver rutas relativas para el objeto raíz, o nul
      * si no se conoce la ubicación.
@@ -125,6 +187,10 @@ public class Login_Controller implements Initializable {
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		if(!Main.presentacionCargada) {
+			cargarPresentacion();
+		}
 		
 		miConexion = new Conexion();
 		miConexion.conectarBD();

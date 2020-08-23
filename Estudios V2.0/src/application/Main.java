@@ -23,6 +23,11 @@ import javafx.fxml.FXMLLoader;
 public class Main extends Application {
 	
 	/**
+	 * variable booleana para reproducir la animación del principio una sola vez.
+	 */
+	public static Boolean presentacionCargada = false;
+	
+	/**
      * Método que inicia la ventana principal de la aplicación
      * 
      * @param stage Es la ventana principal (el escenario) creada por la aplicación en si y se

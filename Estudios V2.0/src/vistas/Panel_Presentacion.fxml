@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="604.0" prefWidth="804.0" style="-fx-background-color: #034BF1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.Panel_Presentacion_Controller">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+         <image>
+            <Image url="@../imagenes/fondoNubes.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="600.0" fitWidth="800.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/FondoLogoCono.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="200.0" layoutY="50.0" text="Cargando la Aplicación...">
+         <font>
+            <Font name="Verdana Bold Italic" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
