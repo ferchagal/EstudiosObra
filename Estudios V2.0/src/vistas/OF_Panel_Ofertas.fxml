@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="966.0" prefWidth="1600.0" style="-fx-background-color: #9FB9F6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.OF_Panel_Ofertas_Controller">
+<AnchorPane fx:id="panelOfertas" prefHeight="966.0" prefWidth="1600.0" style="-fx-background-color: #9FB9F6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.OF_Panel_Ofertas_Controller">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
@@ -55,12 +55,12 @@
                            </font>
                         </Label>
                         <TextField fx:id="txtCodigoIndustrial" editable="false" layoutX="120.0" layoutY="10.0" prefHeight="30.0" prefWidth="200.0" />
-                        <TextField fx:id="txtNombre" layoutX="120.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" />
-                        <TextField fx:id="txtApellidos" layoutX="120.0" layoutY="80.0" prefHeight="30.0" prefWidth="200.0" />
-                        <TextField fx:id="txtEmail" layoutX="120.0" layoutY="115.0" prefHeight="30.0" prefWidth="200.0" />
-                        <TextField fx:id="txtEmpresa" layoutX="495.0" layoutY="115.0" prefHeight="30.0" prefWidth="200.0" />
-                        <TextField fx:id="txtActividad" layoutX="495.0" layoutY="80.0" prefHeight="30.0" prefWidth="200.0" />
-                        <TextField fx:id="txtTelefono" layoutX="495.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" />
+                        <TextField fx:id="txtNombre" layoutX="120.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="Nombre" />
+                        <TextField fx:id="txtApellidos" layoutX="120.0" layoutY="80.0" prefHeight="30.0" prefWidth="200.0" promptText="Apellido Apellido" />
+                        <TextField fx:id="txtEmail" layoutX="120.0" layoutY="115.0" prefHeight="30.0" prefWidth="200.0" promptText="email@email.com" />
+                        <TextField fx:id="txtEmpresa" layoutX="495.0" layoutY="115.0" prefHeight="30.0" prefWidth="200.0" promptText="Nombre empresa" />
+                        <TextField fx:id="txtActividad" layoutX="495.0" layoutY="80.0" prefHeight="30.0" prefWidth="200.0" promptText="Actividad ejercida" />
+                        <TextField fx:id="txtTelefono" layoutX="495.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="nº de teléfono" />
                         <Label layoutX="390.0" layoutY="120.0" text="Empresa:">
                            <font>
                               <Font name="Verdana" size="15.0" />
@@ -76,7 +76,6 @@
                               <Font name="Verdana" size="15.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="dpSolicitada" layoutX="765.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="220.0" promptText="Selecciona una fecha" />
                         <Label layoutX="765.0" layoutY="15.0" text="Solicitada:">
                            <font>
                               <Font name="Verdana" size="15.0" />
@@ -87,13 +86,14 @@
                               <Font name="Verdana" size="15.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cbEstado" layoutX="765.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="220.0" promptText="Selecciona un estado..." />
-                        <TextField fx:id="txtComentarios" layoutX="1055.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" />
-                        <Label layoutX="1055.0" layoutY="15.0" text="Comentarios:">
+                        <ComboBox fx:id="cbEstado" layoutX="765.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Selecciona un estado..." />
+                        <TextField fx:id="txtComentarios" layoutX="1033.0" layoutY="46.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" />
+                        <Label layoutX="1033.0" layoutY="16.0" text="Comentarios:">
                            <font>
                               <Font name="Verdana" size="15.0" />
                            </font>
                         </Label>
+                        <TextField fx:id="txtSolicitada" layoutX="765.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="dd/mm/yyyy" />
                      </children>
                   </AnchorPane>
                   <Button layoutX="1300.0" layoutY="210.0" mnemonicParsing="false" onAction="#nuevoIndustrial" prefHeight="30.0" prefWidth="100.0" text="Nuevo" AnchorPane.bottomAnchor="10.0">

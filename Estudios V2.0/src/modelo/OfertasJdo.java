@@ -132,7 +132,7 @@ public class OfertasJdo implements Serializable {
 		try {
 			PreparedStatement consulta = miConexion.prepareStatement("INSERT INTO " + nombreTabla + 
 					" (nombre, apellidos, email, telefono, actividad, empresa, solicitada, estado,"
-					+ "comentarios) VALUES (?,?,?,?,?,?,?,?,?)");
+					+ " comentarios) VALUES (?,?,?,?,?,?,?,?,?)");
 			
 			consulta.setString(1, nombre.get());
 			consulta.setString(2,  apellidos.get());
@@ -147,7 +147,7 @@ public class OfertasJdo implements Serializable {
 			return consulta.executeUpdate();
 			
 		}catch(Exception ex) {
-
+			ex.printStackTrace();
 			return 0;
 		}
 	}
@@ -163,7 +163,7 @@ public class OfertasJdo implements Serializable {
 	 */
 	public int actualizarIndustrial(Connection miConexion, String nombreTabla) {
 		try {
-			PreparedStatement consulta = miConexion.prepareStatement("UPDATE " + nombreTabla + "SET"
+			PreparedStatement consulta = miConexion.prepareStatement("UPDATE " + nombreTabla + " SET "
 					+ "nombre = ?, "
 					+ "apellidos = ?, "
 					+ "email = ?, "
@@ -176,7 +176,7 @@ public class OfertasJdo implements Serializable {
 					+ "WHERE codigo_industrial = ?");
 			
 			consulta.setString(1, nombre.get());
-			consulta.setString(2,  apellidos.get());
+			consulta.setString(2, apellidos.get());
 			consulta.setString(3, email.get());
 			consulta.setString(4, telefono.get());
 			consulta.setString(5, actividad.get());
@@ -189,6 +189,7 @@ public class OfertasJdo implements Serializable {
 			return consulta.executeUpdate();
 			
 		}catch (Exception ex) {
+			ex.printStackTrace();
 			return 0;
 		}
 	}
@@ -204,13 +205,14 @@ public class OfertasJdo implements Serializable {
 	public int eliminarIndustrial (Connection miConexion, String nombreTabla) {
 		try{
 			PreparedStatement consulta = miConexion.prepareStatement("DELETE FROM " + nombreTabla + 
-					"WHERE codigo_industrial = ?");
+					" WHERE codigo_industrial = ?");
 			
 			consulta.setInt(1,  codigo_industrial.get());
 			
 			return consulta.executeUpdate();
 			
 		}catch(Exception ex) {
+			ex.printStackTrace();
 			return 0;
 		}
 	}
@@ -328,7 +330,7 @@ public class OfertasJdo implements Serializable {
 						+"(codigo_industrial, nombre, apellidos, email, telefono, actividad, empresa,"
 						+"solicitada, estado, comentarios) VALUES (?,?,?,?,?,?,?,?,?,?)");
 				
-				insertarOfertas.setInt(1, rs.getInt("codigo_industrial"));
+				insertarOfertas.setInt(1, 0);
 				insertarOfertas.setString(2, rs.getString("nombre"));
 				insertarOfertas.setString(3, rs.getString("apellidos"));
 				insertarOfertas.setString(4, rs.getString("email"));
@@ -368,7 +370,7 @@ public class OfertasJdo implements Serializable {
 			PreparedStatement consulta;
 			
 			consulta = miConexion.prepareStatement("CREATE TABLE " + nombreTabla + " ("
-					+ "codigo_industrial INT NOT NULL,"
+					+ "codigo_industrial INT NOT NULL AUTO_INCREMENT,"
 					+ "nombre VARCHAR(50) NOT NULL,"
 					+ "apellidos VARCHAR(50) NOT NULL,"
 					+ "email VARCHAR(100) NULL,"

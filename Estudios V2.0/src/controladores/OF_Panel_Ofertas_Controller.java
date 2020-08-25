@@ -7,9 +7,6 @@
 package controladores;
 
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.ZoneId;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,23 +15,24 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import modelo.Conexion;
 import modelo.Estudio;
 import modelo.OfertasJdo;
 
 public class OF_Panel_Ofertas_Controller implements Initializable{
-	
-
+	/**
+	 * Panel principal de la Vista
+	 */
+	@FXML AnchorPane panelOfertas;
 	
 	/**
 	 * Desplegable donde mostramos los estudios que están en la tabla estudios de la BD
@@ -142,7 +140,7 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 		
 		//Añadimos los objetos a la tabla
 		tablaOfertas.setItems(listaOfertas);
-		
+						
 		//Enlazamos las columnas con los atributos
 		clCodigo_Industrial.setCellValueFactory(new PropertyValueFactory<OfertasJdo, Integer>("codigo_industrial"));
 		clNombre.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("nombre"));
@@ -155,11 +153,39 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 		clEstado.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("estado"));
 		clComentarios.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("comentarios"));
 		
+		tablaOfertas.getColumns().get(0).setVisible(false);
+		tablaOfertas.getColumns().get(0).setVisible(true);
+				
 		//seleccionamos un industrial de la tabla
 		gestionarEventos();
 		
 		//Cerramos la conexion
 		miConexion.cerrarConexionBD();
+		
+		//Gestionamos el color de las filas según el valor de su estado
+		tablaOfertas.setRowFactory(row -> new TableRow<OfertasJdo>() {
+			@Override
+			public void updateItem(OfertasJdo item, boolean empty) {
+				super.updateItem(item, empty);
+				if(item == null || item.getEstado() == null) {
+					setStyle("");
+			
+				}else {
+					if(item.getEstado().equalsIgnoreCase("Pendiente")) {
+						this.setId("Pendiente");
+					}
+					if(item.getEstado().equalsIgnoreCase("Oferta Solicitada")) {
+						this.setId("OfertaSolicitada");
+					}
+					if (item.getEstado().equalsIgnoreCase("Oferta Recibida")){
+						this.setId("OfertaRecibida");
+					}
+					if(item.getEstado().equalsIgnoreCase("Oferta Rechazada")) {
+						this.setId("OfertaRechazada");
+					}
+				}
+			}
+		});
 		
 	}
 	
@@ -167,9 +193,7 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 	 * Método para gestionar la seleccion de un registro en la tableView Ofertas
 	 */
 	private void gestionarEventos() {
-		//Creamos un objeto para dar formato a la hora introducida al DatePicker desde un string de la BD
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		
+				
 		tablaOfertas.getSelectionModel().selectedItemProperty().addListener(
 				new ChangeListener<OfertasJdo>() {
 				
@@ -184,17 +208,7 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 							txtTelefono.setText(indSeleccionado.getTelefono());
 							txtActividad.setText(indSeleccionado.getActividad());
 							txtEmpresa.setText(indSeleccionado.getEmpresa());
-							try {
-								dpSolicitada.setValue(formatter.parse(indSeleccionado.getSolicitada())
-										.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-							} catch (ParseException e) {
-								
-								e.printStackTrace();
-								
-								Alert alerta = new Alert (Alert.AlertType.INFORMATION,"Error al transformar "
-										+ "la fecha de la petición de la oferta.",ButtonType.CLOSE);
-								alerta.showAndWait();
-							}
+							txtSolicitada.setText(indSeleccionado.getSolicitada());
 							cbEstado.setValue(indSeleccionado.getEstado());
 							txtComentarios.setText(indSeleccionado.getComentarios());
 							
@@ -227,11 +241,7 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 	 * Campos donde recogemos los datos de los industriales
 	 */
 	@FXML TextField txtCodigoIndustrial, txtNombre, txtApellidos, txtEmail, txtEmpresa, txtActividad,
-					txtTelefono, txtComentarios;
-	/**
-	 * Campo donde recogemos la fecha de solicitud de la oferta
-	 */
-	@FXML DatePicker dpSolicitada;
+					txtTelefono,txtSolicitada, txtComentarios;
 	
 	/**
 	 * ComboBox donde recogemos los Estados de las ofertas
@@ -257,7 +267,7 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 				txtTelefono.getText(),
 				txtActividad.getText(),
 				txtEmpresa.getText(),
-				dpSolicitada.getValue().toString(),
+				txtSolicitada.getText(),
 				cbEstado.getSelectionModel().getSelectedItem(),
 				txtComentarios.getText());
 		
@@ -286,24 +296,28 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 	 * 
 	 * @param Event, evento generado por el usuario
 	 */
-	@FXML public void actualizarIndustrial() {
+	@FXML public void actualizarIndustrial(ActionEvent Event) {
 		//Creamos una nueva instancia de OfertasJdo
-				OfertasJdo ind = new OfertasJdo (0,
+				OfertasJdo ind = new OfertasJdo (
+						Integer.valueOf(txtCodigoIndustrial.getText()),
 						txtNombre.getText(),
 						txtApellidos.getText(),
 						txtEmail.getText(),
 						txtTelefono.getText(),
 						txtActividad.getText(),
 						txtEmpresa.getText(),
-						dpSolicitada.getValue().toString(),
+						txtSolicitada.getText(),
 						cbEstado.getSelectionModel().getSelectedItem(),
 						txtComentarios.getText());
 				
 				//abrimos conexion con la BD
 				miConexion.conectarBD();
+				
+				//Guardamos el nombre de la tabla en un String
+				String nombreTabla = cbEstudios.getSelectionModel().getSelectedItem();
 				//llamamos al metodo guardas de la clase OfertasJdo
 				int resultado = ind.actualizarIndustrial(miConexion.getConnection(), 
-						cbEstudios.getSelectionModel().getSelectedItem());
+						nombreTabla);
 				//Cerramos la conexion con la BD
 				miConexion.cerrarConexionBD();
 				
@@ -314,6 +328,7 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 					
 					etiEstado.setText("Industrial actualizado correctamente");
 				}else {
+					
 					etiEstado.setText("No se ha podido actualizar el industrial...");
 				}
 	}
@@ -323,7 +338,7 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 	 * 
 	 * @param Event, evento generado por el usuario
 	 */
-	@FXML public void eliminarIndustrial() {
+	@FXML public void eliminarIndustrial(ActionEvent Event) {
 		
 		//Abrimos la conexion con la BD
 		miConexion.conectarBD();
@@ -359,7 +374,7 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 		txtActividad.setText(null);
 		txtTelefono.setText(null);
 		txtComentarios.setText(null);
-		dpSolicitada.setValue(null);
+		txtSolicitada.setText(null);
 		cbEstado.setValue(null);
 		
 		btnGuardar.setDisable(false);
@@ -382,6 +397,8 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
      */	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		//Aplicamos estilos CSS
+		panelOfertas.getStylesheets().add(getClass().getResource("../estilos/EstilosPorDefecto.css").toExternalForm());
 		
 		//Conectamos con la BD
 		miConexion = new Conexion();

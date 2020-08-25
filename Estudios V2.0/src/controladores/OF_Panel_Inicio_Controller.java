@@ -8,13 +8,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import modelo.Conexion;
 import modelo.Estudio;
 import modelo.OfertasJdo;
 
 public class OF_Panel_Inicio_Controller implements Initializable{
+	
+	/**
+	 * Panel principal de la vista
+	 */
+	@FXML private AnchorPane panelInicio;
 		
 	/**
 	 * Desplegable donde mostramos los estudios que están en la tabla estudios de la BD
@@ -138,6 +145,31 @@ public class OF_Panel_Inicio_Controller implements Initializable{
 		//Cerramos la conexion
 		miConexion.cerrarConexionBD();
 		
+		//Gestionamos el color de las filas según el valor de su estado
+		tablaOfertas.setRowFactory(row -> new TableRow<OfertasJdo>() {
+			@Override
+			public void updateItem(OfertasJdo item, boolean empty) {
+				super.updateItem(item, empty);
+				if(item == null || item.getEstado() == null) {
+					setStyle("");
+					
+				}else {
+					if(item.getEstado().equalsIgnoreCase("Pendiente")) {
+						this.setId("Pendiente");
+					}
+					if(item.getEstado().equalsIgnoreCase("Oferta Solicitada")) {
+						this.setId("OfertaSolicitada");
+					}
+					if (item.getEstado().equalsIgnoreCase("Oferta Recibida")){
+						this.setId("OfertaRecibida");
+					}
+					if(item.getEstado().equalsIgnoreCase("Oferta Rechazada")) {
+						this.setId("OfertaRechazada");
+					}
+				}
+			}
+		});
+		
 	}
 
 	/**
@@ -152,7 +184,9 @@ public class OF_Panel_Inicio_Controller implements Initializable{
      */	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		//Aplicamos estilos CSS
+		panelInicio.getStylesheets().add(getClass().getResource("../estilos/EstilosPorDefecto.css").toExternalForm());
+				
 		//Conectamos con la BD
 		miConexion = new Conexion();
 		miConexion.conectarBD();

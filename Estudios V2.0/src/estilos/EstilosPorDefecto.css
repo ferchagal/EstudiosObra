@@ -1,0 +1,35 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+/*centrar y cambiar color de los titulos de columnas*/
+.table-view .column-header .label {
+    -fx-text-fill: #486E88;
+    -fx-alignment: CENTER;
+}
+/*controlamos los colores de las filas de las tableviws a nivel de texto y color de fondo */
+#Pendiente .text{
+	-fx-fill:black;
+}
+#Pendiente .table-row{
+	
+}
+
+#OfertaSolicitada .text{
+	-fx-fill:white; 
+}
+#OfertaSolicitada .table-cell{
+	-fx-background-color:#486E88;
+}
+
+#OfertaRecibida .text{
+	-fx-fill:white;
+}
+#OfertaRecibida .table-cell{
+	-fx-background-color:#4F9F64;
+}
+
+#OfertaRechazada .text{
+	-fx-fill:white;
+}
+#OfertaRechazada .table-cell{
+	-fx-background-color:#D46D6A;
+}
