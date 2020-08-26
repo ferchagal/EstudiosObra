@@ -15,12 +15,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Conexion;
 import modelo.Estudio;
@@ -132,8 +134,25 @@ public class Panel_Estudios_Controller implements Initializable {
 	 * @param Event evento generado por el usuario
 	 */
 	@FXML public void guardarEstudio (ActionEvent Event) {
-		//Creamos una nueva instancia de estudio
-		Estudio est = new Estudio(0,
+		//Primero evaluamos que todos los campos obligatorios (manda la BBDD y sus especificaciones
+		//para cada tabla y sus columnas/atributos		
+		if(txtReferencia.getText().equals(null) ||
+				txtDesignacion.getText().equals(null) ||
+				txtAnyo.getText().equals(null) ||
+				txtAdjudicada.getText().equals(null) ||
+				cbUsuario.getSelectionModel().getSelectedItem() == null ||
+				cbZona.getSelectionModel().getSelectedItem() == null) {
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACIÓN");
+			alert.setHeaderText("Para poder guardar un Estudio nuevo:");
+			alert.setContentText("No debes dejar ningún campo de texto vacío, y debes seleccionar"
+					+ " un Técnico y una Zona geográfica para el Estudio.");
+			alert.showAndWait();
+		}
+		else {
+			//Creamos una nueva instancia de estudio
+			Estudio est = new Estudio(0,
 				txtReferencia.getText(),
 				txtDesignacion.getText(),
 				Integer.valueOf(txtAnyo.getText()),
@@ -142,20 +161,21 @@ public class Panel_Estudios_Controller implements Initializable {
 				cbZona.getSelectionModel().getSelectedItem()
 				);
 		
-		//abrimos la conexion
-		miConexion.conectarBD();
-		//llamamos al metodo guardar de la clase estudio
-		int resultado = est.guardarEstudio(miConexion.getConnection());
-		//Cerramos la conexion
-		miConexion.cerrarConexionBD();
+			//abrimos la conexion
+			miConexion.conectarBD();
+			//llamamos al metodo guardar de la clase estudio
+			int resultado = est.guardarEstudio(miConexion.getConnection());
+			//Cerramos la conexion
+			miConexion.cerrarConexionBD();
 		
-		if(resultado == 1) {
-			//Añadimos el industrial insertado en la BBDD al Tableview Industriales
-			listaEstudios.add(est);
+			if(resultado == 1) {
+				//Añadimos el industrial insertado en la BBDD al Tableview Industriales
+				listaEstudios.add(est);
 			
-			etiEstado.setText("Estudio insertado correctamente");
-		}else {
-			etiEstado.setText("Estudio no insertado...");
+				etiEstado.setText("Estudio insertado correctamente");
+			}else {
+				etiEstado.setText("Estudio no insertado...");
+			}
 		}
 	}
 	
@@ -166,8 +186,25 @@ public class Panel_Estudios_Controller implements Initializable {
 	 * @param Event, evento generado por el usuario
 	 */
 	@FXML public void actualizarEstudio (ActionEvent Event) {
-		//Creamos una nueva instancia de estudio
-		Estudio est = new Estudio(
+		//Primero evaluamos que todos los campos obligatorios (manda la BBDD y sus especificaciones
+		//para cada tabla y sus columnas/atributos
+		if(txtReferencia.getText().equals(null) ||
+				txtDesignacion.getText().equals(null) ||
+				txtAnyo.getText().equals(null) ||
+				txtAdjudicada.getText().equals(null) ||
+				cbUsuario.getSelectionModel().getSelectedItem() == null ||
+				cbZona.getSelectionModel().getSelectedItem() == null) {
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACIÓN");
+			alert.setHeaderText("Para actualizar un Estudio:");
+			alert.setContentText("No debes dejar ningún campo de texto vacío, y debes seleccionar"
+					+ " un Técnico y una Zona geográfica para el Estudio.");
+			alert.showAndWait();
+		}
+		else {
+			//Creamos una nueva instancia de estudio
+			Estudio est = new Estudio(
 				Integer.valueOf(txtCodigo_Estudio.getText()),
 				txtReferencia.getText(),
 				txtDesignacion.getText(),
@@ -177,21 +214,22 @@ public class Panel_Estudios_Controller implements Initializable {
 				cbZona.getSelectionModel().getSelectedItem()
 				);
 				
-		//abrimos la conexion
-		miConexion.conectarBD();
-		//llamamos al metodo guardar de la clase estudio
-		int resultado = est.actualizarEstudio(miConexion.getConnection());
-		//Cerramos la conexion
-		miConexion.cerrarConexionBD();
+			//abrimos la conexion
+			miConexion.conectarBD();
+			//llamamos al metodo guardar de la clase estudio
+			int resultado = est.actualizarEstudio(miConexion.getConnection());
+			//Cerramos la conexion
+			miConexion.cerrarConexionBD();
 				
-		if(resultado == 1) {
-			//Añadimos el industrial actualizado en la BBDD al Tableview Industriales
-			listaEstudios.add(tablaEstudios.getSelectionModel().getSelectedIndex(),est);
-			listaEstudios.remove(tablaEstudios.getSelectionModel().getSelectedIndex());
+			if(resultado == 1) {
+				//Añadimos el industrial actualizado en la BBDD al Tableview Industriales
+				listaEstudios.add(tablaEstudios.getSelectionModel().getSelectedIndex(),est);
+				listaEstudios.remove(tablaEstudios.getSelectionModel().getSelectedIndex());
 					
-			etiEstado.setText("Estudio actualizado correctamente");
-		}else {
-			etiEstado.setText("No se ha podido actualizar el estudio...");
+				etiEstado.setText("Estudio actualizado correctamente");
+			}else {
+				etiEstado.setText("No se ha podido actualizar el estudio...");
+			}
 		}
 	}
 	

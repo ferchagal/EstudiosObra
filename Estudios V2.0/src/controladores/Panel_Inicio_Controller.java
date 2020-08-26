@@ -10,11 +10,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Conexion;
 import modelo.Estudio;
@@ -88,6 +91,37 @@ public class Panel_Inicio_Controller implements Initializable  {
 	 * Lista de tipo ObservableList para rellenar la tabla de estudios
 	 */
 	private ObservableList<Estudio> estudios;
+	
+	/**
+     * Método que se ejecuta cuando pinchamos en el botón "Sobre CONO, "Acerca de ...", nos muestra
+     * una ventana con información sobre la aplicación.
+     * 
+     * @param event Evento generado por el usuario. 
+     */
+	@FXML private void acercaDe (ActionEvent event) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("INFORMACION SOBRE LA APLICACIÓN");
+		alert.setHeaderText("Esta información te interesa:");
+		alert.setContentText("Esta aplicación ha sido desarrollada para facilitar la gestión"
+				+ " de ofertas de industriales/proveedores, para la realización de estudios"
+				+ " de obras.\nSi tienes alguna duda o cuestión, ponte en contacto con:\n\nferchagal@gmail.com ");
+		alert.showAndWait();	
+	}
+	
+	/**
+     * Método que se ejecuta cuando pinchamos sobre el botón "Ver Manual de Usuario", nos muestra
+     * una ventana con el manual de usuario.
+     * 
+     * @param event Evento generado por el usuario. 
+     */
+	@FXML private void verManualUsuario (ActionEvent event) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("FUNCION NO IMPLEMENTADA");
+		alert.setHeaderText("Esta información te interesa:");
+		alert.setContentText("En esta sección encontrarás en breve un Manual de usuario."
+				+ "\nSi tienes alguna duda o cuestión, ponte en contacto con:\n\nferchagal@gmail.com ");
+		alert.showAndWait();
+	}
 	
 	/**
      * Método de inicialización del controlador, iniciamos la conexion con la BD, cargamos el tableview

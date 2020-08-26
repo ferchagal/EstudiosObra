@@ -40,10 +40,10 @@
         <columns>
           <TableColumn fx:id="clCodigo_Estudio" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Código" />
             <TableColumn fx:id="clReferencia" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Referencia" />
-          <TableColumn fx:id="clDesignacion" maxWidth="260.0" minWidth="260.0" prefWidth="260.0" text="Designación" />
+          <TableColumn fx:id="clDesignacion" maxWidth="240.0" minWidth="240.0" prefWidth="240.0" text="Designación" />
            <TableColumn fx:id="clAnyo" maxWidth="80.0" minWidth="80.0" text="Año" />
            <TableColumn fx:id="clAdjudicada" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Adjudicada" />
-            <TableColumn fx:id="clUsuario" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Estudiada por" />
+            <TableColumn fx:id="clUsuario" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Estudiada por" />
             <TableColumn fx:id="clZona" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Zona" />
         </columns>
       </TableView>
@@ -58,6 +58,21 @@
       <Label layoutX="647.0" layoutY="254.0" text="Estudios en proceso y finalizados:">
          <font>
             <Font name="Verdana Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="150.0" layoutY="350.0" mnemonicParsing="false" onAction="#acercaDe" prefHeight="40.0" prefWidth="260.0" text="Sobre CONO (CONtrol de Ofertas)">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="150.0" layoutY="420.0" mnemonicParsing="false" onAction="#verManualUsuario" prefHeight="40.0" prefWidth="260.0" text="Ver Manual de Usuario">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="460.0" layoutY="814.0" text="2020 - Fer">
+         <font>
+            <Font name="Verdana" size="12.0" />
          </font>
       </Label>
    </children>

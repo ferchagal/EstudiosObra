@@ -77,37 +77,37 @@
                      </GridPane.margin>
                   </Label>
                   
-                  <TextField fx:id="txtCodigo_Estudio" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1">
+                  <TextField fx:id="txtCodigo_Estudio" editable="false" prefHeight="25.0" prefWidth="250.0" promptText="No introducir nada" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtReferencia" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtReferencia" prefHeight="25.0" prefWidth="250.0" promptText="E00000000" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtDesignacion" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="txtDesignacion" prefHeight="25.0" prefWidth="250.0" promptText="Nombre identificativo" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtAnyo" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="txtAnyo" prefHeight="25.0" prefWidth="250.0" promptText="Año de realización del Estudio" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtAdjudicada" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="txtAdjudicada" prefHeight="25.0" prefWidth="250.0" promptText="Sí / No / Pendiente" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <ComboBox fx:id="cbUsuario" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <ComboBox fx:id="cbUsuario" prefWidth="250.0" promptText="Elige uno de los Técnicos" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <ComboBox fx:id="cbZona" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ComboBox fx:id="cbZona" prefWidth="250.0" promptText="Zona geográfica de la obra" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
@@ -119,6 +119,62 @@
                      <padding>
                         <Insets right="10.0" />
                      </padding>
+                  </Label>
+                  <Label text="* E/O + 8 dígitos (aaaaMM99). Obligatorio" textFill="#0000006d" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Verdana Italic" size="10.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="* Generado Automáticamente" textFill="#00000083" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Verdana Italic" size="10.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="* Obligatorio" textFill="#00000082" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Verdana Italic" size="10.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="* Obligatorio. Deben ser 4 dígitos" textFill="#00000081" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Verdana Italic" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label text="* Obligatorio" textFill="#00000083" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Verdana Italic" size="10.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="* Obligatorio" textFill="#00000082" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Verdana Italic" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label text="* Obligatorio" textFill="#00000083" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Verdana Italic" size="10.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </GridPane.margin>
                   </Label>
                </children>
             </GridPane>
@@ -176,20 +232,26 @@
             </Label>
          </children>
       </AnchorPane>
-      <ScrollPane layoutX="650.0" layoutY="120.0" prefViewportHeight="700.0" prefViewportWidth="915.0">
-         <content>
-            <TableView fx:id="tablaEstudios" layoutX="650.0" layoutY="120.0" prefHeight="700.0" prefWidth="915.0">
-              <columns>
-                <TableColumn fx:id="clCodigo_Estudio" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Código" />
-                <TableColumn fx:id="clReferencia" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Referencia" />
-                <TableColumn fx:id="clDesignacion" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="Designación" />
-                <TableColumn fx:id="clAnyo" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Año" />
-                <TableColumn fx:id="clAdjudicada" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Adjudicada" />
-                <TableColumn fx:id="clUsuario" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Estudiada por" />
-                <TableColumn fx:id="clZona" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Situación" />
-              </columns>
-            </TableView>
-         </content>
-      </ScrollPane>
+      <TableView fx:id="tablaEstudios" layoutX="660.0" layoutY="120.0" prefHeight="700.0" prefWidth="900.0">
+        <columns>
+          <TableColumn fx:id="clCodigo_Estudio" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Código" />
+          <TableColumn fx:id="clReferencia" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Referencia" />
+          <TableColumn fx:id="clDesignacion" maxWidth="240.0" minWidth="240.0" prefWidth="240.0" text="Designación" />
+          <TableColumn fx:id="clAnyo" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Año" />
+          <TableColumn fx:id="clAdjudicada" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Adjudicada" />
+          <TableColumn fx:id="clUsuario" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Estudiada por" />
+          <TableColumn fx:id="clZona" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Situación" />
+        </columns>
+      </TableView>
+      <Label layoutX="660.0" layoutY="51.0" text="Estudios en proceso o realizados:">
+         <font>
+            <Font name="Verdana Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1540.0" layoutY="940.0" text="2020 - Fer">
+         <font>
+            <Font name="Verdana" size="10.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

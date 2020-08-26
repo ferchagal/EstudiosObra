@@ -43,21 +43,7 @@ public class VistaPrincipal_Controller implements Initializable {
 		System.exit(0);
 	}
 	
-	/**
-     * Método que se ejecuta cuando seleccionamos en el menú "Ayuda", "Acerca de ...", nos muestra
-     * una ventana con información sobre la aplicación.
-     * 
-     * @param event Evento generado por el usuario. 
-     */
-	@FXML private void acercaDe (ActionEvent event) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("INFORMACION SOBRE LA APLICACIÓN");
-		alert.setHeaderText("Esta información te interesa:");
-		alert.setContentText("Esta aplicación ha sido desarrollada para facilitar la gestión"
-				+ " de ofertas de industriales/proveedores, para la realización de estudios"
-				+ " de obras.\nSi tienes alguna duda o cuestión, ponte en contacto con:\n\nferchagal@gmail.com ");
-		alert.showAndWait();	
-	}
+	
 	
 	/**
 	 * Método que se ejecuta cuando pulsamos el botón "Inicio", y se muestra la pantalla de inicio 
