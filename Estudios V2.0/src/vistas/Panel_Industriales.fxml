@@ -120,17 +120,17 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="txtCodigoIndustrial" editable="false" prefHeight="25.0" prefWidth="250.0" promptText="No introducir nada" GridPane.columnIndex="1">
+                  <TextField fx:id="txtCodigoIndustrial" editable="false" prefHeight="25.0" prefWidth="250.0" promptText="Generado Automáticamente" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="250.0" promptText="Nombre del Industrial" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="250.0" promptText="Nombre del Industrial (*)" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtApellidos" prefHeight="25.0" prefWidth="250.0" promptText="Apellido Apellido" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="txtApellidos" prefHeight="25.0" prefWidth="250.0" promptText="Apellidos" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
@@ -140,7 +140,7 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtTelefono" prefHeight="25.0" prefWidth="250.0" promptText="99999999" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="txtTelefono" prefHeight="25.0" prefWidth="250.0" promptText="999999999 (*)" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
@@ -155,7 +155,7 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="txtLocalidad" layoutX="230.0" layoutY="523.0" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <TextField fx:id="txtLocalidad" layoutX="230.0" layoutY="523.0" prefHeight="25.0" prefWidth="250.0" promptText="Municipio" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
@@ -165,12 +165,12 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <ComboBox fx:id="cbActividad" prefWidth="250.0" promptText="Elige Actividad Industrial" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ComboBox fx:id="cbActividad" prefWidth="250.0" promptText="Elige Actividad Industrial (*)" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <ComboBox fx:id="cbZona" prefWidth="250.0" promptText="Elige Zona gegráfica " GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  <ComboBox fx:id="cbZona" prefWidth="250.0" promptText="Elige Zona gegráfica (*)" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
@@ -183,61 +183,13 @@
                         <Insets left="20.0" top="50.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="* Introduce sólo 9 dígitos. No obligatorio" textFill="#00000082" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <Label text="* Introduce sólo 9 dígitos" textFill="#00000082" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="20.0" top="50.0" />
                      </GridPane.margin>
                      <font>
                         <Font name="Verdana Italic" size="10.0" />
                      </font>
-                  </Label>
-                  <Label text="* Generado Automáticamente" textFill="#00000083" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="Verdana Italic" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="20.0" top="50.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="* No obligatorio" textFill="#00000083" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                     <font>
-                        <Font name="Verdana Italic" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="20.0" top="50.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="* No obligatorio" textFill="#00000082" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="20.0" top="50.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Verdana Italic" size="10.0" />
-                     </font>
-                  </Label>
-                  <Label text="* No obligatorio" textFill="#00000082" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Verdana Italic" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="20.0" top="50.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="* No obligatorio" textFill="#00000083" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                     <font>
-                        <Font name="Verdana Italic" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="20.0" top="50.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="* No obligatorio" textFill="#00000082" GridPane.columnIndex="1" GridPane.rowIndex="10">
-                     <font>
-                        <Font name="Verdana Italic" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="20.0" top="70.0" />
-                     </GridPane.margin>
                   </Label>
                </children>
             </GridPane>
@@ -246,7 +198,7 @@
                   <Font name="Verdana Italic" size="18.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" layoutY="770.0" prefHeight="100.0" prefWidth="600.0">
+            <HBox alignment="CENTER" layoutY="790.0" prefHeight="80.0" prefWidth="600.0">
                <children>
                   <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarIndustrial" prefHeight="30.0" prefWidth="100.0" text="Guardar">
                      <font>
@@ -293,6 +245,11 @@
                   <Font name="Verdana Bold Italic" size="14.0" />
                </font>
             </Label>
+            <Label layoutX="240.0" layoutY="770.0" text="(*) Campos Obligatorios">
+               <font>
+                  <Font name="Verdana Italic" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <ScrollPane layoutX="650.0" layoutY="120.0" prefViewportHeight="700.0" prefViewportWidth="915.0">
@@ -317,6 +274,11 @@
       <Label layoutX="1540.0" layoutY="940.0" text="2020 - Fer">
          <font>
             <Font name="Verdana" size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="650.0" layoutY="48.0" text="Listado de Industriales:">
+         <font>
+            <Font name="Verdana Bold Italic" size="24.0" />
          </font>
       </Label>
    </children>

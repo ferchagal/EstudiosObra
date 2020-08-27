@@ -1,6 +1,6 @@
 /**
  * Módulo: Estudios de Obra. Aplicación de escritorio
- * Archivo: LoginController.java
+ * Archivo: Login_Controller.java
  * Objetivo: Archivo Controller de la Vista Principal.
  * Equipo/Persona: Fernando Chacón Galea  28.614.518 - B
  */
@@ -32,6 +32,7 @@ import modelo.Conexion;
 import javafx.scene.control.Alert.AlertType;
 
 /**
+ * Clase que controla la vista inicial del LogIn
  * 
  * @author Fernando Chacón Galea
  * @version 2020.06.22 - V2

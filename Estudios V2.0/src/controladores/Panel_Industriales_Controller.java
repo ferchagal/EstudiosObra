@@ -16,12 +16,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Actividad;
 import modelo.Conexion;
@@ -29,6 +31,7 @@ import modelo.Industrial;
 import modelo.Zona;
 
 /**
+ * Clase controladora del Panel "Gestión de Industriales"
  * 
  * @author Fernando Chacón Galea
  * @version 2020.06.22 - V2
@@ -158,8 +161,44 @@ public class Panel_Industriales_Controller implements Initializable{
 	 * @param Event evento generado por el usuario
 	 */
 	@FXML public void guardarIndustrial (ActionEvent Event) {
-		//creamos una nueva instancia de industrial
-		Industrial ind = new Industrial(0,
+		//Primero evaluamos que todos los campos obligatorios (manda la BBDD y sus especificaciones
+		//para cada tabla y sus columnas /atributos)
+		if(txtNombre.getText().equals(null) ||
+				cbActividad.getSelectionModel().getSelectedItem() == null ||
+				cbZona.getSelectionModel().getSelectedItem() == null ||
+				txtTelefono.getText().equals(null) ||
+				txtTelefono.getText().length() != 9 ||
+				Character.isDigit(txtTelefono.getText().charAt(0)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(1)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(2)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(3)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(4)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(5)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(6)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(7)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(8)) == false ||				
+				txtTelefono02.getText().length() != 9 ||
+				Character.isDigit(txtTelefono02.getText().charAt(0)) == false ||
+				Character.isDigit(txtTelefono02.getText().charAt(1)) == false ||
+				Character.isDigit(txtTelefono02.getText().charAt(2)) == false ||
+				Character.isDigit(txtTelefono02.getText().charAt(3)) == false ||
+				Character.isDigit(txtTelefono02.getText().charAt(4)) == false ||
+				Character.isDigit(txtTelefono02.getText().charAt(5)) == false ||
+				Character.isDigit(txtTelefono02.getText().charAt(6)) == false ||
+				Character.isDigit(txtTelefono02.getText().charAt(7)) == false ||
+				Character.isDigit(txtTelefono02.getText().charAt(8)) == false)  
+		{
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACIÓN");
+			alert.setHeaderText("Para poder guardar un Industrial nuevo:");
+			alert.setContentText("No debes dejar ningún campo de texto obligatorio, vacío, "
+					+ "recuerda que los teléfonos deben tener 9 dígitos, solo 9 (nueve), además"
+					+ " debes seleccionar una Actividad Industrial y una Zona geográfica"
+					+ " de actuación para el Industrial.");
+			alert.showAndWait();
+		}else {
+			//creamos una nueva instancia de industrial
+			Industrial ind = new Industrial(0,
 				txtNombre.getText(),
 				txtApellidos.getText(),
 				txtEmail.getText(),
@@ -171,20 +210,21 @@ public class Panel_Industriales_Controller implements Initializable{
 				cbZona.getSelectionModel().getSelectedItem(),
 				txtComentarios.getText());
 		
-		//abrimos conexion con la BBDD
-		miConexion.conectarBD();
-		//llamamos al metodo guardar de la clase Industrial
-		int resultado = ind.guardarIndustrial(miConexion.getConnection());
-		//Cerramos la conexión con la BBDD
-		miConexion.cerrarConexionBD();
+			//abrimos conexion con la BBDD
+			miConexion.conectarBD();
+			//llamamos al metodo guardar de la clase Industrial
+			int resultado = ind.guardarIndustrial(miConexion.getConnection());
+			//Cerramos la conexión con la BBDD
+			miConexion.cerrarConexionBD();
 		
-		if(resultado == 1) {
-			//Añadimos el industrial insertado en la BBDD al Tableview Industriales
-			listaIndustriales.add(ind);
+			if(resultado == 1) {
+				//Añadimos el industrial insertado en la BBDD al Tableview Industriales
+				listaIndustriales.add(ind);
 			
-			etiEstado.setText("Industrial insertado correctamente");
-		}else {
-			etiEstado.setText("Industrial no insertado...");
+				etiEstado.setText("Industrial insertado correctamente");
+			}else {
+				etiEstado.setText("Industrial no insertado...");
+			}
 		}
 	}
 	
@@ -195,38 +235,73 @@ public class Panel_Industriales_Controller implements Initializable{
 	 * @param Event, evento generado por el usuario
 	 */
 	@FXML public void actualizarIndustrial (ActionEvent Event) {
+		//Primero evaluamos que todos los campos obligatorios (manda la BBDD y sus especificaciones
+		//para cada tabla y sus columnas /atributos)
+			if(txtNombre.getText().equals(null) ||
+					cbActividad.getSelectionModel().getSelectedItem() == null ||
+					cbZona.getSelectionModel().getSelectedItem() == null ||
+					txtTelefono.getText().equals(null) ||
+					txtTelefono.getText().length() != 9 ||
+					Character.isDigit(txtTelefono.getText().charAt(0)) == false ||
+					Character.isDigit(txtTelefono.getText().charAt(1)) == false ||
+					Character.isDigit(txtTelefono.getText().charAt(2)) == false ||
+					Character.isDigit(txtTelefono.getText().charAt(3)) == false ||
+					Character.isDigit(txtTelefono.getText().charAt(4)) == false ||
+					Character.isDigit(txtTelefono.getText().charAt(5)) == false ||
+					Character.isDigit(txtTelefono.getText().charAt(6)) == false ||
+					Character.isDigit(txtTelefono.getText().charAt(7)) == false ||
+					Character.isDigit(txtTelefono.getText().charAt(8)) == false ||				
+					txtTelefono02.getText().length() != 9 ||
+					Character.isDigit(txtTelefono02.getText().charAt(0)) == false ||
+					Character.isDigit(txtTelefono02.getText().charAt(1)) == false ||
+					Character.isDigit(txtTelefono02.getText().charAt(2)) == false ||
+					Character.isDigit(txtTelefono02.getText().charAt(3)) == false ||
+					Character.isDigit(txtTelefono02.getText().charAt(4)) == false ||
+					Character.isDigit(txtTelefono02.getText().charAt(5)) == false ||
+					Character.isDigit(txtTelefono02.getText().charAt(6)) == false ||
+					Character.isDigit(txtTelefono02.getText().charAt(7)) == false ||
+					Character.isDigit(txtTelefono02.getText().charAt(8)) == false)  
+			{
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("INFORMACIÓN");
+				alert.setHeaderText("Para poder actualizar un Industrial:");
+				alert.setContentText("No debes dejar ningún campo de texto obligatorio, vacío, "
+						+ "recuerda que los teléfonos deben tener 9 dígitos, solo 9 (nueve), además"
+						+ " debes seleccionar una Actividad Industrial y una Zona geográfica"
+						+ " de actuación para el Industrial.");
+				alert.showAndWait();
+			}else {			
+				//creamos una nueva instancia de industrial
+				Industrial ind = new Industrial(
+						Integer.valueOf(txtCodigoIndustrial.getText()),
+						txtNombre.getText(),
+						txtApellidos.getText(),
+						txtEmail.getText(),
+						txtTelefono.getText(),
+						txtTelefono02.getText(),
+						cbActividad.getSelectionModel().getSelectedItem(),
+						txtEmpresa.getText(),
+						txtLocalidad.getText(),
+						cbZona.getSelectionModel().getSelectedItem(),
+						txtComentarios.getText());
 		
-		//creamos una nueva instancia de industrial
-		Industrial ind = new Industrial(
-				Integer.valueOf(txtCodigoIndustrial.getText()),
-				txtNombre.getText(),
-				txtApellidos.getText(),
-				txtEmail.getText(),
-				txtTelefono.getText(),
-				txtTelefono02.getText(),
-				cbActividad.getSelectionModel().getSelectedItem(),
-				txtEmpresa.getText(),
-				txtLocalidad.getText(),
-				cbZona.getSelectionModel().getSelectedItem(),
-				txtComentarios.getText());
+				//Abrimos la conexion con la BBDD
+				miConexion.conectarBD();
+				//llamamos al metodo actualizar de la clase Industrial		
+				int resultado = ind.actualizarIndustrial(miConexion.getConnection());
+				//Cerramos la conexion con la BBDD
+				miConexion.cerrarConexionBD();
 		
-		//Abrimos la conexion con la BBDD
-		miConexion.conectarBD();
-		//llamamos al metodo actualizar de la clase Industrial		
-		int resultado = ind.actualizarIndustrial(miConexion.getConnection());
-		//Cerramos la conexion con la BBDD
-		miConexion.cerrarConexionBD();
-		
-		if(resultado == 1) {
-			//Añadimos el industrial actualizado en la BBDD al Tableview Industriales
-			listaIndustriales.add(tablaIndustriales.getSelectionModel().getSelectedIndex(),ind);
-			listaIndustriales.remove(tablaIndustriales.getSelectionModel().getSelectedIndex());
+					if(resultado == 1) {
+						//Añadimos el industrial actualizado en la BBDD al Tableview Industriales
+						listaIndustriales.add(tablaIndustriales.getSelectionModel().getSelectedIndex(),ind);
+						listaIndustriales.remove(tablaIndustriales.getSelectionModel().getSelectedIndex());
 			
-			etiEstado.setText("Industrial actualizado correctamente");
-		}else {
-			etiEstado.setText("No se ha podido actualizar el industrial...");
-		}
-		
+						etiEstado.setText("Industrial actualizado correctamente");
+					}else {
+						etiEstado.setText("No se ha podido actualizar el industrial...");
+					}
+			}		
 	}
 	
 	/**

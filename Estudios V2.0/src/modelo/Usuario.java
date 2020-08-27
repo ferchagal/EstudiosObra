@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 /**
+ * Clase para definir el tipo de dato Usuario
  * 
  * @author Fernando Chacón Galea
  * @version 2020.06.22 - V2

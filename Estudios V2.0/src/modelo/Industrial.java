@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 /**
+ * Clase que define los datos de tipo Industrial
  * 
  * @author Fernando Chacón Galea
  * @version 2020.06.22 - V2

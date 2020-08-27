@@ -1,6 +1,13 @@
+/**
+ * Módulo: Estudios de Obra. Aplicación de escritorio
+ * Archivo: OF_Panel_Inicio_Controller.java
+ * Objetivo: Archivo Controller del Panel Inicio de la seccion de ofertas.
+ * Equipo/Persona: Fernando Chacón Galea  28.614.518 - B
+ */
 package controladores;
 
 import java.net.URL;
+import java.sql.SQLSyntaxErrorException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,12 +23,23 @@ import modelo.Conexion;
 import modelo.Estudio;
 import modelo.OfertasJdo;
 
+/**
+ * Clase controladora del Panel Inico de la sección de ofertas
+ * 
+ * @author Fernando Chacón Galea
+ * @version 2020.06.22 - V2
+ */
 public class OF_Panel_Inicio_Controller implements Initializable{
 	
 	/**
 	 * Panel principal de la vista
 	 */
 	@FXML private AnchorPane panelInicio;
+	
+	/**
+	 * Panel de la leyenda
+	 */
+	@FXML private AnchorPane panelLeyenda;
 		
 	/**
 	 * Desplegable donde mostramos los estudios que están en la tabla estudios de la BD
@@ -112,64 +130,64 @@ public class OF_Panel_Inicio_Controller implements Initializable{
 	 * Método para mostrar los industriales contenidos en el estudio que seleccionemos en el comboBox
 	 * cbEstudios.
 	 */
-	@FXML private void cargarListaEstudio() {
+	@FXML private void cargarListaEstudio() throws SQLSyntaxErrorException {
 		
-		//Creamos un string con el nombre de la tabla de la que queremos mostrar los industriales
-		String nombreTabla = cbEstudios.getSelectionModel().getSelectedItem();
+			//Creamos un string con el nombre de la tabla de la que queremos mostrar los industriales
+			String nombreTabla = cbEstudios.getSelectionModel().getSelectedItem();
 		
-		//Conectamos con la BD
-		miConexion = new Conexion();
-		miConexion.conectarBD();
+			//Conectamos con la BD
+			miConexion = new Conexion();
+			miConexion.conectarBD();
 		
-		//Inicializamos el ObservableList
-		listaOfertas = FXCollections.observableArrayList();
+			//Inicializamos el ObservableList
+			listaOfertas = FXCollections.observableArrayList();
+			//Llenamos el TableView
+			OfertasJdo.datosTablaOfertasJdo(miConexion.getConnection(), listaOfertas, nombreTabla);
+			//Añadimos los objetos a la tabla
+			tablaOfertas.setItems(listaOfertas);
 		
-		//Llenamos el TableView
-		OfertasJdo.datosTablaOfertasJdo(miConexion.getConnection(), listaOfertas, nombreTabla);
+			//Enlazamos las columnas con los atributos
+			clCodigo_Industrial.setCellValueFactory(new PropertyValueFactory<OfertasJdo, Integer>("codigo_industrial"));
+			clNombre.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("nombre"));
+			clApellidos.setCellValueFactory(new PropertyValueFactory<OfertasJdo,String>("apellidos"));
+			clEmail.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("email"));
+			clTelefono.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("telefono"));
+			clActividad.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("actividad"));
+			clEmpresa.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("empresa"));
+			clSolicitada.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("solicitada"));
+			clEstado.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("estado"));
+			clComentarios.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("comentarios"));
 		
-		//Añadimos los objetos a la tabla
-		tablaOfertas.setItems(listaOfertas);
+			//Cerramos la conexion
+			miConexion.cerrarConexionBD();
 		
-		//Enlazamos las columnas con los atributos
-		clCodigo_Industrial.setCellValueFactory(new PropertyValueFactory<OfertasJdo, Integer>("codigo_industrial"));
-		clNombre.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("nombre"));
-		clApellidos.setCellValueFactory(new PropertyValueFactory<OfertasJdo,String>("apellidos"));
-		clEmail.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("email"));
-		clTelefono.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("telefono"));
-		clActividad.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("actividad"));
-		clEmpresa.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("empresa"));
-		clSolicitada.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("solicitada"));
-		clEstado.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("estado"));
-		clComentarios.setCellValueFactory(new PropertyValueFactory<OfertasJdo, String>("comentarios"));
-		
-		//Cerramos la conexion
-		miConexion.cerrarConexionBD();
-		
-		//Gestionamos el color de las filas según el valor de su estado
-		tablaOfertas.setRowFactory(row -> new TableRow<OfertasJdo>() {
-			@Override
-			public void updateItem(OfertasJdo item, boolean empty) {
-				super.updateItem(item, empty);
-				if(item == null || item.getEstado() == null) {
-					setStyle("");
+			//Gestionamos el color de las filas según el valor de su estado
+			tablaOfertas.setRowFactory(row -> new TableRow<OfertasJdo>() {
+				@Override
+				public void updateItem(OfertasJdo item, boolean empty) {
+					super.updateItem(item, empty);
+					if(item == null || item.getEstado() == null) {
+						setStyle("");
 					
-				}else {
-					if(item.getEstado().equalsIgnoreCase("Pendiente")) {
-						this.setId("Pendiente");
-					}
-					if(item.getEstado().equalsIgnoreCase("Oferta Solicitada")) {
-						this.setId("OfertaSolicitada");
-					}
-					if (item.getEstado().equalsIgnoreCase("Oferta Recibida")){
-						this.setId("OfertaRecibida");
-					}
-					if(item.getEstado().equalsIgnoreCase("Oferta Rechazada")) {
-						this.setId("OfertaRechazada");
+					}else {
+						if(item.getEstado().equalsIgnoreCase("Pendiente")) {
+							this.setId("Pendiente");
+						}
+						if(item.getEstado().equalsIgnoreCase("Oferta Solicitada")) {
+							this.setId("OfertaSolicitada");
+						}
+						if (item.getEstado().equalsIgnoreCase("Oferta Recibida")){
+							this.setId("OfertaRecibida");
+						}
+						if(item.getEstado().equalsIgnoreCase("Oferta Rechazada")) {
+							this.setId("OfertaRechazada");
+						}
 					}
 				}
-			}
-		});
+			});
 		
+			panelLeyenda.setVisible(true);
+			
 	}
 
 	/**

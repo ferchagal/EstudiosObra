@@ -14,12 +14,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import modelo.Actividad;
@@ -29,6 +31,12 @@ import modelo.Industrial;
 import modelo.OfertasJdo;
 import modelo.Zona;
 
+/**
+ * Clase Controladora del la vista "Configurar Estudio"
+ * 
+ * @author Fernando Chacón Galea
+ * @version 2020.06.22 - V2
+ */
 public class OF_Panel_Configurar_Controller implements Initializable {
 	
 	/**
@@ -174,45 +182,56 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 	 * @param event, evento generado por el usuario
 	 */
 	@FXML public void cargarIndustriales(ActionEvent event) {
-		
-		//creamos el string actividades donde recogemos todos los checkbox seleccionados
-		String actividades = crearStringComboBoxSelec ();
-		//creamos el string donde recogemos la zona seleccionada en el combobox
-		String zona = cbZona.getSelectionModel().getSelectedItem().getZona()+"'";
+		if(cbEstudios.getSelectionModel().getSelectedItem() == null ||
+				cbZona.getSelectionModel().getSelectedItem() == null) {
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACIÓN");
+			alert.setHeaderText("Para poder guardar industriales en un Estudio:");
+			alert.setContentText("Debes seleccionar el Estudio, la zona geográfica de la obra y"
+					+ " las Actividades de los Industriales a incluir en el Estudio.");
+			alert.showAndWait();
+			
+		}else {
+			//creamos el string actividades donde recogemos todos los checkbox seleccionados
+			String actividades = crearStringComboBoxSelec ();
+			//creamos el string donde recogemos la zona seleccionada en el combobox
+			String zona = cbZona.getSelectionModel().getSelectedItem().getZona()+"'";
 				
-		//Conectamos con la BD
-		miConexion = new Conexion();
-		miConexion.conectarBD();
+			//Conectamos con la BD
+			miConexion = new Conexion();
+			miConexion.conectarBD();
 				
-		//Iniciamos el ObservableList de la tabla
-		listaIndustriales = FXCollections.observableArrayList();
+			//Iniciamos el ObservableList de la tabla
+			listaIndustriales = FXCollections.observableArrayList();
 						
-		//Llenamos el tableview con los Industriales filtrados
-		Industrial.datosTablaIndustrialesEstudio(miConexion.getConnection(), listaIndustriales, actividades,
+			//Llenamos el tableview con los Industriales filtrados
+			Industrial.datosTablaIndustrialesEstudio(miConexion.getConnection(), listaIndustriales, actividades,
 				zona);
 						
-		//Añadimos los objetos al tableview
-		tablaIndustriales.setItems(listaIndustriales);
+			//Añadimos los objetos al tableview
+			tablaIndustriales.setItems(listaIndustriales);
 				
-		//Enlazamos las columnas con los atributos
-		clCodigo_Industrial.setCellValueFactory(new PropertyValueFactory<Industrial, Integer>("codigo_industrial") );
-		clNombre.setCellValueFactory(new PropertyValueFactory<Industrial, String>("nombre"));
-		clApellidos.setCellValueFactory(new PropertyValueFactory<Industrial, String>("apellidos"));
-		clEmail.setCellValueFactory(new PropertyValueFactory<Industrial, String>("email"));
-		clTelefono.setCellValueFactory(new PropertyValueFactory<Industrial, String>("telefono"));
-		clTelefono02.setCellValueFactory(new PropertyValueFactory<Industrial, String>("telefono02"));
-		clActividad.setCellValueFactory(new PropertyValueFactory<Industrial, Actividad>("actividad"));
-		clEmpresa.setCellValueFactory(new PropertyValueFactory<Industrial, String>("empresa"));
-		clLocalidad.setCellValueFactory(new PropertyValueFactory<Industrial, String>("localidad"));
-		clZona.setCellValueFactory(new PropertyValueFactory<Industrial, Zona>("zona"));
-		clComentarios.setCellValueFactory(new PropertyValueFactory<Industrial, String>("comentarios"));
+			//Enlazamos las columnas con los atributos
+			clCodigo_Industrial.setCellValueFactory(new PropertyValueFactory<Industrial, Integer>("codigo_industrial") );
+			clNombre.setCellValueFactory(new PropertyValueFactory<Industrial, String>("nombre"));
+			clApellidos.setCellValueFactory(new PropertyValueFactory<Industrial, String>("apellidos"));
+			clEmail.setCellValueFactory(new PropertyValueFactory<Industrial, String>("email"));
+			clTelefono.setCellValueFactory(new PropertyValueFactory<Industrial, String>("telefono"));
+			clTelefono02.setCellValueFactory(new PropertyValueFactory<Industrial, String>("telefono02"));
+			clActividad.setCellValueFactory(new PropertyValueFactory<Industrial, Actividad>("actividad"));
+			clEmpresa.setCellValueFactory(new PropertyValueFactory<Industrial, String>("empresa"));
+			clLocalidad.setCellValueFactory(new PropertyValueFactory<Industrial, String>("localidad"));
+			clZona.setCellValueFactory(new PropertyValueFactory<Industrial, Zona>("zona"));
+			clComentarios.setCellValueFactory(new PropertyValueFactory<Industrial, String>("comentarios"));
 						
-		//Cerramos la conexion
-		miConexion.cerrarConexionBD();
+			//Cerramos la conexion
+			miConexion.cerrarConexionBD();
 		
-		//Habilitamos el boton btnAddIndustriales
-		btnAddIndustriales.setDisable(false);
+			//Habilitamos el boton btnAddIndustriales
+			btnAddIndustriales.setDisable(false);
 		
+		}
 	}
 	
 	/**
@@ -351,7 +370,7 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 		miConexion = new Conexion();
 		miConexion.conectarBD();
 		
-		//Creamos la tabla donde vamos a insertar los industriales filtrado
+		//Creamos la tabla donde vamos a insertar los industriales filtrados
 		OfertasJdo.crearTabla(nombreTabla, miConexion.getConnection());		
 		
 		/* Llamamos al método estático datosTablaIndustrialesEstudio() de la clase OfertasJdo para guardar
@@ -361,9 +380,7 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 		 *  la zona seleccionada en el comboBox  */
 		industrialesInsertados = OfertasJdo.datosTablaIndustrialesEstudio(miConexion.getConnection(),
 				nombreTabla, actividades, zona);
-		
-		
-		
+				
 		//Cerramos la conexion con la BD
 		miConexion.cerrarConexionBD();
 		
@@ -462,10 +479,17 @@ public class OF_Panel_Configurar_Controller implements Initializable {
 			actividades = actividades +" actividad = '" + chbSeleccionados.get(i) +  "' OR";
 			i++;
 		}
-				
-		//debemos quitar los dos últimos caracteres del string para que la consulta funcione
-		actividades = actividades.substring(0, actividades.length()-2);	
-				
+		try {		
+			//debemos quitar los dos últimos caracteres del string para que la consulta funcione
+			actividades = actividades.substring(0, actividades.length()-2);	
+		}catch(Exception ex) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACIÓN");
+			alert.setHeaderText("Para poder guardar industriales en un Estudio:");
+			alert.setContentText("Debes seleccionar el Estudio, la zona geográfica de la obra y"
+					+ " las Actividades de los Industriales a incluir en el Estudio.");
+			alert.showAndWait();
+		}
 		return actividades;
 	}
 		

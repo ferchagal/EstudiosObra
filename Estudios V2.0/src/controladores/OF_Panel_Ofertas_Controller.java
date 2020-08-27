@@ -28,6 +28,12 @@ import modelo.Conexion;
 import modelo.Estudio;
 import modelo.OfertasJdo;
 
+/**
+ * Clase controladora del Panel de Ofertas
+ * 
+ * @author Fernando Chacón Galea
+ * @version 2020.06.22 - V2
+ */
 public class OF_Panel_Ofertas_Controller implements Initializable{
 	/**
 	 * Panel principal de la Vista

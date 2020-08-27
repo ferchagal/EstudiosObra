@@ -30,6 +30,7 @@ import modelo.Usuario;
 import modelo.Zona;
 
 /**
+ * Clase controladora del panel "Gestión de Estudios"
  * 
  * @author Fernando Chacón Galea
  * @version 2020.06.22 - V2
@@ -187,7 +188,7 @@ public class Panel_Estudios_Controller implements Initializable {
 	 */
 	@FXML public void actualizarEstudio (ActionEvent Event) {
 		//Primero evaluamos que todos los campos obligatorios (manda la BBDD y sus especificaciones
-		//para cada tabla y sus columnas/atributos
+		//para cada tabla y sus columnas/atributos)
 		if(txtReferencia.getText().equals(null) ||
 				txtDesignacion.getText().equals(null) ||
 				txtAnyo.getText().equals(null) ||

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,24 +9,70 @@
 
 <AnchorPane fx:id="panelInicio" prefHeight="966.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.OF_Panel_Inicio_Controller">
 	<children>
-      <Label layoutX="473.0" layoutY="41.0" text="Ofertas del estudio:">
+      <AnchorPane layoutX="80.0" layoutY="25.0" prefHeight="100.0" prefWidth="1460.0" style="-fx-background-color: #9FB9F6;">
+         <children>
+                  <ComboBox fx:id="cbEstudios" layoutX="759.0" layoutY="31.0" onAction="#cargarListaEstudio" prefWidth="265.0" promptText="Selecciona un Estudio de la lista" />
+            <Label layoutX="433.0" layoutY="32.0" text="Ofertas del estudio:">
+               <font>
+                  <Font name="Verdana Bold Italic" size="24.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane layoutX="80.0" layoutY="140.0" prefHeight="680.0" prefWidth="1460.0" style="-fx-background-color: #9FB9F6;">
+         <children>
+                  <TableView fx:id="tablaOfertas" prefHeight="660.0" prefWidth="1440.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <columns>
+                      <TableColumn fx:id="clCodigo_Industrial" minWidth="120.0" prefWidth="120.0" text="Cod. Industrial" />
+                        <TableColumn fx:id="clNombre" minWidth="100.0" prefWidth="100.0" text="Nombre" />
+                        <TableColumn fx:id="clApellidos" minWidth="180.0" prefWidth="180.0" text="Apellidos" />
+                        <TableColumn fx:id="clEmail" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="email" />
+                        <TableColumn fx:id="clTelefono" minWidth="120.0" prefWidth="120.0" text="Teléfono" />
+                        <TableColumn fx:id="clActividad" minWidth="120.0" prefWidth="120.0" text="Actividad" />
+                        <TableColumn fx:id="clEmpresa" minWidth="120.0" prefWidth="120.0" text="Empresa" />
+                        <TableColumn fx:id="clSolicitada" minWidth="120.0" prefWidth="120.0" text="Solicitada" />
+                        <TableColumn fx:id="clEstado" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Estado" />
+                        <TableColumn fx:id="clComentarios" minWidth="240.0" prefWidth="240.0" text="Comentarios" />
+                    </columns>
+                  </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelLeyenda" layoutX="990.0" layoutY="835.0" prefHeight="110.0" prefWidth="550.0" style="-fx-background-color: #9FB9F6;" visible="false">
+         <children>
+            <Label layoutX="355.0" layoutY="55.0" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #D46D6A;" text="Oferta rechazada" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label layoutX="25.0" layoutY="55.0" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #486E88;" text="Petición Enviada" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label layoutX="190.0" layoutY="55.0" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #4F9F64;" text="Oferta Recibida" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
+            <Label layoutX="25.0" layoutY="14.0" text="Código de colores:">
+               <font>
+                  <Font name="Verdana Bold Italic" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="28.0" layoutY="931.0" text="2020 - Fer">
          <font>
-            <Font name="Verdana Bold Italic" size="24.0" />
-         </font></Label>
-            <ComboBox fx:id="cbEstudios" layoutX="778.0" layoutY="41.0" onAction="#cargarListaEstudio" prefWidth="265.0" promptText="Selecciona un Estudio de la lista" />
-            <TableView fx:id="tablaOfertas" layoutX="136.0" layoutY="170.0" prefHeight="660.0" prefWidth="1440.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="150.0">
-              <columns>
-                <TableColumn fx:id="clCodigo_Industrial" minWidth="120.0" prefWidth="120.0" text="Cod. Industrial" />
-                  <TableColumn fx:id="clNombre" minWidth="100.0" prefWidth="100.0" text="Nombre" />
-                  <TableColumn fx:id="clApellidos" minWidth="180.0" prefWidth="180.0" text="Apellidos" />
-                  <TableColumn fx:id="clEmail" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="email" />
-                  <TableColumn fx:id="clTelefono" minWidth="120.0" prefWidth="120.0" text="Teléfono" />
-                  <TableColumn fx:id="clActividad" minWidth="120.0" prefWidth="120.0" text="Actividad" />
-                  <TableColumn fx:id="clEmpresa" minWidth="120.0" prefWidth="120.0" text="Empresa" />
-                  <TableColumn fx:id="clSolicitada" minWidth="120.0" prefWidth="120.0" text="Solicitada" />
-                  <TableColumn fx:id="clEstado" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Estado" />
-                  <TableColumn fx:id="clComentarios" minWidth="240.0" prefWidth="240.0" text="Comentarios" />
-              </columns>
-            </TableView>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Label>
      </children>
 </AnchorPane>

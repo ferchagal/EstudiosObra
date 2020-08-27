@@ -25,6 +25,7 @@ import modelo.Usuario;
 import modelo.Zona;
 
 /**
+ * Clase controladora del Panel de Inicio
  * 
  * @author Fernando Chacón Galea
  * @version 2020.06.22 - V2
