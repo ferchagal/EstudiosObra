@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -22,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import modelo.Conexion;
@@ -265,8 +267,34 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 	 * @param Event evento generado por el usuario
 	 */
 	@FXML public void guardarIndustrial(ActionEvent Event) {
-		//Creamos una nueva instancia de OfertasJdo
-		OfertasJdo ind = new OfertasJdo (0,
+		//Primero evaluamos que todos los campos obligatorios (manda la BBDD y sus especificaciones
+		//para cada tabla y sus columnas /atributos)
+		if(txtNombre.getText().equals(null) ||
+				txtTelefono.getText().equals(null) ||
+				txtTelefono.getText().length() != 9 ||
+				Character.isDigit(txtTelefono.getText().charAt(0)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(1)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(2)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(3)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(4)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(5)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(6)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(7)) == false ||
+				Character.isDigit(txtTelefono.getText().charAt(8)) == false ||
+				txtActividad.getText().equals(null) ||
+				txtSolicitada.getText().equals(null) ||
+				cbEstado.getSelectionModel().getSelectedItem() == null)
+		{
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACIÓN");
+			alert.setHeaderText("Para poder guardar un Industrial nuevo:");
+			alert.setContentText("No debes dejar ningún campo de texto obligatorio, vacío, "
+					+ "recuerda que el teléfono debe tener 9 dígitos, solo 9 (nueve), además"
+					+ " debes seleccionar un Estado de la oferta.");
+			alert.showAndWait();
+		}else {
+			//Creamos una nueva instancia de OfertasJdo
+			OfertasJdo ind = new OfertasJdo (0,
 				txtNombre.getText(),
 				txtApellidos.getText(),
 				txtEmail.getText(),
@@ -277,22 +305,31 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 				cbEstado.getSelectionModel().getSelectedItem(),
 				txtComentarios.getText());
 		
-		//abrimos conexion con la BD
-		miConexion.conectarBD();
-		//llamamos al metodo guardas de la clase OfertasJdo
-		int resultado = ind.guardarIndustrial(miConexion.getConnection(), 
+			//abrimos conexion con la BD
+			miConexion.conectarBD();
+			//llamamos al metodo guardas de la clase OfertasJdo
+			int resultado = ind.guardarIndustrial(miConexion.getConnection(), 
 				cbEstudios.getSelectionModel().getSelectedItem());
-		//Cerramos la conexion con la BD
-		miConexion.cerrarConexionBD();
+			//Cerramos la conexion con la BD
+			miConexion.cerrarConexionBD();
 		
-		if(resultado == 1) {
-			//añadimos el industrial insertado a la tabla Ofertas
-			listaOfertas.add(ind);
+			if(resultado == 1) {
+				//añadimos el industrial insertado a la tabla Ofertas
+				listaOfertas.add(ind);
 			
-			etiEstado.setText("Industrial insertado correctamente al Estudio" +
+				etiEstado.setText("Industrial insertado correctamente al Estudio" +
 								cbEstudios.getSelectionModel().getSelectedItem() + ".");
-		}else {
-			etiEstado.setText("Industrial no insertado...");
+			
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("INFORMACIÓN");
+				alert.setHeaderText("Atención, el industrial se ha añadido al Estudio, pero...");
+				alert.setContentText("Si quieres añadirlo a la Base de Datos de la empresa "
+						+ "recuerda que deberás añadirlo en el Panel de 'Gestión de Industriales'.");
+				alert.showAndWait();
+			
+			}else {
+				etiEstado.setText("Industrial no insertado...");
+			}
 		}
 	}
 	
@@ -418,6 +455,7 @@ public class OF_Panel_Ofertas_Controller implements Initializable{
 		Estudio.datosComboEstudios(miConexion.getConnection(), listaEstudios);
 		
 		//Llenamos la listaEstados
+		listaEstados.add("Pendiente");
 		listaEstados.add("Oferta Solicitada");
 		listaEstados.add("Oferta Recibida");
 		listaEstados.add("Oferta Rechazada");

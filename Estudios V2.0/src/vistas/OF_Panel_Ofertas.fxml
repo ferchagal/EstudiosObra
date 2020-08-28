@@ -54,13 +54,13 @@
                               <Font name="Verdana" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtCodigoIndustrial" editable="false" layoutX="120.0" layoutY="10.0" prefHeight="30.0" prefWidth="200.0" />
-                        <TextField fx:id="txtNombre" layoutX="120.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="Nombre" />
+                        <TextField fx:id="txtCodigoIndustrial" editable="false" layoutX="120.0" layoutY="10.0" prefHeight="30.0" prefWidth="200.0" promptText="AutoGenerado " />
+                        <TextField fx:id="txtNombre" layoutX="120.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="Nombre    (*)" />
                         <TextField fx:id="txtApellidos" layoutX="120.0" layoutY="80.0" prefHeight="30.0" prefWidth="200.0" promptText="Apellido Apellido" />
                         <TextField fx:id="txtEmail" layoutX="120.0" layoutY="115.0" prefHeight="30.0" prefWidth="200.0" promptText="email@email.com" />
                         <TextField fx:id="txtEmpresa" layoutX="495.0" layoutY="115.0" prefHeight="30.0" prefWidth="200.0" promptText="Nombre empresa" />
-                        <TextField fx:id="txtActividad" layoutX="495.0" layoutY="80.0" prefHeight="30.0" prefWidth="200.0" promptText="Actividad ejercida" />
-                        <TextField fx:id="txtTelefono" layoutX="495.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="nº de teléfono" />
+                        <TextField fx:id="txtActividad" layoutX="495.0" layoutY="80.0" prefHeight="30.0" prefWidth="200.0" promptText="Actividad ejercida    (*)" />
+                        <TextField fx:id="txtTelefono" layoutX="495.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="nº de teléfono    (*)" />
                         <Label layoutX="390.0" layoutY="120.0" text="Empresa:">
                            <font>
                               <Font name="Verdana" size="15.0" />
@@ -86,14 +86,19 @@
                               <Font name="Verdana" size="15.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cbEstado" layoutX="765.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Selecciona un estado..." />
-                        <TextField fx:id="txtComentarios" layoutX="1033.0" layoutY="46.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" />
+                        <ComboBox fx:id="cbEstado" layoutX="765.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Selecc. un estado    (*)" />
+                        <TextField fx:id="txtComentarios" layoutX="1033.0" layoutY="46.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="300.0" promptText="Comentarios..." />
                         <Label layoutX="1033.0" layoutY="16.0" text="Comentarios:">
                            <font>
                               <Font name="Verdana" size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtSolicitada" layoutX="765.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="dd/mm/yyyy" />
+                        <TextField fx:id="txtSolicitada" layoutX="765.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="dd/mm/yyyy    (*)" />
+                        <Label layoutX="1033.0" layoutY="120.0" text="(*) Campos Obligatorios" textFill="#00000083">
+                           <font>
+                              <Font name="Verdana Italic" size="15.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <Button layoutX="1300.0" layoutY="210.0" mnemonicParsing="false" onAction="#nuevoIndustrial" prefHeight="30.0" prefWidth="100.0" text="Nuevo" AnchorPane.bottomAnchor="10.0">
@@ -131,6 +136,11 @@
             <Label layoutX="60.0" layoutY="350.0" text="Industriales del Estudio. Selecciona uno para gestionarlo:">
                <font>
                   <Font name="Verdana" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="1490.0" layoutY="900.0" text="2020 - Fer">
+               <font>
+                  <Font name="Verdana" size="12.0" />
                </font>
             </Label>
          </children></AnchorPane>
