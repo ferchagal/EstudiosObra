@@ -33,3 +33,10 @@
 #OfertaRechazada .table-cell{
 	-fx-background-color:#D46D6A;
 }
+
+/* Controlamos la forma de visualizacion de los botones/pestañas cuando pasa el raton por encima */
+.button:hover{
+	
+	-fx-font-weight: bold;
+	-fx-opacity:0.7;
+}

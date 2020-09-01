@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.input.*?>
 <?import javafx.geometry.*?>
@@ -8,84 +9,141 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="1002.0" prefWidth="1904.0" style="-fx-background-color: #034BF1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.VistaPrincipal_Controller">
+<AnchorPane fx:id="rootVistaPrincipal" prefHeight="1002.0" prefWidth="1904.0" style="-fx-background-color: #034BF1;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.VistaPrincipal_Controller">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="996.0" prefWidth="1898.0" styleClass="fondo" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
          <children>
           <AnchorPane layoutY="32.0" maxHeight="966.0" maxWidth="300.0" minHeight="966.0" minWidth="300.0" prefHeight="966.0" prefWidth="300.0" style="-fx-background-color: #6490F3;">
                <children>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="966.0" minWidth="300.0" prefHeight="966.0" prefWidth="300.0" styleClass="fondo">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="300.0" style="-fx-background-color: #555555;">
                      <children>
-                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="300.0">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#cargarPanelInicio" prefHeight="40.0" prefWidth="180.0" text="Inicio">
-                                 <VBox.margin>
-                                    <Insets left="60.0" right="60.0" top="50.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Verdana" size="15.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#cargarPanelEstudios" prefHeight="40.0" prefWidth="180.0" text="Gestionar Estudios">
-                                 <VBox.margin>
-                                    <Insets left="80.0" right="40.0" top="20.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Verdana" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#cargarPanelIndustriales" prefHeight="40.0" prefWidth="180.0" text="Gestionar Industriales">
-                                 <VBox.margin>
-                                    <Insets left="80.0" right="40.0" top="20.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Verdana" size="12.0" />
-                                 </font>
-                              </Button>
-                              <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cargarPanelOfertas" prefHeight="40.0" prefWidth="180.0" text="Ofertas">
-                                 <font>
-                                    <Font name="Verdana" size="15.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="60.0" right="60.0" top="20.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Configurar Estudio">
-                                 <font>
-                                    <Font name="Verdana" size="12.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="80.0" right="40.0" top="20.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button disable="true" layoutX="10.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Gestionar Ofertas">
-                                 <font>
-                                    <Font name="Verdana" size="12.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="80.0" right="40.0" top="20.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#salirAplicacion" prefHeight="40.0" prefWidth="180.0" text="Salir">
-                                 <VBox.margin>
-                                    <Insets left="60.0" right="60.0" top="160.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font name="Verdana" size="15.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </VBox>
-                    </children>
+                        <Button mnemonicParsing="false" onAction="#cargarPanelInicio" prefHeight="137.0" prefWidth="260.0" style="-fx-background-color: #537A98;" text="                Inicio" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets left="40.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/inicio.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#cargarPanelEstudios" prefHeight="136.0" prefWidth="260.0" style="-fx-background-color: #99BBD5;" text="    Gestionar Estudios">
+                           <VBox.margin>
+                              <Insets left="40.0" top="2.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Verdana" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/gestionarEstudios.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#cargarPanelIndustriales" prefHeight="138.0" prefWidth="260.0" style="-fx-background-color: #89BBD5;" text="Gestionar Industriales">
+                           <VBox.margin>
+                              <Insets left="40.0" top="2.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Verdana" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/gestionarIndustriales.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cargarPanelOfertas" prefHeight="136.0" prefWidth="260.0" style="-fx-background-color: #6490F3;" text="            Ofertas" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="2.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/ofertas.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="136.0" prefWidth="260.0" style="-fx-background-color: #7FB9F6;" text="Configurar Estudio">
+                           <font>
+                              <Font name="Verdana" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="2.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/configurarEstudio.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button disable="true" layoutX="10.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="136.0" prefWidth="260.0" style="-fx-background-color: #9FB9F6;" text="  Gestionar Ofertas">
+                           <font>
+                              <Font name="Verdana" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="40.0" top="2.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/gestionarOfertas.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#salirAplicacion" prefHeight="136.0" prefWidth="240.0" style="-fx-background-color: #FFAAAA;" text="              Salir">
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Verdana" size="15.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="53.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/salir.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <AnchorPane maxHeight="966.0" maxWidth="40.0" minHeight="966.0" minWidth="40.0" prefHeight="966.0" prefWidth="40.0" style="-fx-background-color: #555555;">
+                     <children>
+                        <Label layoutX="-60.0" layoutY="490.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="163.0" rotate="270.0" text="PANEL de INICIO" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana Bold Italic" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
           <AnchorPane fx:id="contenido" layoutX="300.0" layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="966.0" minWidth="1596.0" prefHeight="966.0" prefWidth="1600.0" style="-fx-background-color: #ffffff;" />
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="1900.0" style="-fx-background-color: #555555;">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1900.0" style="-fx-background-color: #555555;">
                <children>
-                  <Label alignment="CENTER" layoutX="850.0" prefHeight="32.0" prefWidth="200.0" text="Panel de Inicio" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="1500.0" layoutY="5.0" prefHeight="19.0" prefWidth="163.0" text="PANEL de INICIO" textFill="WHITE">
                      <font>
-                        <Font name="Verdana Bold Italic" size="14.0" />
+                        <Font name="Verdana Bold Italic" size="15.0" />
                      </font>
                   </Label>
                </children>

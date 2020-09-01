@@ -28,6 +28,11 @@ import javafx.stage.Stage;
  */
 public class VistaPrincipal_Controller implements Initializable {
 	/**
+	 * Definimos el panel contenedor de toda la vista
+	 */
+	@FXML private AnchorPane rootVistaPrincipal;
+	
+	/**
      * Definimos el contenedor de toda la aplicación, de tipo AnchorPane, y refenciado a nuestra
      * interfaz definida en el archivo VistaPrincipal.fxml mediante el atributo @FXML.
      */
@@ -152,6 +157,9 @@ public class VistaPrincipal_Controller implements Initializable {
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		//Aplicamos estilos CSS
+		rootVistaPrincipal.getStylesheets().add(getClass().getResource("../estilos/EstilosPorDefecto.css").toExternalForm());
+		
 		cargarPanel("Panel_Inicio.fxml");		
 	
 	}

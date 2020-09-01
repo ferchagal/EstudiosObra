@@ -9,206 +9,210 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="1615.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.Panel_Estudios_Controller">
+<AnchorPane maxHeight="966.0" maxWidth="1600.0" minHeight="966.0" minWidth="1600.0" prefHeight="966.0" prefWidth="1600.0" style="-fx-background-color: #99BBD5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.Panel_Estudios_Controller">
    <children>
-      <AnchorPane id="formularioEstudios" layoutX="-3.0" prefHeight="966.0" prefWidth="600.0" style="-fx-background-color: #9FB9F6;">
+      <AnchorPane layoutX="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="926.0" prefWidth="1575.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
-            <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-              <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="220.0" minWidth="220.0" prefWidth="220.0" />
-                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="380.0" minWidth="380.0" prefWidth="380.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <AnchorPane id="formularioEstudios" layoutX="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="926.0" prefWidth="598.0" style="-fx-background-color: #99BBD5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
                <children>
-                  <Label text="Código:">
+                  <GridPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="220.0" minWidth="220.0" prefWidth="220.0" />
+                      <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="380.0" minWidth="380.0" prefWidth="380.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Código:">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Referencia:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Designación:" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Año:" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Adjudicada:" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Estudiada por:" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        
+                        <TextField fx:id="txtCodigo_Estudio" editable="false" prefHeight="25.0" prefWidth="250.0" promptText="Generado Automáticamente" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtReferencia" prefHeight="25.0" prefWidth="250.0" promptText="E00000000  (*)" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtDesignacion" prefHeight="25.0" prefWidth="250.0" promptText="Nombre identificativo (*)" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtAnyo" prefHeight="25.0" prefWidth="250.0" promptText="Año de elaboración del Estudio (*)" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="txtAdjudicada" prefHeight="25.0" prefWidth="250.0" promptText="Sí / No / Pendiente/... (*)" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <ComboBox fx:id="cbUsuario" prefWidth="250.0" promptText="Elige uno de los Técnicos (*)" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </ComboBox>
+                        <ComboBox fx:id="cbZona" prefWidth="250.0" promptText="Zona geográf. de la obra (*)" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets left="20.0" />
+                           </GridPane.margin>
+                        </ComboBox>
+                        <Label layoutX="116.0" layoutY="331.0" text="Situación:" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </Label>
+                        <Label text="* Deben ser 4 dígitos (aaaa)" textFill="#00000081" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="20.0" top="50.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="Verdana Italic" size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Label layoutX="189.0" layoutY="36.0" text="Gestión de Estudios:">
                      <font>
-                        <Font name="Verdana" size="14.0" />
+                        <Font name="Verdana Italic" size="18.0" />
                      </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
                   </Label>
-                  <Label text="Referencia:" GridPane.rowIndex="1">
+                  <HBox alignment="CENTER" layoutY="550.0" prefHeight="100.0" prefWidth="600.0">
+                     <children>
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarEstudio" prefHeight="30.0" prefWidth="100.0" text="Guardar">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnActualizar" disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#actualizarEstudio" prefHeight="30.0" prefWidth="100.0" text="Actualizar">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnEliminar" disable="true" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#eliminarEstudio" prefHeight="30.0" prefWidth="100.0" text="Eliminar">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#nuevoEstudio" prefHeight="30.0" prefWidth="100.0" text="Nuevo">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Separator layoutY="870.0" prefWidth="598.0" />
+                  <Label layoutX="31.0" layoutY="889.0" text="Estado:">
                      <font>
-                        <Font name="Verdana" size="14.0" />
+                        <Font name="Verdana Italic" size="12.0" />
                      </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
                   </Label>
-                  <Label text="Designación:" GridPane.rowIndex="2">
+                  <Label fx:id="etiEstado" layoutX="222.0" layoutY="895.0" text="Esperando acción...">
                      <font>
-                        <Font name="Verdana" size="14.0" />
+                        <Font name="Verdana Bold Italic" size="14.0" />
                      </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
                   </Label>
-                  <Label text="Año:" GridPane.rowIndex="3">
+                  <Label layoutX="240.0" layoutY="510.0" text="(*) Campos Obligatorios">
                      <font>
-                        <Font name="Verdana" size="14.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Adjudicada:" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Verdana" size="14.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Estudiada por:" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Verdana" size="14.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </Label>
-                  
-                  <TextField fx:id="txtCodigo_Estudio" editable="false" prefHeight="25.0" prefWidth="250.0" promptText="Generado Automáticamente" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets left="20.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="txtReferencia" prefHeight="25.0" prefWidth="250.0" promptText="E00000000  (*)" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="20.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="txtDesignacion" prefHeight="25.0" prefWidth="250.0" promptText="Nombre identificativo (*)" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="20.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="txtAnyo" prefHeight="25.0" prefWidth="250.0" promptText="Año de elaboración del Estudio (*)" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="20.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="txtAdjudicada" prefHeight="25.0" prefWidth="250.0" promptText="Sí / No / Pendiente/... (*)" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets left="20.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <ComboBox fx:id="cbUsuario" prefWidth="250.0" promptText="Elige uno de los Técnicos (*)" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="20.0" />
-                     </GridPane.margin>
-                  </ComboBox>
-                  <ComboBox fx:id="cbZona" prefWidth="250.0" promptText="Zona geográf. de la obra (*)" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <GridPane.margin>
-                        <Insets left="20.0" />
-                     </GridPane.margin>
-                  </ComboBox>
-                  <Label layoutX="116.0" layoutY="331.0" text="Situación:" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Verdana" size="14.0" />
-                     </font>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="* Deben ser 4 dígitos (aaaa)" textFill="#00000081" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="20.0" top="50.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Verdana Italic" size="10.0" />
+                        <Font name="Verdana Italic" size="15.0" />
                      </font>
                   </Label>
                </children>
-            </GridPane>
-            <Label layoutX="189.0" layoutY="36.0" text="Gestión de Estudios:">
+            </AnchorPane>
+            <TableView fx:id="tablaEstudios" layoutX="630.0" layoutY="120.0" prefHeight="700.0" prefWidth="900.0">
+              <columns>
+                <TableColumn fx:id="clCodigo_Estudio" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Código" />
+                <TableColumn fx:id="clReferencia" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Referencia" />
+                <TableColumn fx:id="clDesignacion" maxWidth="240.0" minWidth="240.0" prefWidth="240.0" text="Designación" />
+                <TableColumn fx:id="clAnyo" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Año" />
+                <TableColumn fx:id="clAdjudicada" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Adjudicada" />
+                <TableColumn fx:id="clUsuario" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Estudiada por" />
+                <TableColumn fx:id="clZona" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Situación" />
+              </columns>
+            </TableView>
+            <Label layoutX="640.0" layoutY="51.0" text="Estudios en proceso o realizados:">
                <font>
-                  <Font name="Verdana Italic" size="18.0" />
+                  <Font name="Verdana Bold Italic" size="24.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" layoutY="550.0" prefHeight="100.0" prefWidth="600.0">
-               <children>
-                  <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarEstudio" prefHeight="30.0" prefWidth="100.0" text="Guardar">
-                     <font>
-                        <Font name="Verdana" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="btnActualizar" disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#actualizarEstudio" prefHeight="30.0" prefWidth="100.0" text="Actualizar">
-                     <font>
-                        <Font name="Verdana" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="btnEliminar" disable="true" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#eliminarEstudio" prefHeight="30.0" prefWidth="100.0" text="Eliminar">
-                     <font>
-                        <Font name="Verdana" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#nuevoEstudio" prefHeight="30.0" prefWidth="100.0" text="Nuevo">
-                     <font>
-                        <Font name="Verdana" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
-            <Separator layoutY="870.0" prefWidth="600.0" />
-            <Label layoutX="31.0" layoutY="889.0" text="Estado:">
+            <Label layoutX="1500.0" layoutY="900.0" text="2020 - Fer">
                <font>
-                  <Font name="Verdana Italic" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="etiEstado" layoutX="222.0" layoutY="907.0" text="Esperando acción...">
-               <font>
-                  <Font name="Verdana Bold Italic" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="240.0" layoutY="510.0" text="(*) Campos Obligatorios">
-               <font>
-                  <Font name="Verdana Italic" size="15.0" />
+                  <Font name="Verdana" size="10.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tablaEstudios" layoutX="660.0" layoutY="120.0" prefHeight="700.0" prefWidth="900.0">
-        <columns>
-          <TableColumn fx:id="clCodigo_Estudio" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Código" />
-          <TableColumn fx:id="clReferencia" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Referencia" />
-          <TableColumn fx:id="clDesignacion" maxWidth="240.0" minWidth="240.0" prefWidth="240.0" text="Designación" />
-          <TableColumn fx:id="clAnyo" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Año" />
-          <TableColumn fx:id="clAdjudicada" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Adjudicada" />
-          <TableColumn fx:id="clUsuario" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Estudiada por" />
-          <TableColumn fx:id="clZona" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Situación" />
-        </columns>
-      </TableView>
-      <Label layoutX="660.0" layoutY="51.0" text="Estudios en proceso o realizados:">
-         <font>
-            <Font name="Verdana Bold Italic" size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="1540.0" layoutY="940.0" text="2020 - Fer">
-         <font>
-            <Font name="Verdana" size="10.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

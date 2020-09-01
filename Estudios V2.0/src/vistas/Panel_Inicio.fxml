@@ -9,71 +9,67 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="1615.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.Panel_Inicio_Controller">
+<AnchorPane maxHeight="966.0" maxWidth="1600.0" minHeight="966.0" minWidth="1600.0" prefHeight="966.0" prefWidth="1600.0" style="-fx-background-color: #537A98;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.Panel_Inicio_Controller">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="560.0" prefHeight="200.0" prefWidth="1055.0" style="-fx-background-color: #6490F3;" text="Esta es una aplicación pensada para gestionar Estudios de Obras. Está concebida para controlar el estado en el que se encuentra cada una de las  peticiones de oferta hechas a los diferentes Industriales asignados a cada estudio de obra, en función de su Actividad y zona geografica de actuación." textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Verdana" size="18.0" />
-         </font>
-         <padding>
-            <Insets left="40.0" right="40.0" />
-         </padding>
-      </Label>
-      <Label layoutX="1408.0" layoutY="895.0" prefHeight="16.0" prefWidth="93.0" text="Una aplicación de:">
-         <font>
-            <Font name="Verdana" size="10.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="53.0" fitWidth="69.0" layoutX="1515.0" layoutY="903.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../imagenes/Firma%20Fer%20-%20mclaren.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="252.0" fitWidth="498.0" layoutX="32.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../imagenes/FondoLogoCono.png" />
-         </image>
-      </ImageView>
-      <Separator layoutX="560.0" orientation="VERTICAL" prefHeight="966.0" />
-      <Separator layoutX="560.0" layoutY="880.0" prefWidth="1055.0" />
-      <TableView fx:id="tablaEstudios" layoutX="642.0" layoutY="306.0" prefHeight="446.0" prefWidth="882.0">
-        <columns>
-          <TableColumn fx:id="clCodigo_Estudio" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Código" />
-            <TableColumn fx:id="clReferencia" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Referencia" />
-          <TableColumn fx:id="clDesignacion" maxWidth="240.0" minWidth="240.0" prefWidth="240.0" text="Designación" />
-           <TableColumn fx:id="clAnyo" maxWidth="80.0" minWidth="80.0" text="Año" />
-           <TableColumn fx:id="clAdjudicada" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Adjudicada" />
-            <TableColumn fx:id="clUsuario" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Estudiada por" />
-            <TableColumn fx:id="clZona" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Zona" />
-        </columns>
-      </TableView>
-      <Label fx:id="etiEstado" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutY="850.0" prefHeight="116.0" prefWidth="560.0" style="-fx-background-color: #9FB9F6;" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Verdana" size="18.0" />
-         </font>
-         <padding>
-            <Insets left="40.0" right="40.0" />
-         </padding>
-      </Label>
-      <Label layoutX="647.0" layoutY="254.0" text="Estudios en proceso y finalizados:">
-         <font>
-            <Font name="Verdana Bold Italic" size="24.0" />
-         </font>
-      </Label>
-      <Button layoutX="150.0" layoutY="350.0" mnemonicParsing="false" onAction="#acercaDe" prefHeight="40.0" prefWidth="260.0" text="Sobre CONO (CONtrol de Ofertas)">
-         <font>
-            <Font name="Verdana" size="12.0" />
-         </font>
-      </Button>
-      <Button layoutX="150.0" layoutY="420.0" mnemonicParsing="false" onAction="#verManualUsuario" prefHeight="40.0" prefWidth="260.0" text="Ver Manual de Usuario">
-         <font>
-            <Font name="Verdana" size="12.0" />
-         </font>
-      </Button>
-      <Label layoutX="460.0" layoutY="814.0" text="2020 - Fer">
-         <font>
-            <Font name="Verdana" size="12.0" />
-         </font>
-      </Label>
+      <AnchorPane maxHeight="1575.0" maxWidth="1575.0" minHeight="926.0" minWidth="1575.0" prefHeight="926.0" prefWidth="1575.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="560.0" maxHeight="200.0" maxWidth="1000.0" minHeight="200.0" minWidth="1000.0" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #537A98;" text="Esta es una aplicación pensada para gestionar Estudios de Obras. Está concebida para controlar el estado en el que se encuentra cada una de las  peticiones de oferta hechas a los diferentes Industriales asignados a cada estudio de obra, en función de su Actividad y zona geografica de actuación." textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="562.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="40.0" right="40.0" />
+               </padding>
+            </Label>
+            <Label layoutX="1388.0" layoutY="855.0" prefHeight="16.0" prefWidth="93.0" text="Una aplicación de:">
+               <font>
+                  <Font name="Verdana" size="10.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="53.0" fitWidth="69.0" layoutX="1495.0" layoutY="860.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/Firma%20Fer%20-%20mclaren.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="252.0" fitWidth="498.0" layoutX="32.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/FondoLogoCono.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="560.0" orientation="VERTICAL" prefHeight="926.0" />
+            <TableView fx:id="tablaEstudios" layoutX="642.0" layoutY="306.0" prefHeight="446.0" prefWidth="882.0">
+              <columns>
+                <TableColumn fx:id="clCodigo_Estudio" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Código" />
+                  <TableColumn fx:id="clReferencia" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Referencia" />
+                <TableColumn fx:id="clDesignacion" maxWidth="240.0" minWidth="240.0" prefWidth="240.0" text="Designación" />
+                 <TableColumn fx:id="clAnyo" maxWidth="80.0" minWidth="80.0" text="Año" />
+                 <TableColumn fx:id="clAdjudicada" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Adjudicada" />
+                  <TableColumn fx:id="clUsuario" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Estudiada por" />
+                  <TableColumn fx:id="clZona" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" text="Zona" />
+              </columns>
+            </TableView>
+            <Label layoutX="647.0" layoutY="254.0" text="Estudios en proceso y finalizados:">
+               <font>
+                  <Font name="Verdana Bold Italic" size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="150.0" layoutY="350.0" mnemonicParsing="false" onAction="#acercaDe" prefHeight="40.0" prefWidth="260.0" text="Sobre CONO (CONtrol de Ofertas)">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="150.0" layoutY="420.0" mnemonicParsing="false" onAction="#verManualUsuario" prefHeight="40.0" prefWidth="260.0" text="Ver Manual de Usuario">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="460.0" layoutY="780.0" text="2020 - Fer">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutY="810.0" prefHeight="116.0" prefWidth="560.0" style="-fx-background-color: #537A98;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

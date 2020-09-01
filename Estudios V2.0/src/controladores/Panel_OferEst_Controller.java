@@ -31,6 +31,11 @@ import javafx.stage.Stage;
 public class Panel_OferEst_Controller implements Initializable {
 	
 	/**
+	 * Definimos el contenedor de toda la vista
+	 */
+	@FXML private AnchorPane rootPanelOfertas;
+	
+	/**
 	 * Definimos el contenedor de los paneles de las Ofertas, se iran mostrando las diferentes opciones
 	 * de la gestión de ofertas
 	 */
@@ -175,6 +180,9 @@ public class Panel_OferEst_Controller implements Initializable {
      */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		//Aplicamos estilos CSS
+		rootPanelOfertas.getStylesheets().add(getClass().getResource("../estilos/EstilosPorDefecto.css").toExternalForm());
+		
 		cargarPanel("OF_Panel_Inicio.fxml");
 		
 	}
