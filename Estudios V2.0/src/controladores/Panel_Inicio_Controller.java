@@ -6,7 +6,7 @@
  */
 package controladores;
 
-import java.awt.Desktop;
+
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -118,15 +118,22 @@ public class Panel_Inicio_Controller implements Initializable  {
      * @param event Evento generado por el usuario. 
      */
 	@FXML private void verManualUsuario (ActionEvent event) {
-		String ruta = "../manuales/ManualUsuarioV1.pdf";
+		String ruta = "src/manuales/ManualUsuarioV1.pdf";
 		abrirFichero(ruta);
 	}
 	
-	public static void abrirFichero(String ruta) {
-		Desktop ficheroAAbrir = Desktop.getDesktop();
+	/**
+	 * Método para abrir un fichero, en este caso el Manual de Usuario
+	 * 
+	 * @param ruta, Es una cadena de texto con la URL donde se encuentra el Manual de Usuario.
+	 */
+	public void abrirFichero(String ruta) {
+		
 		try {
-			ficheroAAbrir.open(new File(ruta));
+			Runtime.getRuntime().exec("cmd /c start "+ruta);
 		}catch(Exception ex) {
+			ex.printStackTrace();
+			
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("INFORMACIÓN");
 			alert.setHeaderText("Esta información te interesa:");
