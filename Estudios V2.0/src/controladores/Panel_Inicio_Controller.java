@@ -6,6 +6,8 @@
  */
 package controladores;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -116,12 +118,22 @@ public class Panel_Inicio_Controller implements Initializable  {
      * @param event Evento generado por el usuario. 
      */
 	@FXML private void verManualUsuario (ActionEvent event) {
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("FUNCION NO IMPLEMENTADA");
-		alert.setHeaderText("Esta información te interesa:");
-		alert.setContentText("En esta sección encontrarás en breve un Manual de usuario."
-				+ "\nSi tienes alguna duda o cuestión, ponte en contacto con:\n\nferchagal@gmail.com ");
-		alert.showAndWait();
+		String ruta = "../manuales/ManualUsuarioV1.pdf";
+		abrirFichero(ruta);
+	}
+	
+	public static void abrirFichero(String ruta) {
+		Desktop ficheroAAbrir = Desktop.getDesktop();
+		try {
+			ficheroAAbrir.open(new File(ruta));
+		}catch(Exception ex) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("INFORMACIÓN");
+			alert.setHeaderText("Esta información te interesa:");
+			alert.setContentText("Manual de usuario no encontrado. Ponte en contacto con el administrador."
+					+ "\n\nferchagal@gmail.com ");
+			alert.showAndWait();
+		}
 	}
 	
 	/**
