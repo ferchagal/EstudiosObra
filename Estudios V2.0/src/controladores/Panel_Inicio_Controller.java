@@ -6,8 +6,6 @@
  */
 package controladores;
 
-
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -136,7 +134,7 @@ public class Panel_Inicio_Controller implements Initializable  {
 			
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("INFORMACIÓN");
-			alert.setHeaderText("Esta información te interesa:");
+			alert.setHeaderText("Lo sentimos, algo fue mal:");
 			alert.setContentText("Manual de usuario no encontrado. Ponte en contacto con el administrador."
 					+ "\n\nferchagal@gmail.com ");
 			alert.showAndWait();
